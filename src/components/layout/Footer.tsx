@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { Logo } from "@/components/ui/Logo";
 
 export function Footer() {
   const { t } = useLanguage();
@@ -14,9 +15,9 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           <div>
-            <h3 className="font-display text-2xl text-gold-gradient font-bold mb-4">
-              BICE Menajerlik
-            </h3>
+            <div className="mb-4">
+              <Logo size="lg" />
+            </div>
             <p className="text-silver text-sm leading-relaxed">{t("footerDesc")}</p>
           </div>
 

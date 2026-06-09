@@ -7,6 +7,7 @@ import { ArrowRight, Globe, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { HeroHighlights } from "@/components/sections/HeroHighlights";
 import { SITE_CONFIG } from "@/lib/constants";
+import { BLUR_PLACEHOLDER, IMAGE_ALTS } from "@/lib/image-placeholders";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 const QUICK_LINKS = [
@@ -23,9 +24,11 @@ export function Hero() {
       <div className="absolute inset-0 opacity-40">
         <Image
           src="https://images.unsplash.com/photo-1571266028247-e4733b0f0bb0?w=1920&q=80"
-          alt="Türkiye geneli menajerlik"
+          alt={IMAGE_ALTS.hero}
           fill
           priority
+          placeholder="blur"
+          blurDataURL={BLUR_PLACEHOLDER}
           sizes="100vw"
           className="object-cover scale-105"
         />

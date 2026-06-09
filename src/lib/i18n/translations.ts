@@ -21,18 +21,18 @@ export const translations = {
     menu: "Menü",
 
     // Hero
-    heroBadge: "Türkiye Geneli Kons & Menajerlik Hizmetleri",
-    heroTitle1: "68 İlde",
-    heroTitle2: "Güvenilir",
-    heroTitle3: "İş İlanları",
+    heroBadge: "Türkiye Geneli Menajerlik Hizmetleri",
+    heroTitle1: "Güvenilir Profesyonel",
+    heroTitle2: "Organizasyon Kadrosu",
+    heroTitle3: "ile Menajerlik Hizmeti",
     heroDesc:
-      "İstanbul'dan Antalya'ya, Ankara'dan İzmir'e Türkiye genelinde gazino, bar, night club ve müzikhol mekanlarında güvenilir iş eşleştirmesi. Günlük yevmiye, konaklama desteği ve 7/24 menajer danışmanlığı.",
+      "58 ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.",
     heroExplore: "Keşfet",
     heroScroll: "Aşağı kaydır",
     heroCardTitle: "Öne Çıkanlar",
     heroCardReview: "24 saat",
     highlightGoTo: "Bölüme git:",
-    trustBarProvinces: "İl kapsama alanı",
+    trustBarProvinces: "İlde hizmetinizdeyiz",
     trustBarSalary: "Günlük kazanç aralığı",
     trustBarReview: "İçinde değerlendirme",
     trustBarPlacements: "Başarılı yerleştirme",
@@ -50,13 +50,13 @@ export const translations = {
     // Kons banner
     konsBadge: "Kons Hizmetleri",
     konsBannerRegion: "Türkiye Geneli",
-    konsBannerRegionSub: "68 ilde aktif iş ilanları",
+    konsBannerRegionSub: "58 ilde gazino & gece kulübü personeli iş ilanları",
     konsBannerTitle1: "Türkiye Genelinde",
     konsBannerTitle2: "İş",
     konsBannerTitle3: "Fırsatları",
     konsBannerDesc:
       "Türkiye'nin her ilinde gazino, bar, night club ve müzikhol mekanlarında iş ilanları için güvenilir menajerlik hizmeti sunuyoruz. Deneyimli veya deneyimsiz, 18 yaş üstü tüm adaylar başvurabilir.",
-    highlight1: "Türkiye genelinde 68 ilde aktif iş ilanları",
+    highlight1: "Türkiye genelinde 58 ilde aktif iş ilanları",
     highlight2: "Deneyimli ve deneyimsiz adaylara açık",
     highlight3: "Günlük yevmiye, sözleşme zorunluluğu yok",
     highlight4: "Konaklama ve ulaşım koordinasyonu",
@@ -70,7 +70,7 @@ export const translations = {
       "Türkiye genelinde kons menajerliği hizmetlerimizle güvenilir mekanlarda işe başlamanızı sağlıyoruz.",
     serviceKonsTitle: "İş İlanları",
     serviceKonsDesc:
-      "Türkiye genelinde 68 ilde deneyimli veya deneyimsiz adaylar için günlük yevmiye ile iş eşleştirmesi.",
+      "Türkiye genelinde 58 ilde deneyimli veya deneyimsiz adaylar için günlük yevmiye ile iş eşleştirmesi.",
     serviceGazinoTitle: "Gazino & Night Club",
     serviceGazinoDesc:
       "İstanbul'dan İzmir'e, Ankara'dan Antalya'ya seçkin gazino, bar ve night club mekanlarında güvenilir yerleştirme.",
@@ -129,8 +129,8 @@ export const translations = {
 
     // Cities
     citiesBadge: "Hizmet Bölgeleri",
-    citiesTitle1: "68 İlde",
-    citiesTitle2: "Hizmetinizdeyiz",
+    citiesTitle1: "58 İlde Gazino & Gece Kulübü",
+    citiesTitle2: "Personeli İş İlanları",
     citiesDesc:
       "Türkiye genelinde her ilde güvenilir mekan ağımız ve aktif iş ilanlarımız bulunmaktadır. Bulunduğunuz şehirde size en uygun fırsatı sunuyoruz.",
     citiesListLabel: "Aktif hizmet verdiğimiz başlıca şehirler",
@@ -147,7 +147,7 @@ export const translations = {
     statCities: "İl Kapsama Alanı",
     statReview: "İçinde Değerlendirme",
     featureNationwideTitle: "Türkiye Geneli",
-    featureNationwideDesc: "68 ilde aktif iş ilanları ve mekan ağımız var.",
+    featureNationwideDesc: "58 ilde aktif iş ilanları ve mekan ağımız var.",
     featureTrustTitle: "Güvenilir Mekanlar",
     featureTrustDesc: "Sadece ödemeleri düzenli, güvenli mekanlarla çalışıyoruz.",
     featureFastTitle: "Hızlı Yerleştirme",
@@ -166,7 +166,7 @@ export const translations = {
 
     // Footer
     footerDesc:
-      "Türkiye genelinde 68 ilde iş ilanları, güvenilir gazino ve night club mekanlarında profesyonel menajerlik hizmeti.",
+      "Türkiye genelinde 58 ilde iş ilanları, güvenilir mekanlarda profesyonel organizasyon kadrosu ve menajerlik hizmeti.",
     quickLinks: "Hızlı Bağlantılar",
     footerContact: "İletişim",
     footerTagline: "Türkiye Geneli İş İlanları · Profesyonel Menajerlik",
@@ -233,13 +233,13 @@ export const translations = {
     aboutTitle2: "Güvenilir",
     aboutTitle3: "Kons Menajeri",
     aboutIntro:
-      "Bice Menajerlik olarak Türkiye'nin 68 ilinde iş ilanları, gazino ve night club mekanlarında güvenilir iş eşleştirmesi hizmeti sunmaktayız.",
+      "Bice Menajerlik olarak Türkiye'nin 58 ilinde organizasyon kadrosu ve etkinlik personeli için güvenilir menajerlik hizmeti sunmaktayız.",
     aboutMissionTitle: "Misyonumuz",
     aboutMission:
       "Türkiye genelindeki güvenilir mekanlarla iş birliği yaparak, kons adaylarını bulundukları ilde doğru ve güvenli iş ortamlarıyla buluşturmak.",
     aboutWhyTitle: "Neden Bizi Tercih Etmelisiniz?",
     aboutWhy:
-      "Türkiye genelinde güvenilir iş ortağı mekan ağımız, 68 il kapsama alanı, 7/24 WhatsApp desteği ve günlük yevmiye garantisi ile sektörün en güvenilir menajerlik ajansıyız.",
+      "Türkiye genelinde güvenilir iş ortağı mekan ağımız, 58 il kapsama alanı, 7/24 WhatsApp desteği ve günlük yevmiye garantisi ile sektörün en güvenilir menajerlik ajansıyız.",
     aboutCtaTitle: "İş Başvurusu",
     aboutCtaDesc:
       "Bulunduğunuz ilde güvenilir mekanlarımızda iş fırsatları için hemen başvurun.",
@@ -255,7 +255,7 @@ export const translations = {
     contactWhatsappValue: "Türkiye Geneli - 7/24",
     contactEmail: "E-posta",
     contactRegion: "Hizmet Alanı",
-    contactRegionValue: "Türkiye Geneli - 68 İl",
+    contactRegionValue: "Türkiye Geneli - 58 İl",
     contactCtaTitle: "İş Başvurusu",
     contactCtaDesc:
       "Bulunduğunuz ilde güvenilir mekanlarımızda iş fırsatları için online başvuru formumuzu doldurun.",
@@ -312,12 +312,12 @@ export const translations = {
     next: "Next",
     menu: "Menu",
 
-    heroBadge: "Nationwide Hostess & Management Services in Turkey",
-    heroTitle1: "68 Provinces",
-    heroTitle2: "Trusted",
-    heroTitle3: "Job Listings",
+    heroBadge: "Nationwide Management Services in Turkey",
+    heroTitle1: "Trusted Professional",
+    heroTitle2: "Organization Staff",
+    heroTitle3: "Management Services",
     heroDesc:
-      "Reliable job placement in casinos, bars, night clubs and music halls across Turkey — from Istanbul to Antalya, Ankara to Izmir. Daily wages, accommodation support and 24/7 manager assistance.",
+      "Casino and nightclub staff job listings in 58 provinces. Trusted management services, daily wages and 24/7 support across Turkey.",
     heroExplore: "Explore",
     heroScroll: "Scroll down",
     heroCardTitle: "Highlights",
@@ -340,13 +340,13 @@ export const translations = {
 
     konsBadge: "Hostess Services",
     konsBannerRegion: "Nationwide",
-    konsBannerRegionSub: "Active job listings in 68 provinces",
+    konsBannerRegionSub: "Casino & nightclub staff jobs in 58 provinces",
     konsBannerTitle1: "Job Opportunities",
     konsBannerTitle2: "Across",
     konsBannerTitle3: "Turkey",
     konsBannerDesc:
       "We provide trusted management services for job listings in casinos, bars, night clubs and music halls across Turkey. Experienced or inexperienced candidates aged 18+ may apply.",
-    highlight1: "Active job listings in 68 provinces",
+    highlight1: "Active job listings in 58 provinces",
     highlight2: "Open to experienced and inexperienced candidates",
     highlight3: "Daily wages, no contract obligation",
     highlight4: "Accommodation and transport coordination",
@@ -359,7 +359,7 @@ export const translations = {
       "We help you start working at trusted venues with our nationwide hostess management services.",
     serviceKonsTitle: "Job Listings",
     serviceKonsDesc:
-      "Daily wage job placement for experienced or inexperienced candidates in 68 provinces of Turkey.",
+      "Daily wage job placement for experienced or inexperienced candidates in 58 provinces of Turkey.",
     serviceGazinoTitle: "Casino & Night Club",
     serviceGazinoDesc:
       "Trusted placement at select casinos, bars and night clubs from Istanbul to Izmir, Ankara to Antalya.",
@@ -415,8 +415,8 @@ export const translations = {
     salaryRangeLabel: "Earning range",
 
     citiesBadge: "Service Areas",
-    citiesTitle1: "68 Provinces",
-    citiesTitle2: "At Your Service",
+    citiesTitle1: "Casino & Nightclub Staff Jobs",
+    citiesTitle2: "in 58 Provinces",
     citiesDesc:
       "We have a trusted venue network and active job listings in every province. We find the best opportunity in your city.",
     citiesListLabel: "Major cities we actively serve",
@@ -432,7 +432,7 @@ export const translations = {
     statCities: "Province Coverage",
     statReview: "Review Within",
     featureNationwideTitle: "Nationwide",
-    featureNationwideDesc: "Active job listings and venue network in 68 provinces.",
+    featureNationwideDesc: "Active job listings and venue network in 58 provinces.",
     featureTrustTitle: "Trusted Venues",
     featureTrustDesc: "We only work with venues that pay regularly and are safe.",
     featureFastTitle: "Fast Placement",
@@ -449,7 +449,7 @@ export const translations = {
     whatsapp: "WhatsApp",
 
     footerDesc:
-      "Professional management services for job listings at trusted casinos and night clubs in 68 provinces of Turkey.",
+      "Professional organization staff and management services in 58 provinces of Turkey.",
     quickLinks: "Quick Links",
     footerContact: "Contact",
     footerTagline: "Nationwide Job Listings · Professional Management",
@@ -511,13 +511,13 @@ export const translations = {
     aboutTitle2: "Trusted",
     aboutTitle3: "Hostess Manager",
     aboutIntro:
-      "Bice Management provides trusted job placement in casinos and night clubs across 68 provinces of Turkey.",
+      "Bice Management provides trusted organization staff and management services across 58 provinces of Turkey.",
     aboutMissionTitle: "Our Mission",
     aboutMission:
       "Partnering with trusted venues nationwide to connect hostess candidates with safe work environments in their province.",
     aboutWhyTitle: "Why Choose Us?",
     aboutWhy:
-      "Trusted partner venue network, 68 province coverage, 24/7 WhatsApp support and guaranteed daily wages make us the most reliable management agency.",
+      "Trusted partner venue network, 58 province coverage, 24/7 WhatsApp support and guaranteed daily wages make us the most reliable management agency.",
     aboutCtaTitle: "Job Application",
     aboutCtaDesc:
       "Apply now for job opportunities at trusted venues in your province.",
@@ -532,7 +532,7 @@ export const translations = {
     contactWhatsappValue: "Nationwide - 24/7",
     contactEmail: "Email",
     contactRegion: "Service Area",
-    contactRegionValue: "Nationwide - 68 Provinces",
+    contactRegionValue: "Nationwide - 58 Provinces",
     contactCtaTitle: "Job Application",
     contactCtaDesc:
       "Fill out our online application form for job opportunities in your province.",

@@ -26,10 +26,6 @@ export function getApplicationSchema(locale: Locale = "tr") {
       .min(18, m.valAgeMin)
       .max(65, m.valAgeMax),
     city: z.string().min(2, m.valCityMin).max(50, m.valCityMax),
-    height: z
-      .number({ error: m.valHeightInvalid })
-      .min(140, m.valHeightMin)
-      .max(220, m.valHeightMax),
     experienceArea: z.string().min(1, m.valExperienceArea),
     experience: z
       .string()

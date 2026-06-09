@@ -6,7 +6,6 @@ export interface ApplicationEmailData {
   lastName: string;
   age: number;
   city: string;
-  height: number;
   experienceArea: string;
   experience: string;
   phone: string;
@@ -43,7 +42,6 @@ export async function sendApplicationEmail(
       <tr><td style="padding:8px;border:1px solid #ddd;"><strong>Soyisim</strong></td><td style="padding:8px;border:1px solid #ddd;">${data.lastName}</td></tr>
       <tr><td style="padding:8px;border:1px solid #ddd;"><strong>Yaş</strong></td><td style="padding:8px;border:1px solid #ddd;">${data.age}</td></tr>
       <tr><td style="padding:8px;border:1px solid #ddd;"><strong>Şehir</strong></td><td style="padding:8px;border:1px solid #ddd;">${data.city}</td></tr>
-      <tr><td style="padding:8px;border:1px solid #ddd;"><strong>Boy</strong></td><td style="padding:8px;border:1px solid #ddd;">${data.height} cm</td></tr>
       <tr><td style="padding:8px;border:1px solid #ddd;"><strong>Deneyim Alanı</strong></td><td style="padding:8px;border:1px solid #ddd;">${data.experienceArea}</td></tr>
       <tr><td style="padding:8px;border:1px solid #ddd;"><strong>Telefon</strong></td><td style="padding:8px;border:1px solid #ddd;">${data.phone}</td></tr>
       <tr><td style="padding:8px;border:1px solid #ddd;"><strong>Deneyim</strong></td><td style="padding:8px;border:1px solid #ddd;">${data.experience}</td></tr>

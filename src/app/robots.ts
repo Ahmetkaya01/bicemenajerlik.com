@@ -6,7 +6,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: "*",
       allow: "/",
+      disallow: ["/api/"],
     },
+    host: "bicemenajerlik.com",
     sitemap: `${SITE_CONFIG.domain}/sitemap.xml`,
   };
 }

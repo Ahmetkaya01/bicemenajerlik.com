@@ -47,7 +47,7 @@ export function ApplicationForm() {
   const nextStep = async () => {
     const fields =
       step === 1
-        ? (["firstName", "lastName", "age", "city", "height"] as const)
+        ? (["firstName", "lastName", "age", "city"] as const)
         : step === 2
           ? (["experienceArea", "experience", "phone"] as const)
           : (["consent", "deliveryMethod"] as const);
@@ -76,7 +76,6 @@ export function ApplicationForm() {
       formData.append("lastName", data.lastName);
       formData.append("age", String(data.age));
       formData.append("city", data.city);
-      formData.append("height", String(data.height));
       formData.append("experienceArea", data.experienceArea);
       formData.append("experience", data.experience);
       formData.append("phone", data.phone);
@@ -162,7 +161,7 @@ export function ApplicationForm() {
                   )}
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label className={labelClass}>{t("age")} *</label>
                   <input
@@ -185,19 +184,6 @@ export function ApplicationForm() {
                   />
                   {errors.city && (
                     <p className={errorClass}>{errors.city.message}</p>
-                  )}
-                </div>
-                <div>
-                  <label className={labelClass}>{t("height")} *</label>
-                  <input
-                    {...register("height", { valueAsNumber: true })}
-                    type="number"
-                    className={inputClass}
-                    placeholder="170"
-                    min={140}
-                  />
-                  {errors.height && (
-                    <p className={errorClass}>{errors.height.message}</p>
                   )}
                 </div>
               </div>

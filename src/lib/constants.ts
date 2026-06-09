@@ -1,3 +1,5 @@
+export const PROVINCE_COUNT = 58;
+
 export const SITE_CONFIG = {
   name: "Bice Menajerlik",
   domain: "https://bicemenajerlik.com",
@@ -17,7 +19,7 @@ export const HERO_HIGHLIGHTS = [
   {
     id: "provinces",
     icon: "MapPin",
-    value: "68",
+    value: String(PROVINCE_COUNT),
     labelKey: "trustBarProvinces" as const,
     sectionKey: "cities" as const,
     href: "/#sehirler",
@@ -143,7 +145,7 @@ export const SERVICE_CITIES = [
 export const WHY_US_STATS = [
   { value: 50, suffix: "+", labelKey: "statVenues" as const },
   { value: 2500, suffix: "+", labelKey: "statPlacements" as const },
-  { value: 68, suffix: "", labelKey: "statCities" as const },
+  { value: PROVINCE_COUNT, suffix: "", labelKey: "statCities" as const },
   { value: 24, suffix: "sa", labelKey: "statReview" as const },
 ] as const;
 

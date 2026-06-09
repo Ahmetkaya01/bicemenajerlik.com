@@ -25,6 +25,8 @@
   --font-sans: var(--font-inter);
   --font-display: var(--font-playfair);
   --font-heading: var(--font-montserrat);
+  --font-logo: var(--font-cinzel);
+  --font-logo-sub: var(--font-cormorant);
 }
 
 html {
@@ -59,6 +61,14 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.font-logo {
+  font-family: var(--font-logo), "Times New Roman", serif;
+}
+
+.font-logo-sub {
+  font-family: var(--font-logo-sub), Georgia, serif;
 }
 
 .hero-gradient {

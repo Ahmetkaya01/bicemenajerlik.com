@@ -7,9 +7,9 @@ export function ApplyContent() {
   const { t } = useLanguage();
 
   return (
-    <div className="pt-32 pb-24">
+    <article className="pt-32 pb-24">
       <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
+        <header className="text-center mb-12">
           <span className="text-gold text-sm font-heading font-semibold tracking-widest uppercase">
             {t("applyBadge")}
           </span>
@@ -18,12 +18,12 @@ export function ApplyContent() {
             <span className="text-gold-gradient">{t("applyTitle2")}</span>
           </h1>
           <p className="text-silver">{t("applyDesc")}</p>
-        </div>
+        </header>
 
-        <div className="glass rounded-3xl p-6 sm:p-10">
+        <section className="glass rounded-3xl p-6 sm:p-10" aria-label={t("applicationForm")}>
           <ApplicationForm />
-        </div>
+        </section>
       </div>
-    </div>
+    </article>
   );
 }

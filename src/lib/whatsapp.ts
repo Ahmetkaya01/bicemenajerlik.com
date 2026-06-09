@@ -7,7 +7,6 @@ export interface ApplicationWhatsAppData {
   lastName: string;
   age: number;
   city: string;
-  height: number;
   experienceArea: string;
   experience: string;
   phone: string;
@@ -28,7 +27,6 @@ export function buildWhatsAppMessage(
     `*${t(locale, "waLastName")}:* ${data.lastName}`,
     `*${t(locale, "waAge")}:* ${data.age}`,
     `*${t(locale, "waCity")}:* ${data.city}`,
-    `*${t(locale, "waHeight")}:* ${data.height} cm`,
     `*${t(locale, "waExperienceArea")}:* ${data.experienceArea}`,
     `*${t(locale, "waPhone")}:* ${data.phone}`,
     `*${t(locale, "waExperience")}:* ${data.experience}`,

@@ -28,10 +28,10 @@ export function HeroHighlights() {
 
   const getValue = (item: (typeof HERO_HIGHLIGHTS)[number]) => {
     if ("value" in item && item.value) return item.value;
-    if (item.valueType === "salary") {
+    if ("valueType" in item && item.valueType === "salary") {
       return `${formatSalary(SALARY_RANGE.min)}–${formatSalary(SALARY_RANGE.max)} ₺`;
     }
-    if (item.valueType === "review") return t("heroCardReview");
+    if ("valueType" in item && item.valueType === "review") return t("heroCardReview");
     return "";
   };
 

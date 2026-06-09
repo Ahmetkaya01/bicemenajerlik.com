@@ -13,7 +13,6 @@ export async function POST(request: Request) {
     const lastName = formData.get("lastName") as string;
     const age = formData.get("age") as string;
     const city = formData.get("city") as string;
-    const height = formData.get("height") as string;
     const experienceArea = formData.get("experienceArea") as string;
     const experience = formData.get("experience") as string;
     const phone = formData.get("phone") as string;
@@ -26,7 +25,6 @@ export async function POST(request: Request) {
       !lastName ||
       !age ||
       !city ||
-      !height ||
       !experienceArea ||
       !experience ||
       !phone
@@ -43,7 +41,6 @@ export async function POST(request: Request) {
       lastName,
       age: Number(age),
       city,
-      height: Number(height),
       experienceArea,
       experience,
       phone,

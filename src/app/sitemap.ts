@@ -1,13 +1,33 @@
 import type { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/lib/constants";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const routes = ["", "/hakkimizda", "/iletisim", "/basvuru"];
-
-  return routes.map((route) => ({
-    url: `${SITE_CONFIG.domain}${route}`,
+const ROUTES: MetadataRoute.Sitemap = [
+  {
+    url: SITE_CONFIG.domain,
     lastModified: new Date(),
-    changeFrequency: route === "" ? "weekly" : "monthly",
-    priority: route === "" ? 1 : 0.8,
-  }));
+    changeFrequency: "weekly",
+    priority: 1,
+  },
+  {
+    url: `${SITE_CONFIG.domain}/hakkimizda`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
+    url: `${SITE_CONFIG.domain}/iletisim`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.8,
+  },
+  {
+    url: `${SITE_CONFIG.domain}/basvuru`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.9,
+  },
+];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  return ROUTES;
 }

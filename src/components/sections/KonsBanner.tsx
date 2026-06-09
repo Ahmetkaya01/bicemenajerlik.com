@@ -4,8 +4,10 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 import { KONS_HIGHLIGHT_KEYS } from "@/lib/constants";
+import { IMAGE_ALTS } from "@/lib/image-placeholders";
 import { Button } from "@/components/ui/Button";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import konsBannerPhoto from "../../../public/images/kons-banner.jpg";
 
 export function KonsBanner() {
   const { t } = useLanguage();
@@ -21,13 +23,16 @@ export function KonsBanner() {
             className="relative aspect-[4/3] rounded-2xl overflow-hidden ring-1 ring-gold/10"
           >
             <Image
-              src="https://images.unsplash.com/photo-1540039157733-5bb30faf8b6d?w=800&q=80"
-              alt="İş ilanları"
+              src={konsBannerPhoto}
+              alt={IMAGE_ALTS.konsBanner}
               fill
+              priority={false}
+              placeholder="blur"
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover"
+              className="object-cover object-center scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-background/90 via-background/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-background/85 via-background/30 to-gold/5" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 glass rounded-xl px-4 py-3">
               <p className="text-gold font-heading font-semibold text-sm">
                 {t("konsBannerRegion")}

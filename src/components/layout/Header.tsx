@@ -8,6 +8,7 @@ import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { HEADER_NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
+import { Logo } from "@/components/ui/Logo";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 function isLinkActive(href: string, pathname: string) {
@@ -68,17 +69,10 @@ export function Header() {
           >
             <Link
               href="/"
-              className="flex items-center gap-2 shrink-0 group"
+              className="shrink-0 group transition-opacity hover:opacity-90"
               aria-label="Bice Menajerlik"
             >
-              <div className="flex flex-col leading-none">
-                <span className="font-display text-lg sm:text-xl text-gold-gradient font-bold tracking-wide">
-                  BICE
-                </span>
-                <span className="hidden sm:block text-[10px] text-silver/60 font-heading uppercase tracking-[0.2em] group-hover:text-silver/80 transition-colors">
-                  Menajerlik
-                </span>
-              </div>
+              <Logo size="md" />
             </Link>
 
             <div className="hidden lg:flex flex-1 items-center justify-center gap-5 xl:gap-7 px-4">
@@ -156,9 +150,7 @@ export function Header() {
               className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-sm glass border-l border-gold/10 lg:hidden flex flex-col"
             >
               <div className="flex items-center justify-between p-5 border-b border-white/5">
-                <span className="font-display text-xl text-gold-gradient font-bold">
-                  BICE
-                </span>
+                <Logo size="sm" />
                 <button
                   type="button"
                   onClick={() => setMobileOpen(false)}

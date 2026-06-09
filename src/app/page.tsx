@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import { Hero } from "@/components/sections/Hero";
 import { KonsBanner } from "@/components/sections/KonsBanner";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
@@ -6,6 +7,9 @@ import { SalaryScale } from "@/components/sections/SalaryScale";
 import { CitiesCoverage } from "@/components/sections/CitiesCoverage";
 import { WhyUs } from "@/components/sections/WhyUs";
 import { CTA } from "@/components/sections/CTA";
+import { homeMetadata } from "@/lib/metadata";
+
+export const metadata: Metadata = homeMetadata;
 
 export default function HomePage() {
   return (

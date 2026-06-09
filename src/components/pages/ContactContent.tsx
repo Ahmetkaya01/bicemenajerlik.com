@@ -36,9 +36,9 @@ export function ContactContent() {
   ];
 
   return (
-    <div className="pt-32 pb-24">
+    <article className="pt-32 pb-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <header className="text-center mb-16">
           <span className="text-gold text-sm font-heading font-semibold tracking-widest uppercase">
             {t("contactBadge")}
           </span>
@@ -49,9 +49,12 @@ export function ContactContent() {
           <p className="text-silver text-lg max-w-2xl mx-auto">
             {t("contactIntro")}
           </p>
-        </div>
+        </header>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+        <section
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-16"
+          aria-label={t("footerContact")}
+        >
           {contactItems.map((item) => {
             const Icon = item.icon;
             const content = (
@@ -80,10 +83,10 @@ export function ContactContent() {
               <div key={item.title}>{content}</div>
             );
           })}
-        </div>
+        </section>
 
-        <div className="glass rounded-3xl p-8 sm:p-12 text-center max-w-2xl mx-auto">
-          <h2 className="font-display text-2xl font-bold mb-4">
+        <section className="glass rounded-3xl p-8 sm:p-12 text-center max-w-2xl mx-auto" aria-labelledby="contact-cta-heading">
+          <h2 id="contact-cta-heading" className="font-display text-2xl font-bold mb-4">
             {t("contactCtaTitle")}
           </h2>
           <p className="text-silver mb-8">{t("contactCtaDesc")}</p>
@@ -99,8 +102,8 @@ export function ContactContent() {
               {t("whatsapp")}
             </Button>
           </div>
-        </div>
+        </section>
       </div>
-    </div>
+    </article>
   );
 }
