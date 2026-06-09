@@ -26,7 +26,7 @@ export const translations = {
     heroTitle2: "Organizasyon Kadrosu",
     heroTitle3: "ile Menajerlik Hizmeti",
     heroDesc:
-      "58 ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.",
+      "İstanbul'dan Antalya'ya, Ankara'dan İzmir'e Türkiye genelinde gazino, bar, night club ve müzikhol mekanlarında güvenilir iş eşleştirmesi. Günlük yevmiye, konaklama desteği ve 7/24 menajer danışmanlığı.",
     heroExplore: "Keşfet",
     heroScroll: "Aşağı kaydır",
     heroCardTitle: "Öne Çıkanlar",
