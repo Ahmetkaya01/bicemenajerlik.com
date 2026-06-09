@@ -26,7 +26,7 @@ export function KonsBanner() {
               src={konsBannerPhoto}
               alt={IMAGE_ALTS.konsBanner}
               fill
-              priority={false}
+              loading="lazy"
               placeholder="blur"
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover object-center scale-105"

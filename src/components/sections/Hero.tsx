@@ -23,10 +23,11 @@ export function Hero() {
     <section className="relative min-h-[100svh] flex flex-col hero-gradient overflow-hidden">
       <div className="absolute inset-0 opacity-40">
         <Image
-          src="https://images.unsplash.com/photo-1571266028247-e4733b0f0bb0?w=1920&q=80"
+          src="https://images.unsplash.com/photo-1571266028247-e4733b0f0bb0?w=1920&q=70"
           alt={IMAGE_ALTS.hero}
           fill
-          priority
+          preload
+          quality={60}
           placeholder="blur"
           blurDataURL={BLUR_PLACEHOLDER}
           sizes="100vw"
