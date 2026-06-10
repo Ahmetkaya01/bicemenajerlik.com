@@ -97,7 +97,11 @@ export function ApplicationForm() {
       });
 
       const result = await response.json();
-      if (!response.ok) throw new Error("Gönderim başarısız");
+      if (!response.ok) {
+        throw new Error(
+          typeof result.error === "string" ? result.error : "Gönderim başarısız"
+        );
+      }
 
       setSuccessDelivery(
         result.fallbackToWhatsapp ? "whatsapp" : data.deliveryMethod

@@ -1,9 +1,32 @@
 import { NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
+import os from "os";
 import path from "path";
 import { sendApplicationEmail } from "@/lib/email";
 import { buildWhatsAppMessage, getWhatsAppUrl } from "@/lib/whatsapp";
 import type { Locale } from "@/lib/i18n/translations";
+
+/** Best-effort local backup; never blocks submission (Vercel FS is read-only). */
+async function persistApplicationBackup(
+  appId: string,
+  application: object,
+  photoBuffer?: Buffer,
+  photoFilename?: string
+) {
+  try {
+    const uploadsDir = path.join(os.tmpdir(), "bice-applications");
+    await mkdir(uploadsDir, { recursive: true });
+    await writeFile(
+      path.join(uploadsDir, `${appId}.json`),
+      JSON.stringify(application, null, 2)
+    );
+    if (photoBuffer && photoFilename) {
+      await writeFile(path.join(uploadsDir, photoFilename), photoBuffer);
+    }
+  } catch (error) {
+    console.warn("Application backup skipped:", error);
+  }
+}
 
 export async function POST(request: Request) {
   try {
@@ -48,9 +71,6 @@ export async function POST(request: Request) {
       submittedAt,
     };
 
-    const uploadsDir = path.join(process.cwd(), "data", "applications");
-    await mkdir(uploadsDir, { recursive: true });
-
     const timestamp = Date.now();
     const appId = `${timestamp}-${firstName.toLowerCase()}-${lastName.toLowerCase()}`;
 
@@ -64,11 +84,9 @@ export async function POST(request: Request) {
       photoMimeType = photo.type;
       const ext = photo.name.split(".").pop() || "jpg";
       photoFilename = `basvuru-${appId}.${ext}`;
-      await writeFile(path.join(uploadsDir, photoFilename), photoBuffer);
     }
 
-    const dataPath = path.join(uploadsDir, `${appId}.json`);
-    await writeFile(dataPath, JSON.stringify(application, null, 2));
+    await persistApplicationBackup(appId, application, photoBuffer, photoFilename);
 
     const whatsappMessage = buildWhatsAppMessage(application, locale);
     const whatsappUrl = getWhatsAppUrl(whatsappMessage);
