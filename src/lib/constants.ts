@@ -51,13 +51,13 @@ export const HERO_HIGHLIGHTS = [
 ] as const;
 
 export const SALARY_EXAMPLES = [
-  { city: "İstanbul", min: 10000, max: 12000 },
-  { city: "İzmir", min: 9500, max: 11500 },
-  { city: "Ankara", min: 9000, max: 11000 },
-  { city: "Antalya", min: 8500, max: 10500 },
-  { city: "Bursa", min: 8000, max: 10000 },
-  { city: "Adana", min: 7500, max: 9500 },
-  { city: "Tokat", min: 7000, max: 9000 },
+  { city: "İstanbul", labelKey: "salaryIstanbulSpecial" as const },
+  { city: "Samsun", min: 7000, max: 9000 },
+  { city: "Tokat", min: 7000, max: 10000 },
+  { city: "Diyarbakır", min: 8000, max: 12000 },
+  { city: "Konya", min: 7000, max: 9000 },
+  { city: "Uşak", min: 7000, max: 10000 },
+  { city: "Zonguldak", min: 7000, max: 9000 },
 ] as const;
 
 export const NAV_LINKS = [

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
@@ -18,6 +18,8 @@ export function ApplicationForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccess, setShowSuccess] = useState(false);
   const [photoPreview, setPhotoPreview] = useState<string | null>(null);
+  const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
+  const photoInputRef = useRef<HTMLInputElement>(null);
   const [whatsappUrl, setWhatsappUrl] = useState<string | undefined>();
   const [successDelivery, setSuccessDelivery] = useState<"email" | "whatsapp">("email");
   const [emailSent, setEmailSent] = useState(true);
@@ -62,9 +64,13 @@ export function ApplicationForm() {
     const files = e.target.files;
     if (files?.[0]) {
       setValue("photo", files);
+      setSelectedFileName(files[0].name);
       const reader = new FileReader();
       reader.onload = (ev) => setPhotoPreview(ev.target?.result as string);
       reader.readAsDataURL(files[0]);
+    } else {
+      setSelectedFileName(null);
+      setPhotoPreview(null);
     }
   };
 
@@ -111,6 +117,8 @@ export function ApplicationForm() {
       reset({ deliveryMethod: "email" });
       setStep(1);
       setPhotoPreview(null);
+      setSelectedFileName(null);
+      if (photoInputRef.current) photoInputRef.current.value = "";
     } catch {
       alert(t("submitError"));
     } finally {
@@ -269,15 +277,30 @@ export function ApplicationForm() {
                     <p className="text-silver/60 mb-4">{t("photoHint")}</p>
                   )}
                   <input
+                    ref={(el) => {
+                      photoInputRef.current = el;
+                      register("photo").ref(el);
+                    }}
+                    id="photo-upload"
                     type="file"
                     accept="image/jpeg,image/png,image/webp"
-                    {...register("photo")}
                     onChange={(e) => {
                       register("photo").onChange(e);
                       handlePhotoChange(e);
                     }}
-                    className="block w-full text-sm text-silver file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-gold/20 file:text-gold hover:file:bg-gold/30 file:cursor-pointer"
+                    className="sr-only"
                   />
+                  <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+                    <label
+                      htmlFor="photo-upload"
+                      className="cursor-pointer rounded-full bg-gold/20 px-4 py-2 text-sm font-semibold text-gold hover:bg-gold/30 transition-colors"
+                    >
+                      {t("chooseFile")}
+                    </label>
+                    <span className="text-sm text-silver/60 truncate max-w-[220px]">
+                      {selectedFileName ?? t("noFileChosen")}
+                    </span>
+                  </div>
                 </div>
                 {errors.photo && (
                   <p className={errorClass}>

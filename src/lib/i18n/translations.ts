@@ -4,7 +4,7 @@ export const translations = {
   tr: {
     // Nav
     home: "Ana Sayfa",
-    services: "Kons Hizmetleri",
+    services: "Hizmetler",
     salary: "Maaş Skalası",
     venues: "Güvenilir Mekanlar",
     cities: "Şehirler",
@@ -26,7 +26,7 @@ export const translations = {
     heroTitle2: "Organizasyon Kadrosu",
     heroTitle3: "ile Menajerlik Hizmeti",
     heroDesc:
-      "İstanbul'dan Antalya'ya, Ankara'dan İzmir'e Türkiye genelinde gazino, bar, night club ve müzikhol mekanlarında güvenilir iş eşleştirmesi. Günlük yevmiye, konaklama desteği ve 7/24 menajer danışmanlığı.",
+      "58 ilde gazino ve gece kulübü personel istihdamı. Güvenilir menajerlik hizmetleri, günlük ödeme ve Türkiye genelinde 24/7 kesintisiz destek.",
     heroExplore: "Keşfet",
     heroScroll: "Aşağı kaydır",
     heroCardTitle: "Öne Çıkanlar",
@@ -48,7 +48,7 @@ export const translations = {
     processStep3Desc: "Size en uygun fırsatla eşleşir, çalışmaya başlarsınız.",
 
     // Kons banner
-    konsBadge: "Kons Hizmetleri",
+    konsBadge: "Menajerlik Hizmetleri",
     konsBannerRegion: "Türkiye Geneli",
     konsBannerRegionSub: "58 ilde gazino & gece kulübü personeli iş ilanları",
     konsBannerTitle1: "Türkiye Genelinde",
@@ -63,11 +63,11 @@ export const translations = {
     highlight5: "Yarıcı veya sabit yevmiye seçenekleri",
 
     // Services
-    servicesBadge: "Kons Hizmetleri",
+    servicesBadge: "Menajerlik Hizmetleri",
     servicesTitle1: "Neden",
     servicesTitle2: "Bice Menajerlik?",
     servicesDesc:
-      "Türkiye genelinde kons menajerliği hizmetlerimizle güvenilir mekanlarda işe başlamanızı sağlıyoruz.",
+      "Türkiye genelinde menajerlik hizmetlerimizle güvenilir mekanlarda işe başlamanızı sağlıyoruz.",
     serviceKonsTitle: "İş İlanları",
     serviceKonsDesc:
       "Türkiye genelinde 58 ilde deneyimli veya deneyimsiz adaylar için günlük yevmiye ile iş eşleştirmesi.",
@@ -76,7 +76,7 @@ export const translations = {
       "İstanbul'dan İzmir'e, Ankara'dan Antalya'ya seçkin gazino, bar ve night club mekanlarında güvenilir yerleştirme.",
     servicePlacementTitle: "Hızlı İş Başı",
     servicePlacementDesc:
-      "Başvurunuz onaylandıktan sonra aynı gün veya ertesi gün iş başı yapma imkânı. Konaklama koordinasyonu dahil.",
+      "Başvurunuz onaylandıktan sonra aynı gün veya ertesi gün iş başı yapma imkânı. Konaklama mekan koordinasyonu ile sağlanacaktır.",
     servicePaymentTitle: "Günlük Ödeme",
     servicePaymentDesc:
       "Yevmiye ve yarıcı ödemeleri günlük olarak alırsınız. Sözleşme zorunluluğu yok, esnek çalışma.",
@@ -126,6 +126,7 @@ export const translations = {
       "Belirtilen tutarlar günlük yevmiye bazındadır ve şehirden şehire değişiklik göstermektedir. Kesin ücret, çalışılacak mekan ve deneyime göre belirlenir.",
     salaryCityExamples: "Örnek şehir bazlı kazanç aralıkları",
     salaryRangeLabel: "Kazanç aralığı",
+    salaryIstanbulSpecial: "2.000 ₺ + yarım",
 
     // Cities
     citiesBadge: "Hizmet Bölgeleri",
@@ -193,8 +194,10 @@ export const translations = {
     experience: "Deneyiminiz",
     photoUpload: "Fotoğraf Yükleme (İsteğe Bağlı)",
     selectOption: "Seçiniz",
-    photoHint: "JPEG, PNG veya WebP (max 5MB) — isteğe bağlı",
+    photoHint: "JPEG, PNG veya WebP (maks. 5MB) — isteğe bağlı",
     photoPreview: "Önizleme",
+    chooseFile: "Dosya Seç",
+    noFileChosen: "Dosya seçilmedi",
     consent:
       "Kişisel verilerimin işlenmesini ve 18 yaşından büyük olduğumu onaylıyorum.",
     submitApplication: "Başvuruyu Gönder",
@@ -212,7 +215,7 @@ export const translations = {
     submitError: "Başvuru gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
 
     // Experience areas
-    expKons: "Kons / Konsomatris",
+    expKons: "Konsomatris",
     expGarson: "Bayan Garson",
     expDancer: "Dansçı / Oryantal",
     expHostes: "Hostes",
@@ -231,12 +234,12 @@ export const translations = {
     aboutBadge: "Hakkımızda",
     aboutTitle1: "Türkiye Genelinin",
     aboutTitle2: "Güvenilir",
-    aboutTitle3: "Kons Menajeri",
+    aboutTitle3: "Menajer",
     aboutIntro:
       "Bice Menajerlik olarak Türkiye'nin 58 ilinde organizasyon kadrosu ve etkinlik personeli için güvenilir menajerlik hizmeti sunmaktayız.",
     aboutMissionTitle: "Misyonumuz",
     aboutMission:
-      "Türkiye genelindeki güvenilir mekanlarla iş birliği yaparak, kons adaylarını bulundukları ilde doğru ve güvenli iş ortamlarıyla buluşturmak.",
+      "Türkiye genelindeki güvenilir mekanlarla iş birliği yaparak, adayları bulundukları ilde doğru ve güvenli iş ortamlarıyla buluşturmak.",
     aboutWhyTitle: "Neden Bizi Tercih Etmelisiniz?",
     aboutWhy:
       "Türkiye genelinde güvenilir iş ortağı mekan ağımız, 58 il kapsama alanı, 7/24 WhatsApp desteği ve günlük yevmiye garantisi ile sektörün en güvenilir menajerlik ajansıyız.",
@@ -413,6 +416,7 @@ export const translations = {
       "Amounts shown are daily wages and vary from city to city. Final pay is determined by venue and experience.",
     salaryCityExamples: "Sample city-based earning ranges",
     salaryRangeLabel: "Earning range",
+    salaryIstanbulSpecial: "₺2,000 + commission split",
 
     citiesBadge: "Service Areas",
     citiesTitle1: "Casino & Nightclub Staff Jobs",
@@ -476,6 +480,8 @@ export const translations = {
     selectOption: "Select",
     photoHint: "JPEG, PNG or WebP (max 5MB) — optional",
     photoPreview: "Preview",
+    chooseFile: "Choose File",
+    noFileChosen: "No file chosen",
     consent:
       "I confirm that I am over 18 and consent to the processing of my personal data.",
     submitApplication: "Submit Application",

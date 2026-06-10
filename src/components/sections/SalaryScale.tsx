@@ -103,7 +103,11 @@ export function SalaryScale() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
             {SALARY_EXAMPLES.map((item, index) => {
-              const { left, width } = rangePercent(item.min, item.max);
+              const hasRange = "min" in item && "max" in item;
+              const range = hasRange
+                ? rangePercent(item.min, item.max)
+                : null;
+
               return (
                 <motion.div
                   key={item.city}
@@ -113,21 +117,31 @@ export function SalaryScale() {
                   transition={{ delay: index * 0.05 }}
                   className="glass rounded-2xl p-5 hover:border-gold/20 transition-colors"
                 >
-                  <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center justify-between gap-2 mb-3">
                     <span className="font-heading font-semibold text-foreground">
                       {item.city}
                     </span>
-                    <span className="text-gold text-sm font-medium">
-                      {formatTry(item.min, locale)} – {formatTry(item.max, locale)}
+                    <span className="text-gold text-sm font-medium text-right shrink-0">
+                      {"labelKey" in item
+                        ? t(item.labelKey)
+                        : `${formatTry(item.min, locale)} – ${formatTry(item.max, locale)}`}
                     </span>
                   </div>
-                  <div className="relative h-2 rounded-full bg-white/5">
-                    <div
-                      className="absolute top-0 h-full rounded-full bg-gold/40"
-                      style={{ left: `${left}%`, width: `${width}%` }}
-                    />
-                  </div>
-                  <p className="text-silver/50 text-xs mt-2">{t("salaryRangeLabel")}</p>
+                  {range ? (
+                    <>
+                      <div className="relative h-2 rounded-full bg-white/5">
+                        <div
+                          className="absolute top-0 h-full rounded-full bg-gold/40"
+                          style={{ left: `${range.left}%`, width: `${range.width}%` }}
+                        />
+                      </div>
+                      <p className="text-silver/50 text-xs mt-2">
+                        {t("salaryRangeLabel")}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="text-silver/50 text-xs">{t("salaryPerDay")}</p>
+                  )}
                 </motion.div>
               );
             })}
