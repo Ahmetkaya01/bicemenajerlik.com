@@ -29,10 +29,10 @@ export function KonsBanner() {
               loading="lazy"
               placeholder="blur"
               sizes="(max-width: 1024px) 100vw, 50vw"
-              className="object-cover object-center scale-105"
+              className="object-cover object-[center_40%] scale-105"
             />
-            <div className="absolute inset-0 bg-gradient-to-tr from-background/85 via-background/30 to-gold/5" />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/70 via-transparent to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-tr from-background/80 via-background/25 to-gold/10" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/75 via-transparent to-transparent" />
             <div className="absolute bottom-5 left-5 right-5 glass rounded-xl px-4 py-3">
               <p className="text-gold font-heading font-semibold text-sm">
                 {t("konsBannerRegion")}

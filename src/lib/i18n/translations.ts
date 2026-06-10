@@ -73,7 +73,7 @@ export const translations = {
       "Türkiye genelinde 58 ilde deneyimli veya deneyimsiz adaylar için günlük yevmiye ile iş eşleştirmesi.",
     serviceGazinoTitle: "Gazino & Night Club",
     serviceGazinoDesc:
-      "İstanbul'dan İzmir'e, Ankara'dan Antalya'ya seçkin gazino, bar ve night club mekanlarında güvenilir yerleştirme.",
+      "Türkiye genelinde seçkin gazino, bar ve night club mekanlarında güvenilir yerleştirme.",
     servicePlacementTitle: "Hızlı İş Başı",
     servicePlacementDesc:
       "Başvurunuz onaylandıktan sonra aynı gün veya ertesi gün iş başı yapma imkânı. Konaklama mekan koordinasyonu ile sağlanacaktır.",
@@ -158,7 +158,7 @@ export const translations = {
 
     // CTA
     ctaBadge: "Türkiye Geneli İş İlanları",
-    ctaTitle1: "Bulunduğunuz İlde",
+    ctaTitle1: "Dilediğiniz İlde",
     ctaTitle2: "İşe Başlayın",
     ctaDesc:
       "Güvenilir mekanlarımızda iş fırsatları için başvurunuzu yapın. Menajerlerimiz 24 saat içinde sizinle iletişime geçsin.",
@@ -365,7 +365,7 @@ export const translations = {
       "Daily wage job placement for experienced or inexperienced candidates in 58 provinces of Turkey.",
     serviceGazinoTitle: "Casino & Night Club",
     serviceGazinoDesc:
-      "Trusted placement at select casinos, bars and night clubs from Istanbul to Izmir, Ankara to Antalya.",
+      "Trusted placement at select casinos, bars and night clubs across Turkey.",
     servicePlacementTitle: "Quick Start",
     servicePlacementDesc:
       "Start the same day or next day after approval. Accommodation coordination included.",
@@ -446,7 +446,7 @@ export const translations = {
 
     ctaBadge: "Nationwide Job Listings",
     ctaTitle1: "Start Working",
-    ctaTitle2: "in Your Province",
+    ctaTitle2: "in Your Chosen Province",
     ctaDesc:
       "Apply for job opportunities at our trusted venues. Our managers will contact you within 24 hours.",
     applicationForm: "Application Form",
