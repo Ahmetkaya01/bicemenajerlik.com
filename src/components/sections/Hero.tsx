@@ -7,8 +7,9 @@ import { ArrowRight, Globe, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { HeroHighlights } from "@/components/sections/HeroHighlights";
 import { SITE_CONFIG } from "@/lib/constants";
-import { BLUR_PLACEHOLDER, IMAGE_ALTS } from "@/lib/image-placeholders";
+import { IMAGE_ALTS } from "@/lib/image-placeholders";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import heroPhoto from "../../../public/images/hero.jpg";
 
 const QUICK_LINKS = [
   { href: "/#hizmetler", key: "services" as const },
@@ -23,13 +24,12 @@ export function Hero() {
     <section className="relative min-h-[100svh] flex flex-col hero-gradient overflow-hidden">
       <div className="absolute inset-0 opacity-40">
         <Image
-          src="https://images.unsplash.com/photo-1571266028247-e4733b0f0bb0?w=1920&q=70"
+          src={heroPhoto}
           alt={IMAGE_ALTS.hero}
           fill
           preload
           quality={60}
           placeholder="blur"
-          blurDataURL={BLUR_PLACEHOLDER}
           sizes="100vw"
           className="object-cover scale-105"
         />

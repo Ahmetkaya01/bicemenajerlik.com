@@ -2,22 +2,22 @@ import type { Metadata } from "next";
 import { PROVINCE_COUNT, SITE_CONFIG } from "./constants";
 
 export const SEO_KEYWORDS = [
-  "organizasyon kadrosu",
-  "fuar hostesi",
-  "davet organizasyon personeli",
-  "karşılama personeli",
-  "etkinlik personeli",
-  "hostes ajansı",
-  "organizasyon personeli",
+  "gazino personeli iş ilanları",
+  "gece kulübü iş ilanları",
+  "gazino iş ilanları",
+  "night club personeli",
   "menajerlik hizmeti",
+  "menajerlik ajansı",
   "bice menajerlik",
   "bicemenajerlik",
-  "menajerlik ajansı",
-  "ankara organizasyon kadrosu",
-  "izmir fuar hostesi",
-  "türkiye geneli hostes iş ilanları",
-  "profesyonel organizasyon kadrosu",
+  "günlük yevmiyeli iş",
+  "günlük ödemeli iş",
+  "konaklamalı iş ilanları",
+  "türkiye geneli iş ilanları",
+  "istanbul gazino iş ilanları",
+  "deneyimsiz iş ilanları",
   "güvenilir menajerlik",
+  "personel yerleştirme",
 ] as const;
 
 const defaultOgImage = {
@@ -55,6 +55,7 @@ export function createMetadata({
       canonical: url,
       languages: {
         "tr-TR": url,
+        "x-default": url,
       },
     },
     openGraph: {
@@ -103,6 +104,10 @@ export const rootMetadata: Metadata = {
   publisher: SITE_CONFIG.name,
   alternates: {
     canonical: SITE_CONFIG.domain,
+    languages: {
+      "tr-TR": SITE_CONFIG.domain,
+      "x-default": SITE_CONFIG.domain,
+    },
   },
   openGraph: {
     type: "website",
@@ -143,22 +148,22 @@ export const homeMetadata = createMetadata({
 });
 
 export const aboutMetadata = createMetadata({
-  title: "Hakkımızda",
+  title: "Hakkımızda | Güvenilir Menajerlik Ajansı",
   description:
-    `Bice Menajerlik; ${PROVINCE_COUNT} ilde fuar hostesi ve organizasyon kadrosu sağlayan güvenilir menajerlik ajansı.`,
+    `Bice Menajerlik; ${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli sağlayan güvenilir menajerlik ajansı. 2500+ başarılı yerleştirme, 7/24 destek.`,
   path: "/hakkimizda",
 });
 
 export const contactMetadata = createMetadata({
-  title: "İletişim",
+  title: "İletişim | 7/24 WhatsApp ve Telefon Desteği",
   description:
-    "Organizasyon kadrosu ve etkinlik personeli için Bice Menajerlik ile iletişime geçin. WhatsApp ve telefon ile 7/24 ulaşın.",
+    "Gazino ve gece kulübü iş ilanları hakkında sorularınız için Bice Menajerlik ile iletişime geçin. WhatsApp ve telefon ile 7/24 ulaşın.",
   path: "/iletisim",
 });
 
 export const applicationMetadata = createMetadata({
-  title: "İş Başvurusu",
+  title: "İş Başvurusu | Online Başvuru Formu",
   description:
-    "Organizasyon personeli iş başvuru formu. Deneyiminizi paylaşın, Bice Menajerlik ile hemen başvurun.",
+    `${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli iş başvuru formu. 24 saat içinde değerlendirme, aynı gün iş başı imkânı. Hemen ücretsiz başvurun.`,
   path: "/basvuru",
 });

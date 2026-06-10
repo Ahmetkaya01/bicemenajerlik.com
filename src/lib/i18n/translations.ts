@@ -296,6 +296,20 @@ export const translations = {
     waPhone: "Telefon",
     waExperience: "Deneyim",
     waPhotoNote: "Not: Fotoğraf e-posta ile gönderildi veya ayrıca iletilecektir.",
+
+    // FAQ
+    faqBadge: "Sıkça Sorulan Sorular",
+    faqTitle1: "Merak",
+    faqTitle2: "Edilenler",
+    faqDesc:
+      "Başvuru süreci, yevmiye, konaklama ve çalışma koşulları hakkında en çok sorulan sorular.",
+    faqNav: "SSS",
+
+    // Legal
+    legalHeading: "Yasal",
+    privacyPolicy: "Gizlilik Politikası",
+    termsOfService: "Kullanım Şartları",
+    cookiePolicy: "Çerez Politikası",
   },
   en: {
     home: "Home",
@@ -574,6 +588,18 @@ export const translations = {
     waPhone: "Phone",
     waExperience: "Experience",
     waPhotoNote: "Note: Photo sent via email or will be shared separately.",
+
+    faqBadge: "Frequently Asked Questions",
+    faqTitle1: "Common",
+    faqTitle2: "Questions",
+    faqDesc:
+      "The most frequently asked questions about applications, daily wages, accommodation and working conditions.",
+    faqNav: "FAQ",
+
+    legalHeading: "Legal",
+    privacyPolicy: "Privacy Policy",
+    termsOfService: "Terms of Service",
+    cookiePolicy: "Cookie Policy",
   },
 } as const;
 

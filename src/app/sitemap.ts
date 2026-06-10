@@ -26,6 +26,24 @@ const ROUTES: MetadataRoute.Sitemap = [
     changeFrequency: "weekly",
     priority: 0.9,
   },
+  {
+    url: `${SITE_CONFIG.domain}/gizlilik-politikasi`,
+    lastModified: new Date(),
+    changeFrequency: "yearly",
+    priority: 0.3,
+  },
+  {
+    url: `${SITE_CONFIG.domain}/kullanim-sartlari`,
+    lastModified: new Date(),
+    changeFrequency: "yearly",
+    priority: 0.3,
+  },
+  {
+    url: `${SITE_CONFIG.domain}/cerez-politikasi`,
+    lastModified: new Date(),
+    changeFrequency: "yearly",
+    priority: 0.3,
+  },
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

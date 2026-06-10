@@ -6,6 +6,12 @@ import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { Logo } from "@/components/ui/Logo";
 
+const LEGAL_LINKS = [
+  { href: "/gizlilik-politikasi", key: "privacyPolicy" as const },
+  { href: "/kullanim-sartlari", key: "termsOfService" as const },
+  { href: "/cerez-politikasi", key: "cookiePolicy" as const },
+] as const;
+
 export function Footer() {
   const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
@@ -13,7 +19,7 @@ export function Footer() {
   return (
     <footer className="border-t border-white/5 bg-night/50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div>
             <div className="mb-4">
               <Logo size="lg" />
@@ -27,6 +33,24 @@ export function Footer() {
             </h4>
             <ul className="space-y-2">
               {NAV_LINKS.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-silver hover:text-gold transition-colors text-sm"
+                  >
+                    {t(link.key)}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div>
+            <h4 className="font-heading font-semibold text-foreground mb-4 tracking-wide">
+              {t("legalHeading")}
+            </h4>
+            <ul className="space-y-2">
+              {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}

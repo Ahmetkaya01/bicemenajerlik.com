@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { Button } from "@/components/ui/Button";
-import { BLUR_PLACEHOLDER, IMAGE_ALTS } from "@/lib/image-placeholders";
+import { IMAGE_ALTS } from "@/lib/image-placeholders";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import aboutPhoto from "../../../public/images/about.jpg";
 
 export function AboutContent() {
   const { t } = useLanguage();
@@ -31,11 +32,11 @@ export function AboutContent() {
         >
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1571266028247-e4733b0f0bb0?w=800&q=80"
+              src={aboutPhoto}
               alt={IMAGE_ALTS.about}
               fill
+              loading="lazy"
               placeholder="blur"
-              blurDataURL={BLUR_PLACEHOLDER}
               sizes="(max-width: 1024px) 100vw, 50vw"
               className="object-cover"
             />

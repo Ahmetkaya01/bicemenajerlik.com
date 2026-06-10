@@ -6,6 +6,7 @@ import { Services } from "@/components/sections/Services";
 import { SalaryScale } from "@/components/sections/SalaryScale";
 import { CitiesCoverage } from "@/components/sections/CitiesCoverage";
 import { WhyUs } from "@/components/sections/WhyUs";
+import { FAQ } from "@/components/sections/FAQ";
 import { CTA } from "@/components/sections/CTA";
 import { homeMetadata } from "@/lib/metadata";
 
@@ -21,6 +22,7 @@ export default function HomePage() {
       <SalaryScale />
       <CitiesCoverage />
       <WhyUs />
+      <FAQ />
       <CTA />
     </>
   );
