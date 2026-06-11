@@ -140,10 +140,7 @@ export const rootMetadata: Metadata = {
   },
   category: "business",
   verification: {
-    google: [
-      "0ccmGJsQS_BoxomjxgzQ2zNdRt0YwPVtDngfWeGuhm8",
-      "PnANGsYFHqv6vCBFHmmV-ty0ks0r-qZqJc3G",
-    ],
+    google: "0ccmGJsQS_BoxomjxgzQ2zNdRt0YwPVtDngfWeGuhm8",
   },
 };
 
