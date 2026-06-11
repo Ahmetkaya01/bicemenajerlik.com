@@ -139,13 +139,11 @@ export const rootMetadata: Metadata = {
     },
   },
   category: "business",
-  ...(process.env.GOOGLE_SITE_VERIFICATION
-    ? {
-        verification: {
-          google: process.env.GOOGLE_SITE_VERIFICATION,
-        },
-      }
-    : {}),
+  verification: {
+    google:
+      process.env.GOOGLE_SITE_VERIFICATION ??
+      "0ccmGJsQS_BoxomjxgzQ2zNdRt0YwPVtDngfWeGuhm8",
+  },
 };
 
 export const homeMetadata = createMetadata({
