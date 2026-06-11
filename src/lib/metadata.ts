@@ -140,9 +140,10 @@ export const rootMetadata: Metadata = {
   },
   category: "business",
   verification: {
-    google:
-      process.env.GOOGLE_SITE_VERIFICATION ??
+    google: [
       "0ccmGJsQS_BoxomjxgzQ2zNdRt0YwPVtDngfWeGuhm8",
+      "PnANGsYFHqv6vCBFHmmV-ty0ks0r-qZqJc3G",
+    ],
   },
 };
 
