@@ -126,7 +126,7 @@ export const translations = {
       "Belirtilen tutarlar günlük yevmiye bazındadır ve şehirden şehire değişiklik göstermektedir. Kesin ücret, çalışılacak mekan ve deneyime göre belirlenir.",
     salaryCityExamples: "Örnek şehir bazlı kazanç aralıkları",
     salaryRangeLabel: "Kazanç aralığı",
-    salaryIstanbulSpecial: "2.000 ₺ + yarım",
+    salaryIstanbulSpecial: "2.000 ₺ + yarıcı",
 
     // Cities
     citiesBadge: "Hizmet Bölgeleri",
@@ -170,6 +170,9 @@ export const translations = {
       "Türkiye genelinde 58 ilde iş ilanları, güvenilir mekanlarda profesyonel organizasyon kadrosu ve menajerlik hizmeti.",
     quickLinks: "Hızlı Bağlantılar",
     footerContact: "İletişim",
+    footerSocial: "Sosyal Medya",
+    socialInstagram: "Instagram",
+    socialX: "X (Twitter)",
     footerTagline: "Türkiye Geneli İş İlanları · Profesyonel Menajerlik",
     allRights: "Tüm hakları saklıdır.",
 
@@ -430,7 +433,7 @@ export const translations = {
       "Amounts shown are daily wages and vary from city to city. Final pay is determined by venue and experience.",
     salaryCityExamples: "Sample city-based earning ranges",
     salaryRangeLabel: "Earning range",
-    salaryIstanbulSpecial: "₺2,000 + commission split",
+    salaryIstanbulSpecial: "₺2,000 + yarıcı",
 
     citiesBadge: "Service Areas",
     citiesTitle1: "Casino & Nightclub Staff Jobs",
@@ -470,6 +473,9 @@ export const translations = {
       "Professional organization staff and management services in 58 provinces of Turkey.",
     quickLinks: "Quick Links",
     footerContact: "Contact",
+    footerSocial: "Social Media",
+    socialInstagram: "Instagram",
+    socialX: "X (Twitter)",
     footerTagline: "Nationwide Job Listings · Professional Management",
     allRights: "All rights reserved.",
 

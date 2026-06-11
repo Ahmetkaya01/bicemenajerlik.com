@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { Logo } from "@/components/ui/Logo";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 
 const LEGAL_LINKS = [
   { href: "/gizlilik-politikasi", key: "privacyPolicy" as const },
@@ -24,7 +25,13 @@ export function Footer() {
             <div className="mb-4">
               <Logo size="lg" />
             </div>
-            <p className="text-silver text-sm leading-relaxed">{t("footerDesc")}</p>
+            <p className="text-silver text-sm leading-relaxed mb-5">{t("footerDesc")}</p>
+            <div>
+              <p className="text-xs font-heading font-semibold tracking-wide text-silver/70 mb-3">
+                {t("footerSocial")}
+              </p>
+              <SocialLinks />
+            </div>
           </div>
 
           <div>

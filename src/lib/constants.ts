@@ -8,7 +8,22 @@ export const SITE_CONFIG = {
   email: "bicemenajerliktr@gmail.com",
   whatsapp: "905303733989",
   address: "Türkiye Geneli Hizmet",
+  instagram: "https://www.instagram.com/bicemenajerlik",
+  x: "https://x.com/bicemenajerlik",
 } as const;
+
+export const SOCIAL_LINKS = [
+  {
+    id: "instagram",
+    href: SITE_CONFIG.instagram,
+    labelKey: "socialInstagram" as const,
+  },
+  {
+    id: "x",
+    href: SITE_CONFIG.x,
+    labelKey: "socialX" as const,
+  },
+] as const;
 
 export const SALARY_RANGE = {
   min: 7000,

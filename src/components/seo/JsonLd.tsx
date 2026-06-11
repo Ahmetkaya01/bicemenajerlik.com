@@ -64,7 +64,11 @@ const organizationSchema = {
     "Günlük yevmiyeli iş",
   ],
   knowsLanguage: ["tr", "en"],
-  sameAs: [`https://wa.me/${SITE_CONFIG.whatsapp}`],
+  sameAs: [
+    SITE_CONFIG.instagram,
+    SITE_CONFIG.x,
+    `https://wa.me/${SITE_CONFIG.whatsapp}`,
+  ],
 };
 
 const websiteSchema = {

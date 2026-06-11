@@ -1,4 +1,5 @@
 import type { NextConfig } from "next";
+import { SITE_CONFIG } from "./src/lib/constants";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -12,6 +13,30 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["framer-motion"],
+  },
+  async redirects() {
+    return [
+      {
+        source: "/instagram",
+        destination: SITE_CONFIG.instagram,
+        permanent: false,
+      },
+      {
+        source: "/ig",
+        destination: SITE_CONFIG.instagram,
+        permanent: false,
+      },
+      {
+        source: "/x",
+        destination: SITE_CONFIG.x,
+        permanent: false,
+      },
+      {
+        source: "/twitter",
+        destination: SITE_CONFIG.x,
+        permanent: false,
+      },
+    ];
   },
   async headers() {
     return [

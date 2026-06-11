@@ -3,6 +3,7 @@
 import { Phone, Mail, MapPin, MessageCircle } from "lucide-react";
 import { SITE_CONFIG } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
+import { SocialLinks } from "@/components/ui/SocialLinks";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 export function ContactContent() {
@@ -83,6 +84,16 @@ export function ContactContent() {
               <div key={item.title}>{content}</div>
             );
           })}
+        </section>
+
+        <section className="max-w-md mx-auto mb-16 text-center" aria-labelledby="contact-social-heading">
+          <h2
+            id="contact-social-heading"
+            className="font-heading font-semibold text-foreground mb-4 tracking-wide"
+          >
+            {t("footerSocial")}
+          </h2>
+          <SocialLinks className="justify-center" />
         </section>
 
         <section className="glass rounded-3xl p-8 sm:p-12 text-center max-w-2xl mx-auto" aria-labelledby="contact-cta-heading">
