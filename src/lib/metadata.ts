@@ -93,9 +93,10 @@ export function createMetadata({
 export const rootMetadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.domain),
   title: {
-    default: `${SITE_CONFIG.name} | Güvenilir Organizasyon Kadrosu ve Menajerlik Hizmeti`,
+    default: `${SITE_CONFIG.name} | bicemenajerlik.com — Gazino & Gece Kulübü İş İlanları`,
     template: `%s | ${SITE_CONFIG.name}`,
   },
+  applicationName: SITE_CONFIG.name,
   description:
     `${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.`,
   keywords: SEO_KEYWORDS.join(", "),
@@ -114,14 +115,14 @@ export const rootMetadata: Metadata = {
     locale: "tr_TR",
     url: SITE_CONFIG.domain,
     siteName: SITE_CONFIG.name,
-    title: `${SITE_CONFIG.name} | Güvenilir Organizasyon Kadrosu ve Menajerlik Hizmeti`,
+    title: `${SITE_CONFIG.name} | bicemenajerlik.com — Gazino & Gece Kulübü İş İlanları`,
     description:
       `${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.`,
     images: [defaultOgImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_CONFIG.name} | Güvenilir Organizasyon Kadrosu ve Menajerlik Hizmeti`,
+    title: `${SITE_CONFIG.name} | bicemenajerlik.com — Gazino & Gece Kulübü İş İlanları`,
     description:
       `${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.`,
     images: [defaultOgImage.url],
@@ -138,12 +139,19 @@ export const rootMetadata: Metadata = {
     },
   },
   category: "business",
+  ...(process.env.GOOGLE_SITE_VERIFICATION
+    ? {
+        verification: {
+          google: process.env.GOOGLE_SITE_VERIFICATION,
+        },
+      }
+    : {}),
 };
 
 export const homeMetadata = createMetadata({
-  title: "Güvenilir Organizasyon Kadrosu ve Menajerlik Hizmeti",
+  title: "bicemenajerlik.com — Gazino & Gece Kulübü İş İlanları",
   description:
-    "58 ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.",
+    "Bice Menajerlik | 58 ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.",
   path: "/",
 });
 
