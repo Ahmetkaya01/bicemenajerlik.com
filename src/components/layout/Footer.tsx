@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, MapPin } from "lucide-react";
-import { NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
+import { Phone, Mail, MapPin, ShieldCheck } from "lucide-react";
+import { COMPANY_LEGAL, NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { Logo } from "@/components/ui/Logo";
 import { SocialLinks } from "@/components/ui/SocialLinks";
@@ -91,11 +91,33 @@ export function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-white/5 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-silver/60 text-sm">
-            © {currentYear} {SITE_CONFIG.name}. {t("allRights")}
-          </p>
-          <p className="text-silver/40 text-xs">{t("footerTagline")}</p>
+        <div className="mt-12 pt-8 border-t border-white/5">
+          <Link
+            href="/#kurumsal"
+            className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 rounded-2xl border border-gold/15 bg-gold/[0.04] px-5 py-4 hover:border-gold/30 hover:bg-gold/[0.07] transition-colors group"
+          >
+            <div className="flex items-center gap-3">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/15 shrink-0">
+                <ShieldCheck className="text-gold" size={18} aria-hidden />
+              </div>
+              <div>
+                <p className="text-foreground text-sm font-semibold">{t("footerCorporate")}</p>
+                <p className="text-silver/60 text-xs mt-0.5">
+                  {t("footerTaxId")}: {COMPANY_LEGAL.taxId} · {COMPANY_LEGAL.taxOffice}
+                </p>
+              </div>
+            </div>
+            <span className="text-gold text-xs font-semibold tracking-wide group-hover:underline underline-offset-4">
+              {t("corporateHeroBadgeCta")} →
+            </span>
+          </Link>
+
+          <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
+            <p className="text-silver/60 text-sm text-center sm:text-left">
+              © {currentYear} {SITE_CONFIG.name}. {t("allRights")}
+            </p>
+            <p className="text-silver/40 text-xs">{t("footerTagline")}</p>
+          </div>
         </div>
       </div>
     </footer>

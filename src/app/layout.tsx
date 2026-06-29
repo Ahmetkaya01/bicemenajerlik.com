@@ -11,6 +11,7 @@ import { Footer } from "@/components/layout/Footer";
 import { FloatingContact } from "@/components/layout/FloatingContact";
 import { Providers } from "@/components/providers/Providers";
 import { rootMetadata } from "@/lib/metadata";
+import { GoogleAdsTag } from "@/components/seo/GoogleAdsTag";
 import { JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
@@ -63,6 +64,7 @@ export default function RootLayout({
       className={`${inter.variable} ${playfair.variable} ${montserrat.variable} ${cinzel.variable} ${cormorant.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-background text-foreground">
+        <GoogleAdsTag />
         <JsonLd />
         <a
           href="#main-content"

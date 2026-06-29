@@ -1,4 +1,5 @@
 import {
+  BUSINESS_ADDRESS,
   PROVINCE_COUNT,
   SALARY_RANGE,
   SERVICE_CITIES,
@@ -24,11 +25,7 @@ const organizationSchema = {
   email: SITE_CONFIG.email,
   priceRange: "Ücretsiz başvuru",
   currenciesAccepted: "TRY",
-  address: {
-    "@type": "PostalAddress",
-    addressCountry: "TR",
-    addressRegion: "Türkiye Geneli",
-  },
+  address: BUSINESS_ADDRESS,
   areaServed: SERVICE_CITIES.map((city) => ({
     "@type": "City",
     name: city,
@@ -220,11 +217,7 @@ export function JobPostingJsonLd() {
     },
     jobLocation: {
       "@type": "Place",
-      address: {
-        "@type": "PostalAddress",
-        addressCountry: "TR",
-        addressRegion: "Türkiye Geneli",
-      },
+      address: BUSINESS_ADDRESS,
     },
     applicantLocationRequirements: {
       "@type": "Country",

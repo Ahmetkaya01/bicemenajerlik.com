@@ -18,7 +18,12 @@ export const FAQ_ITEMS: Record<Locale, FaqItem[]> = {
     },
     {
       question: "Hangi şehirlerde iş imkânı var?",
-      answer: `Türkiye genelinde ${PROVINCE_COUNT} ilde aktif iş ilanlarımız bulunmaktadır. İstanbul, Ankara, İzmir, Antalya, Samsun, Konya, Diyarbakır ve daha birçok ilde güvenilir mekanlarla çalışıyoruz.`,
+      answer: `Türkiye genelinde ${PROVINCE_COUNT} ilde aktif kons iş ilanları ve gazino iş ilanları bulunmaktadır. İstanbul kons iş ilanları, Samsun kons iş ilanları, Tokat kons iş ilanı ve Ankara, İzmir, Antalya, Konya, Diyarbakır dahil birçok ilde güvenilir mekanlarla çalışıyoruz.`,
+    },
+    {
+      question: "Yatılı kons ve yatılı gazino iş ilanları var mı?",
+      answer:
+        "Evet. Şehir dışından gelen adaylar için yatılı kons iş ilanları ve yatılı gazino iş ilanları sunuyoruz. Konaklama, çalışılacak mekan ile koordinasyon halinde sağlanır; ulaşım konusunda da destek verilir.",
     },
     {
       question: "Günlük yevmiye ne kadar?",
@@ -32,7 +37,7 @@ export const FAQ_ITEMS: Record<Locale, FaqItem[]> = {
     {
       question: "Konaklama imkânı sağlanıyor mu?",
       answer:
-        "Evet. Şehir dışından gelen adaylar için konaklama, çalışılacak mekan ile koordinasyon halinde sağlanır. Ulaşım konusunda da destek verilir.",
+        "Evet. Yatılı kons ve yatılı gazino iş ilanları kapsamında şehir dışından gelen adaylar için konaklama, çalışılacak mekan ile koordinasyon halinde sağlanır. Ulaşım konusunda da destek verilir.",
     },
     {
       question: "Başvurudan sonra süreç nasıl işliyor?",
@@ -57,7 +62,12 @@ export const FAQ_ITEMS: Record<Locale, FaqItem[]> = {
     },
     {
       question: "Which cities have job opportunities?",
-      answer: `We have active job listings in ${PROVINCE_COUNT} provinces across Turkey, including Istanbul, Ankara, Izmir, Antalya, Samsun, Konya, Diyarbakir and many more, working with trusted venues.`,
+      answer: `We have active kons and casino job listings in ${PROVINCE_COUNT} provinces across Turkey, including Istanbul, Samsun, Tokat, Ankara, Izmir, Antalya, Konya, Diyarbakir and many more, working with trusted venues.`,
+    },
+    {
+      question: "Are live-in kons and casino job listings available?",
+      answer:
+        "Yes. We offer live-in kons and live-in casino job listings for candidates from other cities. Accommodation is arranged in coordination with the venue, and transportation support is also provided.",
     },
     {
       question: "How much is the daily wage?",
@@ -71,7 +81,7 @@ export const FAQ_ITEMS: Record<Locale, FaqItem[]> = {
     {
       question: "Is accommodation provided?",
       answer:
-        "Yes. Accommodation for candidates from other cities is arranged in coordination with the venue. Transportation support is also provided.",
+        "Yes. Through our live-in kons and live-in casino job listings, accommodation for candidates from other cities is arranged in coordination with the venue. Transportation support is also provided.",
     },
     {
       question: "What happens after I apply?",

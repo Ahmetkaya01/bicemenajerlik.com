@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { CorporateCredentials } from "@/components/sections/CorporateCredentials";
 import { Button } from "@/components/ui/Button";
 import { IMAGE_ALTS } from "@/lib/image-placeholders";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
@@ -58,6 +59,8 @@ export function AboutContent() {
             </p>
           </div>
         </section>
+
+        <CorporateCredentials />
 
         <section className="glass rounded-3xl p-8 sm:p-12 text-center" aria-labelledby="about-cta-heading">
           <h2

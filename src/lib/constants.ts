@@ -7,10 +7,32 @@ export const SITE_CONFIG = {
   phoneRaw: "905303733989",
   email: "bicemenajerliktr@gmail.com",
   whatsapp: "905303733989",
-  address: "Türkiye Geneli Hizmet",
-  instagram: "https://www.instagram.com/bicemenajerlik",
+  address: "Semerkant Mah., Merkez / Tokat",
+  instagram: "https://www.instagram.com/bice.menajerlik",
   x: "https://x.com/bicemenajerlik",
 } as const;
+
+export const COMPANY_LEGAL = {
+  ownerName: "Ragıp Onur Bice",
+  taxOffice: "Tokat",
+  taxId: "1690396554",
+  activityCode: "749901",
+  activityName:
+    "Sanatçı, sporcu, şovmen, manken ve diğerleri için ajansların ve menajerlerin faaliyetleri",
+  businessStartDate: "15.06.2015",
+  taxCertificateImage: "/images/vergi-levhasi.png",
+  taxVerificationUrl: "https://intvd.gib.gov.tr",
+} as const;
+
+/** Shared PostalAddress for Organization and JobPosting JSON-LD. */
+export const BUSINESS_ADDRESS = {
+  "@type": "PostalAddress" as const,
+  streetAddress: "Semerkant Mah.",
+  addressLocality: "Merkez",
+  addressRegion: "Tokat",
+  postalCode: "60000",
+  addressCountry: "TR",
+};
 
 export const SOCIAL_LINKS = [
   {
@@ -80,6 +102,7 @@ export const NAV_LINKS = [
   { href: "/#hizmetler", key: "services" as const },
   { href: "/#maas", key: "salary" as const },
   { href: "/#sehirler", key: "cities" as const },
+  { href: "/#kurumsal", key: "corporateNav" as const },
   { href: "/basvuru", key: "apply" as const },
   { href: "/hakkimizda", key: "about" as const },
   { href: "/iletisim", key: "contact" as const },

@@ -2,10 +2,29 @@ import type { Metadata } from "next";
 import { PROVINCE_COUNT, SITE_CONFIG } from "./constants";
 
 export const SEO_KEYWORDS = [
-  "gazino personeli iş ilanları",
-  "gece kulübü iş ilanları",
+  "kons iş ilanları",
+  "konsomatris iş ilanları",
   "gazino iş ilanları",
-  "night club personeli",
+  "gazino personeli iş ilanları",
+  "pavyon iş ilanları",
+  "gece kulübü iş ilanları",
+  "gece kulübü bayan iş ilanları",
+  "bayan kons ilanları",
+  "gazino kons ilanları",
+  "yatılı kons iş ilanları",
+  "yatılı gazino iş ilanları",
+  "dolgun ücretli kons ilanları",
+  "menajerlik ajansı iş ilanları",
+  "menajerlik iş ilanları bayan",
+  "kons iş ilanları menajerlik",
+  "gazino iş ilanları bayan",
+  "bayan eğlence mekanları iş ilanları",
+  "güvenilir menajerlik ajansları",
+  "güvenilir gazino iş ilanı",
+  "türkiye geneli kons ilanları",
+  "istanbul kons iş ilanları",
+  "samsun kons iş ilanları",
+  "tokat kons iş ilanı",
   "menajerlik hizmeti",
   "menajerlik ajansı",
   "bice menajerlik",
@@ -14,10 +33,10 @@ export const SEO_KEYWORDS = [
   "günlük ödemeli iş",
   "konaklamalı iş ilanları",
   "türkiye geneli iş ilanları",
-  "istanbul gazino iş ilanları",
   "deneyimsiz iş ilanları",
   "güvenilir menajerlik",
   "personel yerleştirme",
+  "night club personeli",
 ] as const;
 
 const defaultOgImage = {
@@ -140,14 +159,14 @@ export const rootMetadata: Metadata = {
   },
   category: "business",
   verification: {
-    google: "0ccmGJsQS_BoxomjxgzQ2zNdRt0YwPVtDngfWeGuhm8",
+    google: "FQ_UKi1zUd9G-TIBnmQAiw4vsLuSf3j-fPTQ4NDq0dk",
   },
 };
 
 export const homeMetadata = createMetadata({
-  title: "bicemenajerlik.com — Gazino & Gece Kulübü İş İlanları",
+  title: "Kons İş İlanları & Güvenilir Menajerlik Ajansı",
   description:
-    "Bice Menajerlik | 58 ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.",
+    "Bice Menajerlik — Türkiye genelinde kons iş ilanları, gazino iş ilanları, yatılı kons ve pavyon iş ilanları. İstanbul, Samsun, Tokat dahil 58 ilde güvenilir menajerlik ajansı. Günlük yevmiye, konaklama ve 7/24 destek.",
   path: "/",
 });
 

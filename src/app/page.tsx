@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { CorporateTrustSection } from "@/components/sections/CorporateTrustSection";
 import { Hero } from "@/components/sections/Hero";
 import { KonsBanner } from "@/components/sections/KonsBanner";
 import { ProcessSteps } from "@/components/sections/ProcessSteps";
@@ -18,6 +19,7 @@ export default function HomePage() {
       <Hero />
       <ProcessSteps />
       <KonsBanner />
+      <CorporateTrustSection />
       <Services />
       <SalaryScale />
       <CitiesCoverage />

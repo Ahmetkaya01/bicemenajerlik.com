@@ -6,6 +6,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, Globe, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { HeroHighlights } from "@/components/sections/HeroHighlights";
+import { HeroTrustBadge } from "@/components/sections/HeroTrustBadge";
 import { SITE_CONFIG } from "@/lib/constants";
 import { IMAGE_ALTS } from "@/lib/image-placeholders";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
@@ -14,7 +15,7 @@ import heroPhoto from "../../../public/images/hero.jpg";
 const QUICK_LINKS = [
   { href: "/#hizmetler", key: "services" as const },
   { href: "/#maas", key: "salary" as const },
-  { href: "/#sehirler", key: "cities" as const },
+  { href: "/#kurumsal", key: "corporateNav" as const },
 ] as const;
 
 export function Hero() {
@@ -66,10 +67,12 @@ export function Hero() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-silver text-lg sm:text-xl leading-relaxed mb-8"
+            className="text-silver text-lg sm:text-xl leading-relaxed mb-6"
           >
             {t("heroDesc")}
           </motion.p>
+
+          <HeroTrustBadge />
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
