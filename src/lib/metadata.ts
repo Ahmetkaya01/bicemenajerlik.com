@@ -159,7 +159,7 @@ export const rootMetadata: Metadata = {
   },
   category: "business",
   verification: {
-    google: "FQ_UKi1zUd9G-TIBnmQAiw4vsLuSf3j-fPTQ4NDq0dk",
+    google: "0ccmGJsQS_BoxomjxgzQ2zNdRt0YwPVtDngfWeGuhm8",
   },
 };
 
