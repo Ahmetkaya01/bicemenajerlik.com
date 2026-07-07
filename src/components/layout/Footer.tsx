@@ -9,6 +9,7 @@ import { SocialLinks } from "@/components/ui/SocialLinks";
 
 const LEGAL_LINKS = [
   { href: "/gizlilik-politikasi", key: "privacyPolicy" as const },
+  { href: "/kvkk", key: "kvkkPolicy" as const },
   { href: "/kullanim-sartlari", key: "termsOfService" as const },
   { href: "/cerez-politikasi", key: "cookiePolicy" as const },
 ] as const;

@@ -25,8 +25,8 @@
   --font-sans: var(--font-inter);
   --font-display: var(--font-playfair);
   --font-heading: var(--font-montserrat);
-  --font-logo: var(--font-cinzel);
-  --font-logo-sub: var(--font-cormorant);
+  --font-logo: var(--font-playfair);
+  --font-logo-sub: var(--font-montserrat);
 }
 
 html {
@@ -170,4 +170,19 @@ body {
     rgba(251, 191, 36, 0.25),
     transparent
   );
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.55s ease-out both;
 }

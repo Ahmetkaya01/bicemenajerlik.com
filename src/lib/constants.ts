@@ -78,12 +78,12 @@ export const HERO_HIGHLIGHTS = [
     href: "/#nasil-calisir",
   },
   {
-    id: "placements",
-    icon: "Users",
-    value: "2500+",
-    labelKey: "trustBarPlacements" as const,
-    sectionKey: "whyBadge" as const,
-    href: "/#guven",
+    id: "support",
+    icon: "Headphones",
+    value: "7/24",
+    labelKey: "trustBarSupport" as const,
+    sectionKey: "contact" as const,
+    href: "/iletisim",
   },
 ] as const;
 
@@ -99,6 +99,7 @@ export const SALARY_EXAMPLES = [
 
 export const NAV_LINKS = [
   { href: "/", key: "home" as const },
+  { href: "/ilanlar", key: "jobListings" as const },
   { href: "/#hizmetler", key: "services" as const },
   { href: "/#maas", key: "salary" as const },
   { href: "/#sehirler", key: "cities" as const },
@@ -182,7 +183,7 @@ export const SERVICE_CITIES = [
 
 export const WHY_US_STATS = [
   { value: 50, suffix: "+", labelKey: "statVenues" as const },
-  { value: 2500, suffix: "+", labelKey: "statPlacements" as const },
+  { value: 10, suffix: "+", labelKey: "statYears" as const },
   { value: PROVINCE_COUNT, suffix: "", labelKey: "statCities" as const },
   { value: 24, suffix: "sa", labelKey: "statReview" as const },
 ] as const;

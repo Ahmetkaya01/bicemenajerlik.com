@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { SuccessModal } from "@/components/ui/SuccessModal";
 import { getApplicationSchema, type ApplicationForm } from "@/lib/validations";
 import { EXPERIENCE_AREA_KEYS } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 export function ApplicationForm() {
@@ -118,6 +119,7 @@ export function ApplicationForm() {
       }
 
       setShowSuccess(true);
+      trackEvent("form_submit", { delivery: data.deliveryMethod });
       reset({ deliveryMethod: "email" });
       setStep(1);
       setPhotoPreview(null);

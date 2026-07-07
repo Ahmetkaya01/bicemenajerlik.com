@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { HEADER_NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
+import { getMarketingWhatsAppUrl } from "@/lib/whatsapp";
 import { Button } from "@/components/ui/Button";
 import { LanguageSwitcher } from "@/components/ui/LanguageSwitcher";
 import { Logo } from "@/components/ui/Logo";
@@ -86,15 +88,17 @@ export function Header() {
             <div className="hidden lg:flex items-center gap-2 shrink-0">
               <a
                 href={`tel:${SITE_CONFIG.phoneRaw}`}
+                onClick={() => trackEvent("phone_click", { location: "header" })}
                 className="p-2 rounded-full text-silver hover:text-gold hover:bg-white/5 transition-colors"
                 aria-label={t("contactPhone")}
               >
                 <Phone size={18} />
               </a>
               <a
-                href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+                href={getMarketingWhatsAppUrl("header")}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent("whatsapp_click", { location: "header" })}
                 className="p-2 rounded-full text-silver hover:text-gold hover:bg-white/5 transition-colors"
                 aria-label={t("whatsapp")}
               >
@@ -108,9 +112,10 @@ export function Header() {
 
             <div className="flex lg:hidden items-center gap-1 shrink-0">
               <a
-                href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+                href={getMarketingWhatsAppUrl("header-mobile")}
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackEvent("whatsapp_click", { location: "header-mobile" })}
                 className="p-2 rounded-full text-gold hover:bg-gold/10 transition-colors"
                 aria-label={t("whatsapp")}
               >
@@ -182,15 +187,17 @@ export function Header() {
                 <div className="mt-6 pt-6 border-t border-white/5 space-y-3">
                   <a
                     href={`tel:${SITE_CONFIG.phoneRaw}`}
+                    onClick={() => trackEvent("phone_click", { location: "mobile-menu" })}
                     className="flex items-center gap-3 rounded-xl px-4 py-3 text-silver hover:bg-white/5 hover:text-gold transition-colors"
                   >
                     <Phone size={18} className="text-gold shrink-0" />
                     <span className="text-sm">{SITE_CONFIG.phone}</span>
                   </a>
                   <a
-                    href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+                    href={getMarketingWhatsAppUrl("mobile-menu")}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackEvent("whatsapp_click", { location: "mobile-menu" })}
                     className="flex items-center gap-3 rounded-xl px-4 py-3 text-silver hover:bg-white/5 hover:text-gold transition-colors"
                   >
                     <MessageCircle size={18} className="text-gold shrink-0" />

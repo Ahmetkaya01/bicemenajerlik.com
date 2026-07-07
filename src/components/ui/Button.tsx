@@ -48,6 +48,7 @@ export function Button({
 
   if (href) {
     const isExternal = href.startsWith("http");
+    const handleClick = () => onClick?.();
     return (
       <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
         {isExternal ? (
@@ -55,12 +56,13 @@ export function Button({
             href={href}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={handleClick}
             className={classes}
           >
             {children}
           </a>
         ) : (
-          <Link href={href} className={classes}>
+          <Link href={href} onClick={handleClick} className={classes}>
             {children}
           </Link>
         )}

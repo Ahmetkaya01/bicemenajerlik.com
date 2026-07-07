@@ -22,8 +22,13 @@ const SECTIONS = [
           numarası, deneyim bilgisi ve fotoğraf.
         </p>
         <p>
-          Web sitemizi ziyaret ettiğinizde teknik zorunluluk dışında çerez veya
-          izleme aracı kullanılmaz.
+          Web sitemizi ziyaret ettiğinizde, çerez onayınız ile birlikte Google
+          Analytics ve Google Ads aracılığıyla anonim kullanım ve dönüşüm verileri
+          işlenebilir. Detaylar için{" "}
+          <a href="/cerez-politikasi" className="text-gold hover:underline">
+            Çerez Politikası
+          </a>{" "}
+          sayfasına bakınız.
         </p>
       </>
     ),

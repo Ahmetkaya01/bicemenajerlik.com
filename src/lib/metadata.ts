@@ -3,47 +3,26 @@ import { PROVINCE_COUNT, SITE_CONFIG } from "./constants";
 
 export const SEO_KEYWORDS = [
   "kons iş ilanları",
-  "konsomatris iş ilanları",
+  "kons iş ilanı",
+  "kons menajer",
+  "kons menajerlik",
+  "konsluk iş ilanları",
   "gazino iş ilanları",
-  "gazino personeli iş ilanları",
-  "pavyon iş ilanları",
   "gece kulübü iş ilanları",
-  "gece kulübü bayan iş ilanları",
-  "bayan kons ilanları",
-  "gazino kons ilanları",
+  "pavyon iş ilanları",
   "yatılı kons iş ilanları",
-  "yatılı gazino iş ilanları",
-  "dolgun ücretli kons ilanları",
-  "menajerlik ajansı iş ilanları",
-  "menajerlik iş ilanları bayan",
-  "kons iş ilanları menajerlik",
-  "gazino iş ilanları bayan",
-  "bayan eğlence mekanları iş ilanları",
-  "güvenilir menajerlik ajansları",
-  "güvenilir gazino iş ilanı",
-  "türkiye geneli kons ilanları",
-  "istanbul kons iş ilanları",
-  "samsun kons iş ilanları",
-  "tokat kons iş ilanı",
-  "menajerlik hizmeti",
-  "menajerlik ajansı",
-  "bice menajerlik",
-  "bicemenajerlik",
-  "günlük yevmiyeli iş",
   "günlük ödemeli iş",
-  "konaklamalı iş ilanları",
-  "türkiye geneli iş ilanları",
-  "deneyimsiz iş ilanları",
   "güvenilir menajerlik",
-  "personel yerleştirme",
-  "night club personeli",
+  "istanbul kons iş ilanları",
+  "menajerlik ajansı",
+  "bicemenajerlik",
 ] as const;
 
 const defaultOgImage = {
   url: "/opengraph-image",
   width: 1200,
   height: 630,
-  alt: "Bice Menajerlik | Güvenilir Organizasyon Kadrosu ve Menajerlik Hizmeti",
+  alt: "Bice Menajerlik | Kons İş İlanları ve Menajerlik Hizmeti",
 };
 
 export function createMetadata({
@@ -112,12 +91,12 @@ export function createMetadata({
 export const rootMetadata: Metadata = {
   metadataBase: new URL(SITE_CONFIG.domain),
   title: {
-    default: `${SITE_CONFIG.name} | bicemenajerlik.com — Gazino & Gece Kulübü İş İlanları`,
+    default: `${SITE_CONFIG.name} | Kons İş İlanları — Gazino & Gece Kulübü`,
     template: `%s | ${SITE_CONFIG.name}`,
   },
   applicationName: SITE_CONFIG.name,
   description:
-    `${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.`,
+    `${PROVINCE_COUNT} ilde kons iş ilanları, gazino ve gece kulübü fırsatları. Güvenilir kons menajerlik, günlük yevmiye ve 7/24 destek.`,
   keywords: SEO_KEYWORDS.join(", "),
   authors: [{ name: SITE_CONFIG.name, url: SITE_CONFIG.domain }],
   creator: SITE_CONFIG.name,
@@ -134,16 +113,16 @@ export const rootMetadata: Metadata = {
     locale: "tr_TR",
     url: SITE_CONFIG.domain,
     siteName: SITE_CONFIG.name,
-    title: `${SITE_CONFIG.name} | bicemenajerlik.com — Gazino & Gece Kulübü İş İlanları`,
+    title: `${SITE_CONFIG.name} | Kons İş İlanları — Gazino & Gece Kulübü`,
     description:
-      `${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.`,
+      `${PROVINCE_COUNT} ilde kons iş ilanları, gazino ve gece kulübü fırsatları. Güvenilir kons menajerlik, günlük yevmiye ve 7/24 destek.`,
     images: [defaultOgImage],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${SITE_CONFIG.name} | bicemenajerlik.com — Gazino & Gece Kulübü İş İlanları`,
+    title: `${SITE_CONFIG.name} | Kons İş İlanları — Gazino & Gece Kulübü`,
     description:
-      `${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli iş ilanları. Türkiye genelinde güvenilir menajerlik hizmeti, günlük yevmiye ve 7/24 destek.`,
+      `${PROVINCE_COUNT} ilde kons iş ilanları, gazino ve gece kulübü fırsatları. Güvenilir kons menajerlik, günlük yevmiye ve 7/24 destek.`,
     images: [defaultOgImage.url],
   },
   robots: {
@@ -164,16 +143,16 @@ export const rootMetadata: Metadata = {
 };
 
 export const homeMetadata = createMetadata({
-  title: "Kons İş İlanları & Güvenilir Menajerlik Ajansı",
+  title: "Kons İş İlanları | Gazino & Gece Kulübü",
   description:
-    "Bice Menajerlik — Türkiye genelinde kons iş ilanları, gazino iş ilanları, yatılı kons ve pavyon iş ilanları. İstanbul, Samsun, Tokat dahil 58 ilde güvenilir menajerlik ajansı. Günlük yevmiye, konaklama ve 7/24 destek.",
+    "Türkiye genelinde kons iş ilanları, gazino iş ilanları, pavyon ve gece kulübü fırsatları. Güvenilir kons menajerlik — günlük ödeme, yatılı seçenekler, 58 il.",
   path: "/",
 });
 
 export const aboutMetadata = createMetadata({
   title: "Hakkımızda | Güvenilir Menajerlik Ajansı",
   description:
-    `Bice Menajerlik; ${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli sağlayan güvenilir menajerlik ajansı. 2500+ başarılı yerleştirme, 7/24 destek.`,
+    `Bice Menajerlik; 2015'ten beri ${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli sağlayan güvenilir menajerlik ajansı. 7/24 destek.`,
   path: "/hakkimizda",
 });
 
@@ -189,4 +168,11 @@ export const applicationMetadata = createMetadata({
   description:
     `${PROVINCE_COUNT} ilde gazino ve gece kulübü personeli iş başvuru formu. 24 saat içinde değerlendirme, aynı gün iş başı imkânı. Hemen ücretsiz başvurun.`,
   path: "/basvuru",
+});
+
+export const ilanlarHubMetadata = createMetadata({
+  title: "Tüm İş İlanları | Kons, Gazino, Pavyon",
+  description:
+    "Kons, gazino, pavyon ve gece kulübü iş ilanları. Şehir ve kategori bazlı güncel fırsatlar — günlük ödemeli, yatılı seçenekler.",
+  path: "/ilanlar",
 });

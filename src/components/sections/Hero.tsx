@@ -2,36 +2,37 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
-import { ArrowRight, Globe, ChevronDown } from "lucide-react";
+import { ArrowRight, Globe, ChevronDown, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { HeroHighlights } from "@/components/sections/HeroHighlights";
 import { HeroTrustBadge } from "@/components/sections/HeroTrustBadge";
-import { SITE_CONFIG } from "@/lib/constants";
+import { trackEvent } from "@/lib/analytics";
+import { getMarketingWhatsAppUrl } from "@/lib/whatsapp";
 import { IMAGE_ALTS } from "@/lib/image-placeholders";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import heroPhoto from "../../../public/images/hero.jpg";
 
 const QUICK_LINKS = [
-  { href: "/#hizmetler", key: "services" as const },
+  { href: "/ilanlar", key: "jobListings" as const },
   { href: "/#maas", key: "salary" as const },
   { href: "/#kurumsal", key: "corporateNav" as const },
 ] as const;
 
 export function Hero() {
   const { t } = useLanguage();
+  const whatsappUrl = getMarketingWhatsAppUrl("hero");
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col hero-gradient overflow-hidden">
+    <section className="relative min-h-0 md:min-h-[92svh] flex flex-col hero-gradient overflow-hidden">
       <div className="absolute inset-0 opacity-40">
         <Image
           src={heroPhoto}
           alt={IMAGE_ALTS.hero}
           fill
           preload
-          quality={60}
+          quality={50}
           placeholder="blur"
-          sizes="100vw"
+          sizes="(max-width: 768px) 100vw, 1200px"
           className="object-cover scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/75 to-background" />
@@ -40,65 +41,55 @@ export function Hero() {
       <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gold/6 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-accent-purple/5 rounded-full blur-3xl pointer-events-none" />
 
-      <div className="relative flex-1 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-28 pb-8 w-full">
+      <div className="relative flex-1 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-6 md:pt-28 md:pb-8 w-full">
         <div className="flex-1 flex flex-col justify-center max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-6 w-fit"
-          >
+          <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-4 w-fit animate-fade-in">
             <Globe size={16} className="text-gold" />
             <span className="text-silver text-sm">{t("heroBadge")}</span>
-          </motion.div>
+          </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.1] mb-6"
-          >
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] mb-4 animate-fade-in">
             {t("heroTitle1")}{" "}
-            <span className="text-gold-gradient">{t("heroTitle2")}</span>{" "}
-            {t("heroTitle3")}
-          </motion.h1>
+            <span className="text-gold-gradient">{t("heroTitle2")}</span>
+            {t("heroTitle3") ? ` ${t("heroTitle3")}` : ""}
+          </h1>
 
-          <motion.p
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-silver text-lg sm:text-xl leading-relaxed mb-6"
-          >
+          <p className="text-silver text-base sm:text-lg leading-relaxed mb-5 animate-fade-in">
             {t("heroDesc")}
-          </motion.p>
+          </p>
 
           <HeroTrustBadge />
 
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-4 mb-6"
-          >
-            <Button href="/basvuru" size="lg">
+          <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-5 animate-fade-in">
+            <a
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackEvent("whatsapp_click", { location: "hero" })}
+              className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#25D366]/25 hover:bg-[#20bd5a] transition-colors"
+            >
+              {t("whatsappApply")}
+            </a>
+            <Button
+              href="/basvuru"
+              size="lg"
+              onClick={() => trackEvent("apply_click", { location: "hero" })}
+            >
               {t("applyNow")}
               <ArrowRight size={20} />
             </Button>
             <Button
-              href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+              href="/#is-ilanlari"
               variant="outline"
               size="lg"
+              onClick={() => trackEvent("job_listings_click", { location: "hero" })}
             >
-              {t("contactWhatsapp")}
+              <Briefcase size={18} />
+              {t("viewJobListings")}
             </Button>
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.45 }}
-            className="flex flex-wrap gap-2"
-          >
+          <div className="flex flex-wrap gap-2 animate-fade-in">
             <span className="text-silver/50 text-xs mr-1 self-center">
               {t("heroExplore")}:
             </span>
@@ -111,27 +102,19 @@ export function Hero() {
                 {t(link.key)}
               </Link>
             ))}
-          </motion.div>
+          </div>
         </div>
 
         <HeroHighlights />
       </div>
 
-      <motion.a
+      <a
         href="/#nasil-calisir"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.1 }}
-        className="relative z-10 pb-6 flex justify-center text-silver/40 hover:text-gold transition-colors"
+        className="relative z-10 pb-4 hidden md:flex justify-center text-silver/40 hover:text-gold transition-colors"
         aria-label={t("heroScroll")}
       >
-        <motion.div
-          animate={{ y: [0, 6, 0] }}
-          transition={{ repeat: Infinity, duration: 2 }}
-        >
-          <ChevronDown size={26} />
-        </motion.div>
-      </motion.a>
+        <ChevronDown size={26} className="animate-bounce" />
+      </a>
     </section>
   );
 }

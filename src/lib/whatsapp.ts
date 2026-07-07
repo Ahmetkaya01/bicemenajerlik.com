@@ -38,3 +38,31 @@ export function buildWhatsAppMessage(
 export function getWhatsAppUrl(message: string): string {
   return `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
 }
+
+export function buildMarketingWhatsAppMessage(source = "website"): string {
+  return [
+    "Merhaba, bicemenajerlik.com üzerinden kons iş ilanları hakkında bilgi almak istiyorum.",
+    "",
+    `Kaynak: ${source}`,
+  ].join("\n");
+}
+
+export function buildQuickApplyWhatsAppMessage(data: {
+  firstName: string;
+  city: string;
+  phone: string;
+}): string {
+  return [
+    "*Hızlı Başvuru — Bice Menajerlik*",
+    "",
+    `*İsim:* ${data.firstName}`,
+    `*Şehir:* ${data.city}`,
+    `*Telefon:* ${data.phone}`,
+    "",
+    "Kons iş ilanları hakkında bilgi almak istiyorum.",
+  ].join("\n");
+}
+
+export function getMarketingWhatsAppUrl(source?: string): string {
+  return getWhatsAppUrl(buildMarketingWhatsAppMessage(source));
+}

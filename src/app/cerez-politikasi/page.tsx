@@ -33,12 +33,22 @@ const SECTIONS = [
             dil (Türkçe/İngilizce) tarayıcınızın yerel depolamasında saklanır.
           </li>
           <li>
-            <strong className="text-foreground">Teknik çerezler</strong> —
-            Sitenin güvenli ve düzgün çalışması için gereken zorunlu çerezler.
+            <strong className="text-foreground">Çerez tercihi</strong> — Analitik
+            çerez onayınız tarayıcı yerel depolamasında saklanır.
+          </li>
+          <li>
+            <strong className="text-foreground">Analitik çerezler</strong> —
+            Google Analytics (G-D93Y3NKKSZ) ile site kullanım istatistikleri; yalnızca
+            onay vermeniz halinde.
+          </li>
+          <li>
+            <strong className="text-foreground">Reklam çerezleri</strong> —
+            Google Ads (AW-18231553251) dönüşüm ölçümü; yalnızca onay vermeniz halinde.
           </li>
         </ul>
         <p>
-          Reklam, pazarlama veya üçüncü taraf izleme çerezi kullanmıyoruz.
+          Çerez banner&apos;ından tercihinizi istediğiniz zaman değiştirebilirsiniz.
+          Reddetmeniz halinde analitik ve reklam çerezleri devre dışı kalır.
         </p>
       </>
     ),

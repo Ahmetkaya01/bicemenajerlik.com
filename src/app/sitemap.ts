@@ -1,12 +1,19 @@
 import type { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/lib/constants";
+import { ALL_LANDING_PAGES } from "@/lib/landing-pages";
 
-const ROUTES: MetadataRoute.Sitemap = [
+const STATIC_ROUTES: MetadataRoute.Sitemap = [
   {
     url: SITE_CONFIG.domain,
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 1,
+  },
+  {
+    url: `${SITE_CONFIG.domain}/ilanlar`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.95,
   },
   {
     url: `${SITE_CONFIG.domain}/hakkimizda`,
@@ -25,6 +32,12 @@ const ROUTES: MetadataRoute.Sitemap = [
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.9,
+  },
+  {
+    url: `${SITE_CONFIG.domain}/kvkk`,
+    lastModified: new Date(),
+    changeFrequency: "yearly",
+    priority: 0.3,
   },
   {
     url: `${SITE_CONFIG.domain}/gizlilik-politikasi`,
@@ -47,5 +60,12 @@ const ROUTES: MetadataRoute.Sitemap = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  return ROUTES;
+  const landingRoutes: MetadataRoute.Sitemap = ALL_LANDING_PAGES.map((page) => ({
+    url: `${SITE_CONFIG.domain}/ilanlar/${page.slug}`,
+    lastModified: new Date(),
+    changeFrequency: page.type === "city" ? "weekly" : "monthly",
+    priority: page.type === "category" ? 0.85 : 0.75,
+  }));
+
+  return [...STATIC_ROUTES, ...landingRoutes];
 }

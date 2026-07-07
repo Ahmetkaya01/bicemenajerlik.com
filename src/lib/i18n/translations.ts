@@ -21,12 +21,12 @@ export const translations = {
     menu: "Menü",
 
     // Hero
-    heroBadge: "Türkiye Geneli Menajerlik Hizmetleri",
-    heroTitle1: "Güvenilir Profesyonel",
-    heroTitle2: "Organizasyon Kadrosu",
-    heroTitle3: "ile Menajerlik Hizmeti",
+    heroBadge: "Türkiye Geneli Kons İş İlanları",
+    heroTitle1: "Türkiye Geneli",
+    heroTitle2: "Kons İş İlanları",
+    heroTitle3: "",
     heroDesc:
-      "58 ilde gazino ve gece kulübü personel istihdamı. Güvenilir menajerlik hizmetleri, günlük ödeme ve Türkiye genelinde 24/7 kesintisiz destek.",
+      "Gazino, gece kulübü ve pavyon iş ilanları. Günlük ödemeli, yatılı seçenekler. 58 ilde güvenilir kons menajerlik desteği — deneyimli veya deneyimsiz adaylar başvurabilir.",
     heroExplore: "Keşfet",
     heroScroll: "Aşağı kaydır",
     heroCardTitle: "Öne Çıkanlar",
@@ -35,7 +35,10 @@ export const translations = {
     trustBarProvinces: "İlde hizmetinizdeyiz",
     trustBarSalary: "Günlük kazanç aralığı",
     trustBarReview: "İçinde değerlendirme",
-    trustBarPlacements: "Başarılı yerleştirme",
+    trustBarSupport: "Kesintisiz destek",
+    whatsappApply: "WhatsApp Başvurusu",
+    viewJobListings: "İş İlanlarını Gör",
+    jobListings: "İş İlanları",
     processBadge: "Nasıl Çalışır?",
     processTitle1: "3 Adımda",
     processTitle2: "İşe Başlayın",
@@ -68,7 +71,7 @@ export const translations = {
     servicesTitle2: "Bice Menajerlik?",
     servicesDesc:
       "Türkiye genelinde menajerlik hizmetlerimizle güvenilir mekanlarda işe başlamanızı sağlıyoruz.",
-    serviceKonsTitle: "İş İlanları",
+    serviceKonsTitle: "Kons İş İlanları",
     serviceKonsDesc:
       "Türkiye genelinde 58 ilde deneyimli veya deneyimsiz adaylar için günlük yevmiye ile iş eşleştirmesi.",
     serviceGazinoTitle: "Gazino & Night Club",
@@ -142,9 +145,64 @@ export const translations = {
     whyTitle1: "Rakamlarla",
     whyTitle2: "Güven",
     whyDesc:
-      "Türkiye genelinde yıllardır sürdürdüğümüz güvenilir mekan ağı ve başarılı yerleştirme geçmişimiz.",
+      "2015'ten beri Türkiye genelinde güvenilir mekan ağı ve şeffaf menajerlik hizmeti.",
+
+    // Job listings
+    jobListingsBadge: "Aktif İlanlar",
+    jobListingsTitle1: "Güncel",
+    jobListingsTitle2: "İş İlanları",
+    jobListingsDesc:
+      "Kons, gazino, pavyon ve gece kulübü iş ilanları. Günlük ödemeli ve yatılı fırsatlar — detay için ilana tıklayın veya hemen başvurun.",
+    jobListingDaily: "Günlük ödeme",
+    jobListingAccommodation: "Yatılı seçenek",
+    jobListingVerified: "Teyit edilmiş ilan",
+    jobListingView: "İlanı Gör",
+    jobListingsViewAll: "Tüm İlanları Gör",
+    jobCatKons: "Kons",
+    jobCatGazino: "Gazino",
+    jobCatPavyon: "Pavyon",
+    jobCatNightClub: "Gece Kulübü",
+    jobCatCity: "Şehir",
+    jobSalaryBand: "Günlük yevmiye",
+
+    // Quick apply
+    quickApplyTitle: "Hızlı Başvuru",
+    quickApplyDesc: "Ad, telefon ve şehir bilginizle 30 saniyede WhatsApp üzerinden başvurun.",
+    quickApplySubmit: "WhatsApp ile Başvur",
+    quickApplyTab: "Hızlı Başvuru",
+    fullApplyTab: "Detaylı Başvuru",
+
+    // Sticky CTA
+    stickyWhatsapp: "WhatsApp",
+    stickyApply: "Başvur",
+    stickyJobs: "İlanlar",
+
+    // Cookie consent
+    cookieTitle: "Çerez Tercihleri",
+    cookieDesc:
+      "Site deneyimini iyileştirmek ve reklam performansını ölçmek için analitik çerezler kullanıyoruz. Kabul ederseniz Google Analytics ve Google Ads etkinleştirilir.",
+    cookieAccept: "Kabul Et",
+    cookieReject: "Reddet",
+
+    // 404
+    notFoundTitle: "Sayfa Bulunamadı",
+    notFoundDesc: "Aradığınız sayfa mevcut değil. Ana sayfaya dönerek iş ilanlarına göz atabilirsiniz.",
+    notFoundBack: "Ana Sayfaya Dön",
+
+    // Landing pages
+    landingApplyCta: "Hemen Başvur",
+    landingWhatsappCta: "WhatsApp ile Sor",
+    landingFaqTitle: "Sık Sorulan Sorular",
+    landingRelatedTitle: "Diğer İlanlar",
+    ilanlarHubTitle: "Tüm İş İlanları",
+    ilanlarHubDesc:
+      "Kons, gazino, pavyon ve gece kulübü iş ilanları. Şehir veya kategori seçerek detaylı bilgi alın.",
+    ilanlarCategories: "Kategoriler",
+    ilanlarCities: "Şehirler",
+
+    // Why us (continued)
     statVenues: "İş Ortağı Mekan",
-    statPlacements: "Başarılı Yerleştirme",
+    statYears: "Yıllık Deneyim",
     statCities: "İl Kapsama Alanı",
     statReview: "İçinde Değerlendirme",
     featureNationwideTitle: "Türkiye Geneli",
@@ -353,6 +411,7 @@ export const translations = {
     // Legal
     legalHeading: "Yasal",
     privacyPolicy: "Gizlilik Politikası",
+    kvkkPolicy: "KVKK Aydınlatma Metni",
     termsOfService: "Kullanım Şartları",
     cookiePolicy: "Çerez Politikası",
   },
@@ -374,12 +433,12 @@ export const translations = {
     next: "Next",
     menu: "Menu",
 
-    heroBadge: "Nationwide Management Services in Turkey",
-    heroTitle1: "Trusted Professional",
-    heroTitle2: "Organization Staff",
-    heroTitle3: "Management Services",
+    heroBadge: "Nationwide Hostess Job Listings",
+    heroTitle1: "Nationwide",
+    heroTitle2: "Hostess Job Listings",
+    heroTitle3: "",
     heroDesc:
-      "Casino and nightclub staff job listings in 58 provinces. Trusted management services, daily wages and 24/7 support across Turkey.",
+      "Casino, nightclub and cabaret job listings. Daily pay, live-in options. Trusted hostess management in 58 provinces — experienced or inexperienced candidates welcome.",
     heroExplore: "Explore",
     heroScroll: "Scroll down",
     heroCardTitle: "Highlights",
@@ -388,7 +447,10 @@ export const translations = {
     trustBarProvinces: "Province coverage",
     trustBarSalary: "Daily earning range",
     trustBarReview: "Review within",
-    trustBarPlacements: "Successful placements",
+    trustBarSupport: "Non-stop support",
+    whatsappApply: "Apply via WhatsApp",
+    viewJobListings: "View Job Listings",
+    jobListings: "Job Listings",
     processBadge: "How It Works",
     processTitle1: "Start Working in",
     processTitle2: "3 Steps",
@@ -419,7 +481,7 @@ export const translations = {
     servicesTitle2: "Bice Management?",
     servicesDesc:
       "We help you start working at trusted venues with our nationwide hostess management services.",
-    serviceKonsTitle: "Job Listings",
+    serviceKonsTitle: "Hostess Job Listings",
     serviceKonsDesc:
       "Daily wage job placement for experienced or inexperienced candidates in 58 provinces of Turkey.",
     serviceGazinoTitle: "Casino & Night Club",
@@ -489,9 +551,57 @@ export const translations = {
     whyTitle1: "Trust in",
     whyTitle2: "Numbers",
     whyDesc:
-      "Our trusted venue network and successful placement history across Turkey.",
+      "Trusted venue network and transparent management services since 2015.",
+
+    jobListingsBadge: "Active Listings",
+    jobListingsTitle1: "Current",
+    jobListingsTitle2: "Job Listings",
+    jobListingsDesc:
+      "Hostess, casino, cabaret and nightclub jobs. Daily pay and live-in options — click for details or apply now.",
+    jobListingDaily: "Daily pay",
+    jobListingAccommodation: "Live-in option",
+    jobListingVerified: "Verified listing",
+    jobListingView: "View Listing",
+    jobListingsViewAll: "View All Listings",
+    jobCatKons: "Hostess",
+    jobCatGazino: "Casino",
+    jobCatPavyon: "Cabaret",
+    jobCatNightClub: "Night Club",
+    jobCatCity: "City",
+    jobSalaryBand: "Daily wage",
+
+    quickApplyTitle: "Quick Apply",
+    quickApplyDesc: "Apply in 30 seconds via WhatsApp with your name, phone and city.",
+    quickApplySubmit: "Apply via WhatsApp",
+    quickApplyTab: "Quick Apply",
+    fullApplyTab: "Full Application",
+
+    stickyWhatsapp: "WhatsApp",
+    stickyApply: "Apply",
+    stickyJobs: "Jobs",
+
+    cookieTitle: "Cookie Preferences",
+    cookieDesc:
+      "We use analytics cookies to improve the site and measure ad performance. Accepting enables Google Analytics and Google Ads.",
+    cookieAccept: "Accept",
+    cookieReject: "Reject",
+
+    notFoundTitle: "Page Not Found",
+    notFoundDesc: "This page does not exist. Return home to browse job listings.",
+    notFoundBack: "Back to Home",
+
+    landingApplyCta: "Apply Now",
+    landingWhatsappCta: "Ask on WhatsApp",
+    landingFaqTitle: "FAQ",
+    landingRelatedTitle: "Other Listings",
+    ilanlarHubTitle: "All Job Listings",
+    ilanlarHubDesc:
+      "Hostess, casino, cabaret and nightclub jobs. Select a city or category for details.",
+    ilanlarCategories: "Categories",
+    ilanlarCities: "Cities",
+
     statVenues: "Partner Venues",
-    statPlacements: "Successful Placements",
+    statYears: "Years Experience",
     statCities: "Province Coverage",
     statReview: "Review Within",
     featureNationwideTitle: "Nationwide",
@@ -688,6 +798,7 @@ export const translations = {
 
     legalHeading: "Legal",
     privacyPolicy: "Privacy Policy",
+    kvkkPolicy: "KVKK Notice",
     termsOfService: "Terms of Service",
     cookiePolicy: "Cookie Policy",
   },

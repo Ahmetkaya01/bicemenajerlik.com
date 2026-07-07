@@ -6,7 +6,7 @@ import {
   MapPin,
   Banknote,
   Clock,
-  Users,
+  Headphones,
   ArrowUpRight,
   type LucideIcon,
 } from "lucide-react";
@@ -17,7 +17,7 @@ const iconMap: Record<string, LucideIcon> = {
   MapPin,
   Banknote,
   Clock,
-  Users,
+  Headphones,
 };
 
 export function HeroHighlights() {

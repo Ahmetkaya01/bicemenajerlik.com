@@ -54,8 +54,12 @@ const organizationSchema = {
     },
   ],
   knowsAbout: [
+    "Kons iş ilanları",
+    "Kons menajerlik",
     "Gazino personeli istihdamı",
     "Gece kulübü personeli istihdamı",
+    "Pavyon iş ilanları",
+    "Konsluk iş ilanları",
     "Personel yerleştirme",
     "Menajerlik hizmeti",
     "Günlük yevmiyeli iş",
@@ -195,6 +199,11 @@ const JOB_DATE_POSTED = new Date().toISOString().split("T")[0];
 const JOB_VALID_THROUGH = new Date(Date.now() + 1000 * 60 * 60 * 24 * 180)
   .toISOString()
   .split("T")[0];
+
+/** Generic JobPosting schema for the homepage. */
+export function HomeJobPostingJsonLd() {
+  return <JobPostingJsonLd />;
+}
 
 /** Generic JobPosting schema rendered on the application page. */
 export function JobPostingJsonLd() {

@@ -9,6 +9,7 @@ import { CitiesCoverage } from "@/components/sections/CitiesCoverage";
 import { WhyUs } from "@/components/sections/WhyUs";
 import { FAQ } from "@/components/sections/FAQ";
 import { CTA } from "@/components/sections/CTA";
+import { JobListingsSection } from "@/components/sections/JobListingsSection";
 import { homeMetadata } from "@/lib/metadata";
 
 export const metadata: Metadata = homeMetadata;
@@ -17,6 +18,7 @@ export default function HomePage() {
   return (
     <>
       <Hero />
+      <JobListingsSection />
       <ProcessSteps />
       <KonsBanner />
       <CorporateTrustSection />
