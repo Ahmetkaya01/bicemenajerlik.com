@@ -20,7 +20,7 @@ const items = [
   },
   {
     id: "whatsapp",
-    href: getMarketingWhatsAppUrl("floating"),
+    href: getMarketingWhatsAppUrl(),
     labelKey: "whatsapp" as const,
     icon: MessageCircle,
     event: "whatsapp_click" as const,

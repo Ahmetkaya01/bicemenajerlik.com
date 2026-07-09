@@ -20,7 +20,7 @@ const QUICK_LINKS = [
 
 export function Hero() {
   const { t } = useLanguage();
-  const whatsappUrl = getMarketingWhatsAppUrl("hero");
+  const whatsappUrl = getMarketingWhatsAppUrl();
 
   return (
     <section className="relative min-h-0 md:min-h-[92svh] flex flex-col hero-gradient overflow-hidden">

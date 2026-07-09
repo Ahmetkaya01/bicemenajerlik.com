@@ -39,12 +39,8 @@ export function getWhatsAppUrl(message: string): string {
   return `https://wa.me/${SITE_CONFIG.whatsapp}?text=${encodeURIComponent(message)}`;
 }
 
-export function buildMarketingWhatsAppMessage(source = "website"): string {
-  return [
-    "Merhaba, bicemenajerlik.com üzerinden kons iş ilanları hakkında bilgi almak istiyorum.",
-    "",
-    `Kaynak: ${source}`,
-  ].join("\n");
+export function buildMarketingWhatsAppMessage(): string {
+  return "Merhaba, bicemenajerlik.com üzerinden kons iş ilanları hakkında bilgi almak istiyorum.";
 }
 
 export function buildQuickApplyWhatsAppMessage(data: {
@@ -63,6 +59,6 @@ export function buildQuickApplyWhatsAppMessage(data: {
   ].join("\n");
 }
 
-export function getMarketingWhatsAppUrl(source?: string): string {
-  return getWhatsAppUrl(buildMarketingWhatsAppMessage(source));
+export function getMarketingWhatsAppUrl(): string {
+  return getWhatsAppUrl(buildMarketingWhatsAppMessage());
 }

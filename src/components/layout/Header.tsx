@@ -95,7 +95,7 @@ export function Header() {
                 <Phone size={18} />
               </a>
               <a
-                href={getMarketingWhatsAppUrl("header")}
+                href={getMarketingWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("whatsapp_click", { location: "header" })}
@@ -112,7 +112,7 @@ export function Header() {
 
             <div className="flex lg:hidden items-center gap-1 shrink-0">
               <a
-                href={getMarketingWhatsAppUrl("header-mobile")}
+                href={getMarketingWhatsAppUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("whatsapp_click", { location: "header-mobile" })}
@@ -194,7 +194,7 @@ export function Header() {
                     <span className="text-sm">{SITE_CONFIG.phone}</span>
                   </a>
                   <a
-                    href={getMarketingWhatsAppUrl("mobile-menu")}
+                    href={getMarketingWhatsAppUrl()}
                     target="_blank"
                     rel="noopener noreferrer"
                     onClick={() => trackEvent("whatsapp_click", { location: "mobile-menu" })}

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { FAQ } from "@/components/sections/FAQ";
+import { HeroTrustBadge } from "@/components/sections/HeroTrustBadge";
 import { SALARY_RANGE } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
 import type { LandingPageConfig } from "@/lib/landing-pages";
@@ -19,7 +20,7 @@ export function LandingPageContent({ page }: LandingPageContentProps) {
   const { t, locale } = useLanguage();
   const h1 = locale === "en" ? page.h1En : page.h1Tr;
   const intro = locale === "en" ? page.introEn : page.introTr;
-  const whatsappUrl = getMarketingWhatsAppUrl(`ilanlar-${page.slug}`);
+  const whatsappUrl = getMarketingWhatsAppUrl();
 
   const related =
     page.type === "city"
@@ -39,6 +40,9 @@ export function LandingPageContent({ page }: LandingPageContentProps) {
             {h1}
           </h1>
           <p className="text-silver text-lg leading-relaxed">{intro}</p>
+          <div className="mt-6">
+            <HeroTrustBadge />
+          </div>
         </header>
 
         <section className="glass rounded-2xl p-6 sm:p-8 mb-8 border border-gold/10">

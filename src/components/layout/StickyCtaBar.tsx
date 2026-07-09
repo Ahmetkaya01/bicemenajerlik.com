@@ -19,7 +19,7 @@ export function StickyCtaBar() {
 
   if (!visible) return null;
 
-  const whatsappUrl = getMarketingWhatsAppUrl("sticky-bar");
+  const whatsappUrl = getMarketingWhatsAppUrl();
 
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 border-t border-gold/15 bg-night/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)] lg:hidden">
