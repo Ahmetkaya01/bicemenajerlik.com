@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
 import Link from "next/link";
 import { ArrowRight, Banknote, CheckCircle2, Home, ShieldCheck } from "lucide-react";
 import { Button } from "@/components/ui/Button";
+import { RoundCarousel } from "@/components/ui/RoundCarousel";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { SALARY_RANGE } from "@/lib/constants";
 import {
@@ -22,7 +22,7 @@ function JobCard({ page }: { page: LandingPageConfig }) {
     <Link
       href={`/ilanlar/${page.slug}`}
       onClick={() => trackEvent("job_listings_click", { slug: page.slug })}
-      className="group flex flex-col glass rounded-2xl p-5 border border-white/5 hover:border-gold/30 transition-all duration-300 h-full"
+      className="group flex h-full flex-col glass rounded-2xl p-5 border border-white/5 hover:border-gold/30 transition-all duration-300"
     >
       <div className="flex items-start justify-between gap-3 mb-3">
         <h3 className="font-heading font-semibold text-foreground group-hover:text-gold transition-colors leading-snug">
@@ -31,7 +31,7 @@ function JobCard({ page }: { page: LandingPageConfig }) {
         <ShieldCheck size={18} className="text-gold/70 shrink-0" aria-hidden />
       </div>
 
-      <p className="text-silver text-sm mb-4 line-clamp-2 flex-1">
+      <p className="text-silver text-sm mb-4 line-clamp-3 flex-1">
         {locale === "en" ? page.introEn : page.introTr}
       </p>
 
@@ -84,10 +84,19 @@ export function JobListingsSection() {
           description={t("jobListingsDesc")}
         />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          {cards.map(({ page }) => (
-            <JobCard key={page.slug} page={page} />
-          ))}
+        <div className="mb-8 -mx-4 sm:mx-0">
+          <RoundCarousel
+            itemWidth={280}
+            itemHeight={340}
+            spacing={2}
+            speed={4}
+            tilt={-6}
+            perspective={2600}
+            cornerRadius={18}
+            items={cards.map(({ page }) => (
+              <JobCard key={page.slug} page={page} />
+            ))}
+          />
         </div>
 
         <div className="text-center">

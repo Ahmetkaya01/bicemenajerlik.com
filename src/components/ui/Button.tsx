@@ -49,8 +49,22 @@ export function Button({
   if (href) {
     const isExternal = href.startsWith("http");
     const handleClick = () => onClick?.();
+    const wrapperClassName = [
+      className.includes("w-full") ? "w-full" : "",
+      className.includes("sm:w-auto") ? "sm:w-auto" : "",
+      className.includes("sm:col-span-2") ? "sm:col-span-2" : "",
+      className.includes("sm:justify-self-start")
+        ? "sm:justify-self-start"
+        : "",
+    ]
+      .filter(Boolean)
+      .join(" ") || undefined;
     return (
-      <motion.div whileHover={{ scale: 1.03 }} whileTap={{ scale: 0.98 }}>
+      <motion.div
+        className={wrapperClassName}
+        whileHover={{ scale: 1.03 }}
+        whileTap={{ scale: 0.98 }}
+      >
         {isExternal ? (
           <a
             href={href}

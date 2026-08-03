@@ -51,9 +51,11 @@ export function Hero() {
             </div>
 
             <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] mb-4 animate-fade-in">
-              {t("heroTitle1")}{" "}
-              <span className="text-gold-gradient">{t("heroTitle2")}</span>
-              {t("heroTitle3") ? ` ${t("heroTitle3")}` : ""}
+              {t("heroTitle1")}
+              <span className="block text-gold-gradient whitespace-nowrap">
+                {t("heroTitle2")}
+                {t("heroTitle3") ? ` ${t("heroTitle3")}` : ""}
+              </span>
             </h1>
 
             <p className="text-silver text-base sm:text-lg leading-relaxed mb-5 animate-fade-in">
@@ -62,19 +64,20 @@ export function Hero() {
 
             <HeroTrustBadge />
 
-            <div className="flex flex-col sm:flex-row flex-wrap gap-3 mb-5 animate-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5 animate-fade-in">
               <a
                 href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("whatsapp_click", { location: "hero" })}
-                className="inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#25D366]/25 hover:bg-[#20bd5a] transition-colors"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#25D366]/25 hover:bg-[#20bd5a] transition-colors"
               >
                 {t("whatsappApply")}
               </a>
               <Button
                 href="/basvuru"
                 size="lg"
+                className="w-full"
                 onClick={() => trackEvent("apply_click", { location: "hero" })}
               >
                 {t("applyNow")}
@@ -84,6 +87,7 @@ export function Hero() {
                 href="/#is-ilanlari"
                 variant="outline"
                 size="lg"
+                className="w-full sm:col-span-2 sm:justify-self-start sm:w-auto"
                 onClick={() =>
                   trackEvent("job_listings_click", { location: "hero" })
                 }
