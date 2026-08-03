@@ -186,3 +186,58 @@ body {
 .animate-fade-in {
   animation: fade-in 0.55s ease-out both;
 }
+
+/* Hero thank-you marquee: readable downward scroll */
+@keyframes hero-thankyou-scroll {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(0, -50%, 0);
+  }
+}
+
+.hero-thankyou-mask {
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 12%,
+    #000 88%,
+    transparent 100%
+  );
+}
+
+.hero-thankyou-track {
+  animation: hero-thankyou-scroll 72s linear infinite;
+}
+
+.glass:hover .hero-thankyou-track {
+  animation-play-state: paused;
+}
+
+@media (max-width: 1023px) {
+  .hero-thankyou-track {
+    animation-duration: 58s;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-thankyou-track {
+    animation: none;
+    transform: none;
+  }
+
+  .hero-thankyou-mask {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    mask-image: none;
+    -webkit-mask-image: none;
+  }
+}

@@ -21,7 +21,7 @@ export const translations = {
     menu: "Menü",
 
     // Hero
-    heroBadge: "Türkiye Geneli Kons İş İlanları",
+    heroBadge: "GİB Kayıtlı Güvenilir Ajans",
     heroTitle1: "Türkiye Geneli",
     heroTitle2: "Kons İş İlanları",
     heroTitle3: "",
@@ -129,7 +129,8 @@ export const translations = {
       "Belirtilen tutarlar günlük yevmiye bazındadır ve şehirden şehire değişiklik göstermektedir. Kesin ücret, çalışılacak mekan ve deneyime göre belirlenir.",
     salaryCityExamples: "Örnek şehir bazlı kazanç aralıkları",
     salaryRangeLabel: "Kazanç aralığı",
-    salaryIstanbulSpecial: "2.000 ₺ + yarıcı",
+    salaryIstanbulSpecial: "2.000 ₺ taban + yarıcı",
+    salaryIstanbulNote: "Toplam kazanç 7.000–12.000 ₺ bandına çıkabilir",
 
     // Cities
     citiesBadge: "Hizmet Bölgeleri",
@@ -307,6 +308,24 @@ export const translations = {
     aboutCtaTitle: "İş Başvurusu",
     aboutCtaDesc:
       "Bulunduğunuz ilde güvenilir mekanlarımızda iş fırsatları için hemen başvurun.",
+    aboutFamilyBadge: "Ailemiz ve İş Ortaklarımız",
+    aboutFamilyTitle:
+      "Bice Menajerlik Ailesine, Yeni Çalışma Arkadaşlarımıza ve Kıymetli İş Ortaklarımıza",
+    aboutFamilyP1:
+      "Bice Menajerlik olarak bizler, yalnızca bir ajans değil; güveni, dürüstlüğü ve profesyonelliği ilke edinmiş büyük bir aileyiz.",
+    aboutFamilyP2:
+      "Sektördeki varlık sebebimiz; emeğiyle değer üreten çalışma arkadaşlarımız ve bu emeğe saygı duyan kıymetli iş ortaklarımızdır. Bizim için en önemli öncelik, her zaman sizlerin huzurlu, güvenli ve saygı çerçevesinde çalışabileceği ortamlar oluşturmaktır.",
+    aboutFamilyP3:
+      "Birlikte attığımız her adım, yalnızca bir iş ortaklığını değil; karşılıklı güveni, saygıyı ve uzun vadeli dayanışmayı temsil etmektedir. Mekanlarla yaşadığımız tüm fikir ayrılıklarının tek nedeni, çalışma arkadaşlarımızın haklarını korumak ve dürüst iş ortaklarımızın kalite standartlarını tavizsiz şekilde savunmaktır.",
+    aboutFamilyP4:
+      "Hayata geçireceğimiz Türkiye genelini kapsayan web sitesi de bu vizyonun en önemli parçalarından biridir. Bu platform sayesinde çalışma arkadaşlarımız güvenilir mekanları daha kolay ayırt edebilecek, işini dürüst ve profesyonel yapan işletmeler ise hak ettikleri değeri görerek kalite standartlarını daha güçlü şekilde ortaya koyabilecektir.",
+    aboutFamilyP5:
+      "Bizim için hiçbir maddi kazanç; çalışma arkadaşlarımızın huzurundan, güvenliğinden ve iş ortaklarımızla kurduğumuz karşılıklı güvenden daha değerli değildir.",
+    aboutFamilyP6:
+      "Bu vizyonu paylaşan, emeğiyle ailemizi büyüten ve bize güvenen tüm çalışma arkadaşlarımıza ve kıymetli iş ortaklarımıza gönülden teşekkür ediyoruz.",
+    aboutFamilyClosing1: "İyi ki bu yolculukta bizimlesiniz.",
+    aboutFamilyClosing2:
+      "Birlikte daha güvenli, daha güçlü ve daha saygın bir sektör inşa edeceğimize yürekten inanıyoruz.",
 
     // Corporate credentials
     corporateBadge: "Kurumsal",
@@ -433,7 +452,7 @@ export const translations = {
     next: "Next",
     menu: "Menu",
 
-    heroBadge: "Nationwide Hostess Job Listings",
+    heroBadge: "GIB Registered Trusted Agency",
     heroTitle1: "Nationwide",
     heroTitle2: "Hostess Job Listings",
     heroTitle3: "",
@@ -537,7 +556,8 @@ export const translations = {
       "Amounts shown are daily wages and vary from city to city. Final pay is determined by venue and experience.",
     salaryCityExamples: "Sample city-based earning ranges",
     salaryRangeLabel: "Earning range",
-    salaryIstanbulSpecial: "₺2,000 + yarıcı",
+    salaryIstanbulSpecial: "₺2,000 base + commission",
+    salaryIstanbulNote: "Total earnings can reach the ₺7,000–12,000 range",
 
     citiesBadge: "Service Areas",
     citiesTitle1: "Casino & Nightclub Staff Jobs",
@@ -699,6 +719,24 @@ export const translations = {
     aboutCtaTitle: "Job Application",
     aboutCtaDesc:
       "Apply now for job opportunities at trusted venues in your province.",
+    aboutFamilyBadge: "Our Family & Partners",
+    aboutFamilyTitle:
+      "To the Bice Menajerlik Family, Our New Colleagues, and Valued Partners",
+    aboutFamilyP1:
+      "At Bice Menajerlik we are more than an agency — we are a large family built on trust, honesty, and professionalism.",
+    aboutFamilyP2:
+      "Our reason for being in this industry is our colleagues who create value through their work, and the partners who respect that effort. Our top priority is always to create environments where you can work with peace of mind, safety, and mutual respect.",
+    aboutFamilyP3:
+      "Every step we take together represents not only a business partnership, but mutual trust, respect, and long-term solidarity. Any disagreements we have with venues exist solely to protect our colleagues' rights and to defend the quality standards of our honest partners without compromise.",
+    aboutFamilyP4:
+      "The nationwide website we are bringing to life is one of the most important parts of this vision. Through this platform, our colleagues will more easily identify reliable venues, while businesses that operate honestly and professionally will receive the recognition they deserve and showcase their quality standards more strongly.",
+    aboutFamilyP5:
+      "For us, no financial gain is more valuable than our colleagues' well-being and safety, or the mutual trust we build with our partners.",
+    aboutFamilyP6:
+      "We sincerely thank every colleague and valued partner who shares this vision, grows our family through their work, and places their trust in us.",
+    aboutFamilyClosing1: "We are glad you are with us on this journey.",
+    aboutFamilyClosing2:
+      "We truly believe we will build a safer, stronger, and more respected industry together.",
 
     // Corporate credentials
     corporateBadge: "Corporate",

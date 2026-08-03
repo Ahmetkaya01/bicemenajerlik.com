@@ -13,6 +13,33 @@ declare global {
   }
 }
 
+const GADS_ID = process.env.NEXT_PUBLIC_GADS_ID ?? "AW-18231553251";
+
+const CONVERSION_LABELS: Partial<Record<AnalyticsEvent, string | undefined>> = {
+  whatsapp_click: process.env.NEXT_PUBLIC_GADS_WHATSAPP_LABEL,
+  form_submit: process.env.NEXT_PUBLIC_GADS_FORM_LABEL,
+  quick_apply_submit: process.env.NEXT_PUBLIC_GADS_FORM_LABEL,
+  phone_click: process.env.NEXT_PUBLIC_GADS_PHONE_LABEL,
+};
+
+const LEGACY_CONVERSION_LABEL = process.env.NEXT_PUBLIC_GADS_CONVERSION_LABEL;
+
+function getConversionLabel(event: AnalyticsEvent): string | undefined {
+  const label = CONVERSION_LABELS[event];
+  if (label) return label;
+
+  if (
+    LEGACY_CONVERSION_LABEL &&
+    (event === "whatsapp_click" ||
+      event === "form_submit" ||
+      event === "quick_apply_submit")
+  ) {
+    return LEGACY_CONVERSION_LABEL;
+  }
+
+  return undefined;
+}
+
 export function trackEvent(
   event: AnalyticsEvent,
   params?: Record<string, string | number | boolean>
@@ -24,17 +51,10 @@ export function trackEvent(
     ...params,
   });
 
-  const conversionLabel = process.env.NEXT_PUBLIC_GADS_CONVERSION_LABEL;
-  const adsId = process.env.NEXT_PUBLIC_GADS_ID ?? "AW-18231553251";
-
-  if (
-    conversionLabel &&
-    (event === "form_submit" ||
-      event === "quick_apply_submit" ||
-      event === "whatsapp_click")
-  ) {
+  const conversionLabel = getConversionLabel(event);
+  if (conversionLabel) {
     window.gtag?.("event", "conversion", {
-      send_to: `${adsId}/${conversionLabel}`,
+      send_to: `${GADS_ID}/${conversionLabel}`,
     });
   }
 }

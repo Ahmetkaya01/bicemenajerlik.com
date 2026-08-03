@@ -88,7 +88,11 @@ export const HERO_HIGHLIGHTS = [
 ] as const;
 
 export const SALARY_EXAMPLES = [
-  { city: "İstanbul", labelKey: "salaryIstanbulSpecial" as const },
+  {
+    city: "İstanbul",
+    labelKey: "salaryIstanbulSpecial" as const,
+    noteKey: "salaryIstanbulNote" as const,
+  },
   { city: "Samsun", min: 7000, max: 9000 },
   { city: "Tokat", min: 7000, max: 10000 },
   { city: "Diyarbakır", min: 8000, max: 12000 },

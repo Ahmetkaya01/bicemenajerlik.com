@@ -142,6 +142,11 @@ export function SalaryScale() {
                   ) : (
                     <p className="text-silver/50 text-xs">{t("salaryPerDay")}</p>
                   )}
+                  {"noteKey" in item && item.noteKey ? (
+                    <p className="text-silver/60 text-xs mt-2 leading-relaxed">
+                      {t(item.noteKey)}
+                    </p>
+                  ) : null}
                 </motion.div>
               );
             })}
