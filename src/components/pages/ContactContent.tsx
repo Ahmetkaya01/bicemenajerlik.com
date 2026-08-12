@@ -5,9 +5,11 @@ import { SITE_CONFIG } from "@/lib/constants";
 import { Button } from "@/components/ui/Button";
 import { SocialLinks } from "@/components/ui/SocialLinks";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { getMarketingWhatsAppUrl } from "@/lib/whatsapp";
 
 export function ContactContent() {
   const { t } = useLanguage();
+  const whatsappUrl = getMarketingWhatsAppUrl();
 
   const contactItems = [
     {
@@ -20,7 +22,7 @@ export function ContactContent() {
       icon: MessageCircle,
       title: t("contactWhatsappLabel"),
       value: t("contactWhatsappValue"),
-      href: `https://wa.me/${SITE_CONFIG.whatsapp}`,
+      href: whatsappUrl,
     },
     {
       icon: Mail,
@@ -105,11 +107,7 @@ export function ContactContent() {
             <Button href="/basvuru" size="lg">
               {t("applicationForm")}
             </Button>
-            <Button
-              href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
-              variant="outline"
-              size="lg"
-            >
+            <Button href={whatsappUrl} variant="outline" size="lg">
               {t("whatsapp")}
             </Button>
           </div>

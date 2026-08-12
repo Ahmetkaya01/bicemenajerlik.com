@@ -6,12 +6,10 @@ import {
 } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
-import { FloatingContact } from "@/components/layout/FloatingContact";
+import { ClientChrome } from "@/components/layout/ClientChrome";
 import { Providers } from "@/components/providers/Providers";
 import { rootMetadata } from "@/lib/metadata";
 import { GoogleAdsTag } from "@/components/seo/GoogleAdsTag";
-import { CookieConsent } from "@/components/layout/CookieConsent";
-import { StickyCtaBar } from "@/components/layout/StickyCtaBar";
 import { HomeJobPostingJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
@@ -19,12 +17,17 @@ const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
   display: "swap",
+  preload: false,
+  weight: ["400", "500", "600", "700"],
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
   display: "swap",
+  // Do not preload — hero paints with fallback first; improves FCP on mobile.
+  preload: false,
+  weight: ["600", "700"],
 });
 
 const montserrat = Montserrat({
@@ -32,6 +35,7 @@ const montserrat = Montserrat({
   subsets: ["latin"],
   display: "swap",
   preload: false,
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = rootMetadata;
@@ -47,9 +51,6 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${playfair.variable} ${montserrat.variable} h-full antialiased`}
     >
-      <head>
-        <link rel="preconnect" href="https://www.googletagmanager.com" />
-      </head>
       <body className="min-h-full flex flex-col bg-background text-foreground pb-16 lg:pb-0">
         <GoogleAdsTag />
         <JsonLd />
@@ -66,9 +67,7 @@ export default function RootLayout({
             {children}
           </main>
           <Footer />
-          <FloatingContact />
-          <StickyCtaBar />
-          <CookieConsent />
+          <ClientChrome />
         </Providers>
       </body>
     </html>

@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X, Phone, MessageCircle } from "lucide-react";
 import { HEADER_NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
@@ -26,9 +25,25 @@ export function Header() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
+    let ticking = false;
+    let raf = 0;
+    const sync = () => {
+      ticking = false;
+      raf = 0;
+      const next = window.scrollY > 24;
+      setScrolled((prev) => (prev === next ? prev : next));
+    };
+    const onScroll = () => {
+      if (ticking) return;
+      ticking = true;
+      raf = requestAnimationFrame(sync);
+    };
+    sync();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (raf) cancelAnimationFrame(raf);
+    };
   }, []);
 
   useEffect(() => {
@@ -53,20 +68,13 @@ export function Header() {
 
   return (
     <>
-      <motion.header
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "py-2" : "py-3 md:py-4"
-        }`}
-      >
+      <header className="fixed top-0 left-0 right-0 z-50 py-3 animate-fade-in">
         <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
           <nav
-            className={`flex items-center justify-between gap-3 rounded-2xl border transition-all duration-300 ${
+            className={`flex items-center justify-between gap-3 rounded-2xl border py-2.5 px-4 sm:px-5 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
               scrolled
-                ? "glass py-2.5 px-4 sm:px-5 shadow-lg shadow-black/25 border-gold/10"
-                : "bg-transparent py-2 px-1 sm:px-2 border-transparent"
+                ? "glass shadow-lg shadow-black/25 border-gold/10"
+                : "bg-transparent border-transparent shadow-none"
             }`}
           >
             <Link
@@ -134,87 +142,77 @@ export function Header() {
             </div>
           </nav>
         </div>
-      </motion.header>
+      </header>
 
-      <AnimatePresence>
-        {mobileOpen && (
-          <>
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.2 }}
-              className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
-              onClick={() => setMobileOpen(false)}
-            />
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 28, stiffness: 320 }}
-              className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-sm glass border-l border-gold/10 lg:hidden flex flex-col"
-            >
-              <div className="flex items-center justify-between p-5 border-b border-white/5">
-                <Logo size="sm" />
-                <button
-                  type="button"
-                  onClick={() => setMobileOpen(false)}
-                  className="p-2 text-silver hover:text-gold transition-colors"
-                  aria-label={t("close")}
+      {mobileOpen ? (
+        <>
+          <button
+            type="button"
+            className="fixed inset-0 z-40 bg-black/60 backdrop-blur-sm lg:hidden"
+            aria-label={t("close")}
+            onClick={() => setMobileOpen(false)}
+          />
+          <div className="fixed top-0 right-0 bottom-0 z-50 w-full max-w-sm glass border-l border-gold/10 lg:hidden flex flex-col animate-fade-in">
+            <div className="flex items-center justify-between p-5 border-b border-white/5">
+              <Logo size="sm" />
+              <button
+                type="button"
+                onClick={() => setMobileOpen(false)}
+                className="p-2 text-silver hover:text-gold transition-colors"
+                aria-label={t("close")}
+              >
+                <X size={22} />
+              </button>
+            </div>
+
+            <div className="flex-1 overflow-y-auto p-5">
+              <nav className="flex flex-col gap-1">
+                {HEADER_NAV_LINKS.map((link) => (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${
+                      isLinkActive(link.href, pathname)
+                        ? "bg-gold/10 text-gold"
+                        : "text-silver hover:bg-white/5 hover:text-gold"
+                    }`}
+                  >
+                    {t(link.key)}
+                  </Link>
+                ))}
+              </nav>
+
+              <div className="mt-6 pt-6 border-t border-white/5 space-y-3">
+                <a
+                  href={`tel:${SITE_CONFIG.phoneRaw}`}
+                  onClick={() => trackEvent("phone_click", { location: "mobile-menu" })}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3 text-silver hover:bg-white/5 hover:text-gold transition-colors"
                 >
-                  <X size={22} />
-                </button>
+                  <Phone size={18} className="text-gold shrink-0" />
+                  <span className="text-sm">{SITE_CONFIG.phone}</span>
+                </a>
+                <a
+                  href={getMarketingWhatsAppUrl()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => trackEvent("whatsapp_click", { location: "mobile-menu" })}
+                  className="flex items-center gap-3 rounded-xl px-4 py-3 text-silver hover:bg-white/5 hover:text-gold transition-colors"
+                >
+                  <MessageCircle size={18} className="text-gold shrink-0" />
+                  <span className="text-sm">{t("contactWhatsapp")}</span>
+                </a>
               </div>
+            </div>
 
-              <div className="flex-1 overflow-y-auto p-5">
-                <nav className="flex flex-col gap-1">
-                  {HEADER_NAV_LINKS.map((link) => (
-                    <Link
-                      key={link.href}
-                      href={link.href}
-                      onClick={() => setMobileOpen(false)}
-                      className={`rounded-xl px-4 py-3 text-base font-medium transition-colors ${
-                        isLinkActive(link.href, pathname)
-                          ? "bg-gold/10 text-gold"
-                          : "text-silver hover:bg-white/5 hover:text-gold"
-                      }`}
-                    >
-                      {t(link.key)}
-                    </Link>
-                  ))}
-                </nav>
-
-                <div className="mt-6 pt-6 border-t border-white/5 space-y-3">
-                  <a
-                    href={`tel:${SITE_CONFIG.phoneRaw}`}
-                    onClick={() => trackEvent("phone_click", { location: "mobile-menu" })}
-                    className="flex items-center gap-3 rounded-xl px-4 py-3 text-silver hover:bg-white/5 hover:text-gold transition-colors"
-                  >
-                    <Phone size={18} className="text-gold shrink-0" />
-                    <span className="text-sm">{SITE_CONFIG.phone}</span>
-                  </a>
-                  <a
-                    href={getMarketingWhatsAppUrl()}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={() => trackEvent("whatsapp_click", { location: "mobile-menu" })}
-                    className="flex items-center gap-3 rounded-xl px-4 py-3 text-silver hover:bg-white/5 hover:text-gold transition-colors"
-                  >
-                    <MessageCircle size={18} className="text-gold shrink-0" />
-                    <span className="text-sm">{t("contactWhatsapp")}</span>
-                  </a>
-                </div>
-              </div>
-
-              <div className="p-5 border-t border-white/5">
-                <Button href="/basvuru" className="w-full" size="lg">
-                  {t("applyNow")}
-                </Button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+            <div className="p-5 border-t border-white/5">
+              <Button href="/basvuru" className="w-full" size="lg">
+                {t("applyNow")}
+              </Button>
+            </div>
+          </div>
+        </>
+      ) : null}
     </>
   );
 }

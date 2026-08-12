@@ -1,17 +1,32 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Globe, ChevronDown, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/Button";
-import { HeroHighlights } from "@/components/sections/HeroHighlights";
-import { HeroThankYouScroll } from "@/components/sections/HeroThankYouScroll";
 import { HeroTrustBadge } from "@/components/sections/HeroTrustBadge";
 import { trackEvent } from "@/lib/analytics";
 import { getMarketingWhatsAppUrl } from "@/lib/whatsapp";
 import { IMAGE_ALTS } from "@/lib/image-placeholders";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import heroPhoto from "../../../public/images/hero.jpg";
+
+const HeroHighlights = dynamic(
+  () =>
+    import("@/components/sections/HeroHighlights").then(
+      (mod) => mod.HeroHighlights
+    ),
+  { ssr: false }
+);
+
+const HeroThankYouScroll = dynamic(
+  () =>
+    import("@/components/sections/HeroThankYouScroll").then(
+      (mod) => mod.HeroThankYouScroll
+    ),
+  { ssr: false }
+);
 
 const QUICK_LINKS = [
   { href: "/ilanlar", key: "jobListings" as const },
@@ -31,9 +46,9 @@ export function Hero() {
           alt={IMAGE_ALTS.hero}
           fill
           preload
-          quality={50}
+          quality={40}
           placeholder="blur"
-          sizes="(max-width: 768px) 100vw, 1200px"
+          sizes="(max-width: 768px) 100vw, 1024px"
           className="object-cover scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/75 to-background" />
@@ -45,12 +60,13 @@ export function Hero() {
       <div className="relative flex-1 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-6 md:pt-28 md:pb-8 w-full">
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(260px,0.85fr)] gap-6 lg:gap-10 lg:items-center">
           <div className="flex flex-col justify-center max-w-3xl">
-            <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-4 w-fit animate-fade-in">
+            <div className="inline-flex items-center gap-2 glass rounded-full px-4 py-2 mb-4 w-fit">
               <Globe size={16} className="text-gold" />
               <span className="text-silver text-sm">{t("heroBadge")}</span>
             </div>
 
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] mb-4 animate-fade-in">
+            {/* No fade-in: opacity:0 + fill-mode both delays FCP/LCP for the headline */}
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] mb-4">
               {t("heroTitle1")}
               <span className="block text-gold-gradient whitespace-nowrap">
                 {t("heroTitle2")}
@@ -58,13 +74,13 @@ export function Hero() {
               </span>
             </h1>
 
-            <p className="text-silver text-base sm:text-lg leading-relaxed mb-5 animate-fade-in">
+            <p className="text-silver text-base sm:text-lg leading-relaxed mb-5">
               {t("heroDesc")}
             </p>
 
             <HeroTrustBadge />
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5 animate-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-5">
               <a
                 href={whatsappUrl}
                 target="_blank"
@@ -97,7 +113,7 @@ export function Hero() {
               </Button>
             </div>
 
-            <div className="flex flex-wrap gap-2 animate-fade-in">
+            <div className="flex flex-wrap gap-2">
               <span className="text-silver/50 text-xs mr-1 self-center">
                 {t("heroExplore")}:
               </span>
@@ -113,7 +129,7 @@ export function Hero() {
             </div>
           </div>
 
-          <div className="animate-fade-in order-last lg:order-none mt-2 lg:mt-0">
+          <div className="order-last lg:order-none mt-2 lg:mt-0">
             <HeroThankYouScroll />
           </div>
         </div>

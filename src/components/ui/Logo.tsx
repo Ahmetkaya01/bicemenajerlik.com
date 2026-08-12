@@ -44,7 +44,7 @@ export function Logo({
         />
       )}
       <span
-        className={`font-logo-sub font-medium italic text-silver/80 uppercase ${styles.sub}`}
+        className={`font-logo-sub font-medium italic text-silver uppercase ${styles.sub}`}
       >
         Menajerlik
       </span>

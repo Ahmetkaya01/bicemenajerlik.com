@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import Link from "next/link";
 import { type ReactNode } from "react";
 
@@ -44,56 +43,41 @@ export function Button({
   disabled,
   className = "",
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center gap-2 rounded-full transition-all duration-300 ${variants[variant]} ${sizes[size]} ${disabled ? "opacity-50 cursor-not-allowed" : ""} ${className}`;
+  const classes = `inline-flex items-center justify-center gap-2 rounded-full transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] ${variants[variant]} ${sizes[size]} ${disabled ? "opacity-50 cursor-not-allowed hover:scale-100 active:scale-100" : ""} ${className}`;
 
   if (href) {
     const isExternal = href.startsWith("http");
     const handleClick = () => onClick?.();
-    const wrapperClassName = [
-      className.includes("w-full") ? "w-full" : "",
-      className.includes("sm:w-auto") ? "sm:w-auto" : "",
-      className.includes("sm:col-span-2") ? "sm:col-span-2" : "",
-      className.includes("sm:justify-self-start")
-        ? "sm:justify-self-start"
-        : "",
-    ]
-      .filter(Boolean)
-      .join(" ") || undefined;
+
+    if (isExternal) {
+      return (
+        <a
+          href={href}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={handleClick}
+          className={classes}
+        >
+          {children}
+        </a>
+      );
+    }
+
     return (
-      <motion.div
-        className={wrapperClassName}
-        whileHover={{ scale: 1.03 }}
-        whileTap={{ scale: 0.98 }}
-      >
-        {isExternal ? (
-          <a
-            href={href}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={handleClick}
-            className={classes}
-          >
-            {children}
-          </a>
-        ) : (
-          <Link href={href} onClick={handleClick} className={classes}>
-            {children}
-          </Link>
-        )}
-      </motion.div>
+      <Link href={href} onClick={handleClick} className={classes}>
+        {children}
+      </Link>
     );
   }
 
   return (
-    <motion.button
+    <button
       type={type}
       onClick={onClick}
       disabled={disabled}
-      whileHover={disabled ? {} : { scale: 1.03 }}
-      whileTap={disabled ? {} : { scale: 0.98 }}
       className={classes}
     >
       {children}
-    </motion.button>
+    </button>
   );
 }

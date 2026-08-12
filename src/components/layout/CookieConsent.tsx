@@ -5,6 +5,8 @@ import { updateConsent } from "@/lib/analytics";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 const STORAGE_KEY = "bice-cookie-consent";
+/** Keep banner off first paint so hero image/headline can win LCP. */
+const SHOW_DELAY_MS = 2500;
 
 export function CookieConsent() {
   const { t } = useLanguage();
@@ -12,17 +14,67 @@ export function CookieConsent() {
 
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
-    if (!stored) {
-      setVisible(true);
-      updateConsent(false);
-    } else {
+    if (stored) {
       updateConsent(stored === "granted");
+      return;
     }
+
+    updateConsent(false);
+
+    let shown = false;
+    let idleId: number | undefined;
+    let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+    const show = () => {
+      if (shown) return;
+      shown = true;
+      setVisible(true);
+      if (idleId !== undefined && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId !== undefined) clearTimeout(timeoutId);
+      window.removeEventListener("load", arm);
+      window.removeEventListener("scroll", show);
+      window.removeEventListener("pointerdown", show);
+      window.removeEventListener("keydown", show);
+    };
+
+    const arm = () => {
+      if (shown) return;
+      if ("requestIdleCallback" in window) {
+        idleId = window.requestIdleCallback(show, { timeout: SHOW_DELAY_MS });
+      } else {
+        timeoutId = setTimeout(show, SHOW_DELAY_MS);
+      }
+    };
+
+    // After load + idle so hero can win LCP; interaction freezes LCP earlier.
+    if (document.readyState === "complete") {
+      arm();
+    } else {
+      window.addEventListener("load", arm, { once: true });
+    }
+    window.addEventListener("scroll", show, { once: true, passive: true });
+    window.addEventListener("pointerdown", show, { once: true });
+    window.addEventListener("keydown", show, { once: true });
+
+    return () => {
+      shown = true;
+      if (idleId !== undefined && "cancelIdleCallback" in window) {
+        window.cancelIdleCallback(idleId);
+      }
+      if (timeoutId !== undefined) clearTimeout(timeoutId);
+      window.removeEventListener("load", arm);
+      window.removeEventListener("scroll", show);
+      window.removeEventListener("pointerdown", show);
+      window.removeEventListener("keydown", show);
+    };
   }, []);
 
   const handleChoice = (granted: boolean) => {
     localStorage.setItem(STORAGE_KEY, granted ? "granted" : "denied");
     updateConsent(granted);
+    window.dispatchEvent(new Event("bice-cookie-consent"));
     setVisible(false);
   };
 

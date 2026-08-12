@@ -19,7 +19,7 @@ export function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-white/5 bg-night/50">
+    <footer className="border-t border-white/10 bg-night">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12">
           <div>
@@ -28,7 +28,7 @@ export function Footer() {
             </div>
             <p className="text-silver text-sm leading-relaxed mb-5">{t("footerDesc")}</p>
             <div>
-              <p className="text-xs font-heading font-semibold tracking-wide text-silver/70 mb-3">
+              <p className="text-xs font-heading font-semibold tracking-wide text-silver mb-3">
                 {t("footerSocial")}
               </p>
               <SocialLinks />
@@ -36,9 +36,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading font-semibold text-foreground mb-4 tracking-wide">
+            <h2 className="font-heading font-semibold text-foreground mb-4 tracking-wide">
               {t("quickLinks")}
-            </h4>
+            </h2>
             <ul className="space-y-2">
               {NAV_LINKS.map((link) => (
                 <li key={link.href}>
@@ -54,9 +54,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading font-semibold text-foreground mb-4 tracking-wide">
+            <h2 className="font-heading font-semibold text-foreground mb-4 tracking-wide">
               {t("legalHeading")}
-            </h4>
+            </h2>
             <ul className="space-y-2">
               {LEGAL_LINKS.map((link) => (
                 <li key={link.href}>
@@ -72,9 +72,9 @@ export function Footer() {
           </div>
 
           <div>
-            <h4 className="font-heading font-semibold text-foreground mb-4 tracking-wide">
+            <h2 className="font-heading font-semibold text-foreground mb-4 tracking-wide">
               {t("footerContact")}
-            </h4>
+            </h2>
             <ul className="space-y-3">
               <li className="flex items-center gap-3 text-silver text-sm">
                 <Phone size={16} className="text-gold shrink-0" />
@@ -103,7 +103,7 @@ export function Footer() {
               </div>
               <div>
                 <p className="text-foreground text-sm font-semibold">{t("footerCorporate")}</p>
-                <p className="text-silver/60 text-xs mt-0.5">
+                <p className="text-silver/80 text-xs mt-0.5">
                   {t("footerTaxId")}: {COMPANY_LEGAL.taxId} · {COMPANY_LEGAL.taxOffice}
                 </p>
               </div>
@@ -114,10 +114,10 @@ export function Footer() {
           </Link>
 
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
-            <p className="text-silver/60 text-sm text-center sm:text-left">
+            <p className="text-silver/80 text-sm text-center sm:text-left">
               © {currentYear} {SITE_CONFIG.name}. {t("allRights")}
             </p>
-            <p className="text-silver/40 text-xs">{t("footerTagline")}</p>
+            <p className="text-silver/80 text-xs">{t("footerTagline")}</p>
           </div>
         </div>
       </div>

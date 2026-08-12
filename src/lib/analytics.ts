@@ -40,32 +40,52 @@ function getConversionLabel(event: AnalyticsEvent): string | undefined {
   return undefined;
 }
 
+/** Yield the click/main thread so WhatsApp/phone/nav stay snappy (INP). */
+function deferAnalytics(task: () => void) {
+  if (typeof window === "undefined") return;
+
+  const run = () => {
+    try {
+      task();
+    } catch {
+      // Analytics must never break UX.
+    }
+  };
+
+  if (typeof window.requestIdleCallback === "function") {
+    window.requestIdleCallback(run, { timeout: 1000 });
+    return;
+  }
+
+  setTimeout(run, 0);
+}
+
 export function trackEvent(
   event: AnalyticsEvent,
   params?: Record<string, string | number | boolean>
 ) {
-  if (typeof window === "undefined") return;
-
-  window.gtag?.("event", event, {
-    event_category: "conversion",
-    ...params,
-  });
-
-  const conversionLabel = getConversionLabel(event);
-  if (conversionLabel) {
-    window.gtag?.("event", "conversion", {
-      send_to: `${GADS_ID}/${conversionLabel}`,
+  deferAnalytics(() => {
+    window.gtag?.("event", event, {
+      event_category: "conversion",
+      ...params,
     });
-  }
+
+    const conversionLabel = getConversionLabel(event);
+    if (conversionLabel) {
+      window.gtag?.("event", "conversion", {
+        send_to: `${GADS_ID}/${conversionLabel}`,
+      });
+    }
+  });
 }
 
 export function updateConsent(granted: boolean) {
-  if (typeof window === "undefined") return;
-
-  window.gtag?.("consent", "update", {
-    analytics_storage: granted ? "granted" : "denied",
-    ad_storage: granted ? "granted" : "denied",
-    ad_user_data: granted ? "granted" : "denied",
-    ad_personalization: granted ? "granted" : "denied",
+  deferAnalytics(() => {
+    window.gtag?.("consent", "update", {
+      analytics_storage: granted ? "granted" : "denied",
+      ad_storage: granted ? "granted" : "denied",
+      ad_user_data: granted ? "granted" : "denied",
+      ad_personalization: granted ? "granted" : "denied",
+    });
   });
 }

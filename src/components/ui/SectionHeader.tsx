@@ -1,10 +1,8 @@
-"use client";
-
-import { motion } from "framer-motion";
+import type { ReactNode } from "react";
 
 interface SectionHeaderProps {
   badge: string;
-  title: React.ReactNode;
+  title: ReactNode;
   description?: string;
   align?: "center" | "left";
 }
@@ -18,23 +16,22 @@ export function SectionHeader({
   const alignClass = align === "center" ? "text-center mx-auto" : "text-left";
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      className={`mb-14 max-w-3xl ${alignClass}`}
-    >
+    <div className={`mb-14 max-w-3xl ${alignClass}`}>
       <span className="inline-block text-gold text-sm font-heading font-semibold tracking-widest uppercase">
         {badge}
       </span>
       <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold mt-4 mb-5 leading-tight">
         {title}
       </h2>
-      {description && (
-        <p className={`text-silver text-lg leading-relaxed ${align === "center" ? "max-w-2xl mx-auto" : ""}`}>
+      {description ? (
+        <p
+          className={`text-silver text-lg leading-relaxed ${
+            align === "center" ? "max-w-2xl mx-auto" : ""
+          }`}
+        >
           {description}
         </p>
-      )}
-    </motion.div>
+      ) : null}
+    </div>
   );
 }

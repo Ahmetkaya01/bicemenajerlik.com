@@ -27,8 +27,9 @@ export function KonsBanner() {
               alt={IMAGE_ALTS.konsBanner}
               fill
               loading="lazy"
+              quality={50}
               placeholder="blur"
-              sizes="(max-width: 1024px) 100vw, 50vw"
+              sizes="(max-width: 640px) calc(100vw - 2rem), (max-width: 1024px) calc(100vw - 3rem), 560px"
               className="object-cover object-[center_40%] scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-tr from-background/80 via-background/25 to-gold/10" />

@@ -8,14 +8,24 @@ const nextConfig: NextConfig = {
     formats: ["image/webp", "image/avif"],
     deviceSizes: [390, 640, 768, 1024, 1280, 1536],
     imageSizes: [16, 32, 48, 64, 96, 128, 256],
-    qualities: [50, 60, 75],
+    qualities: [40, 50, 60, 75],
     minimumCacheTTL: 2678400,
   },
   experimental: {
-    optimizePackageImports: ["framer-motion"],
+    // Inline Tailwind/app CSS into <style> to remove the render-blocking
+    // stylesheet request waterfall (prod only). See Next docs: inlineCss.
+    inlineCss: true,
+    optimizePackageImports: ["framer-motion", "lucide-react"],
   },
   async redirects() {
     return [
+      // Prefer platform redirect over Edge Middleware (avoids middleware TTFB on every path).
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.bicemenajerlik.com" }],
+        destination: "https://bicemenajerlik.com/:path*",
+        permanent: true,
+      },
       {
         source: "/instagram",
         destination: SITE_CONFIG.instagram,

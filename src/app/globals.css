@@ -39,13 +39,16 @@ html {
     scroll-behavior: auto;
   }
 
-  *,
-  *::before,
-  *::after {
+  /* Avoid universal * selector (expensive style recalc); target animated surfaces. */
+  .animate-fade-in,
+  .shimmer-border::before,
+  .hero-thankyou-track,
+  .card-glow::before,
+  a,
+  button {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
 
@@ -72,10 +75,7 @@ body {
 }
 
 .text-gold-gradient {
-  background: linear-gradient(135deg, #fbbf24, #fcd34d, #f59e0b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #fbbf24;
 }
 
 .font-logo {
@@ -125,22 +125,31 @@ body {
 
 @keyframes shimmer {
   0% {
-    background-position: -200% center;
+    transform: translate3d(-100%, 0, 0);
   }
   100% {
-    background-position: 200% center;
+    transform: translate3d(100%, 0, 0);
   }
 }
 
 .shimmer-border {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.shimmer-border::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  width: 55%;
   background: linear-gradient(
     90deg,
     transparent,
     rgba(251, 191, 36, 0.4),
     transparent
   );
-  background-size: 200% 100%;
-  animation: shimmer 3s infinite;
+  animation: shimmer 3s linear infinite;
+  will-change: transform;
 }
 
 .section-alt {
@@ -174,17 +183,16 @@ body {
 
 @keyframes fade-in {
   from {
-    opacity: 0;
-    transform: translateY(12px);
+    transform: translateY(10px);
   }
   to {
-    opacity: 1;
     transform: translateY(0);
   }
 }
 
+/* Motion only — no opacity:0 (that delayed FCP/LCP with fill-mode both). */
 .animate-fade-in {
-  animation: fade-in 0.55s ease-out both;
+  animation: fade-in 0.45s ease-out both;
 }
 
 /* Hero thank-you marquee: readable downward scroll */
@@ -229,6 +237,10 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .shimmer-border::before {
+    animation: none;
+  }
+
   .hero-thankyou-track {
     animation: none;
     transform: none;

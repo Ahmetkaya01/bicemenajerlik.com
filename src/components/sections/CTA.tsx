@@ -5,9 +5,11 @@ import { ArrowRight, Phone, MessageCircle } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { SITE_CONFIG } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
+import { getMarketingWhatsAppUrl } from "@/lib/whatsapp";
 
 export function CTA() {
   const { t } = useLanguage();
+  const whatsappUrl = getMarketingWhatsAppUrl();
 
   return (
     <section className="py-20 sm:py-24 pb-28">
@@ -37,11 +39,7 @@ export function CTA() {
                   {t("applicationForm")}
                   <ArrowRight size={20} />
                 </Button>
-                <Button
-                  href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
-                  variant="outline"
-                  size="lg"
-                >
+                <Button href={whatsappUrl} variant="outline" size="lg">
                   {t("whatsapp")}
                 </Button>
               </div>
@@ -63,7 +61,7 @@ export function CTA() {
                 </div>
               </a>
               <a
-                href={`https://wa.me/${SITE_CONFIG.whatsapp}`}
+                href={whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-4 glass rounded-2xl p-5 hover:border-gold/30 transition-colors group"
