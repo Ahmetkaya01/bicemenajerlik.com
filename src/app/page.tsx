@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import nextDynamic from "next/dynamic";
 import { Hero } from "@/components/sections/Hero";
-import { JobListingsSection } from "@/components/sections/JobListingsSection";
 import { homeMetadata } from "@/lib/metadata";
 
+const JobListingsSection = nextDynamic(() =>
+  import("@/components/sections/JobListingsSection").then(
+    (mod) => mod.JobListingsSection
+  )
+);
 const ProcessSteps = nextDynamic(() =>
   import("@/components/sections/ProcessSteps").then((mod) => mod.ProcessSteps)
 );

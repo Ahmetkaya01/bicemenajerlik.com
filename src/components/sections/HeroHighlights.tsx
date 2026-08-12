@@ -35,7 +35,7 @@ export function HeroHighlights() {
   };
 
   return (
-    <div className="w-full mt-12 lg:mt-16 animate-fade-in">
+    <div className="w-full mt-12 lg:mt-16">
       <div className="flex items-center justify-between gap-4 mb-4 px-1">
         <p className="text-gold text-xs sm:text-sm font-heading font-semibold tracking-widest uppercase">
           {t("heroCardTitle")}

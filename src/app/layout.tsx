@@ -16,26 +16,27 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   preload: false,
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
 });
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
   subsets: ["latin"],
-  display: "swap",
-  // Do not preload — hero paints with fallback first; improves FCP on mobile.
+  // optional avoids late font swaps that inflate CLS; do not preload
+  // (competes with hero LCP image on mobile).
+  display: "optional",
   preload: false,
-  weight: ["600", "700"],
+  weight: ["700"],
 });
 
 const montserrat = Montserrat({
   variable: "--font-montserrat",
   subsets: ["latin"],
-  display: "swap",
+  display: "optional",
   preload: false,
-  weight: ["500", "600", "700"],
+  weight: ["600"],
 });
 
 export const metadata: Metadata = rootMetadata;

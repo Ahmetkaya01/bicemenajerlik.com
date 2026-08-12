@@ -56,6 +56,7 @@ export function StickyCtaBar() {
         </a>
         <Link
           href="/basvuru"
+          prefetch={false}
           tabIndex={visible ? 0 : -1}
           onClick={() => trackEvent("apply_click", { location: "sticky-bar" })}
           className="flex flex-col items-center gap-1 py-3 text-gold hover:bg-white/5 transition-colors"

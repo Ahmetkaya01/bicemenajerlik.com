@@ -1,32 +1,17 @@
 "use client";
 
-import dynamic from "next/dynamic";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Globe, ChevronDown, Briefcase } from "lucide-react";
 import { Button } from "@/components/ui/Button";
 import { HeroTrustBadge } from "@/components/sections/HeroTrustBadge";
+import { HeroHighlights } from "@/components/sections/HeroHighlights";
+import { HeroThankYouScroll } from "@/components/sections/HeroThankYouScroll";
 import { trackEvent } from "@/lib/analytics";
 import { getMarketingWhatsAppUrl } from "@/lib/whatsapp";
 import { IMAGE_ALTS } from "@/lib/image-placeholders";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import heroPhoto from "../../../public/images/hero.jpg";
-
-const HeroHighlights = dynamic(
-  () =>
-    import("@/components/sections/HeroHighlights").then(
-      (mod) => mod.HeroHighlights
-    ),
-  { ssr: false }
-);
-
-const HeroThankYouScroll = dynamic(
-  () =>
-    import("@/components/sections/HeroThankYouScroll").then(
-      (mod) => mod.HeroThankYouScroll
-    ),
-  { ssr: false }
-);
 
 const QUICK_LINKS = [
   { href: "/ilanlar", key: "jobListings" as const },
@@ -45,17 +30,14 @@ export function Hero() {
           src={heroPhoto}
           alt={IMAGE_ALTS.hero}
           fill
-          preload
+          priority
+          fetchPriority="high"
           quality={40}
-          placeholder="blur"
           sizes="(max-width: 768px) 100vw, 1024px"
           className="object-cover scale-105"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/75 to-background" />
       </div>
-
-      <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-gold/6 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-1/3 right-0 w-96 h-96 bg-accent-purple/5 rounded-full blur-3xl pointer-events-none" />
 
       <div className="relative flex-1 flex flex-col max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-6 md:pt-28 md:pb-8 w-full">
         <div className="flex-1 grid grid-cols-1 lg:grid-cols-[minmax(0,1.15fr)_minmax(260px,0.85fr)] gap-6 lg:gap-10 lg:items-center">

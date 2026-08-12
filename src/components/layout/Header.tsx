@@ -68,7 +68,7 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 py-3 animate-fade-in">
+      <header className="fixed top-0 left-0 right-0 z-50 py-3">
         <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
           <nav
             className={`flex items-center justify-between gap-3 rounded-2xl border py-2.5 px-4 sm:px-5 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${

@@ -15,6 +15,8 @@ interface ButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   className?: string;
+  /** Opt out of Next Link prefetch (e.g. heavy /basvuru form + zod). */
+  prefetch?: boolean;
 }
 
 const variants: Record<ButtonVariant, string> = {
@@ -33,6 +35,13 @@ const sizes: Record<ButtonSize, string> = {
   lg: "px-8 py-4 text-lg",
 };
 
+function shouldPrefetch(href: string, prefetch?: boolean) {
+  if (prefetch !== undefined) return prefetch;
+  // Application form pulls zod + react-hook-form; keep off the home critical path.
+  if (href === "/basvuru" || href.startsWith("/basvuru?")) return false;
+  return undefined;
+}
+
 export function Button({
   children,
   variant = "primary",
@@ -42,6 +51,7 @@ export function Button({
   onClick,
   disabled,
   className = "",
+  prefetch,
 }: ButtonProps) {
   const classes = `inline-flex items-center justify-center gap-2 rounded-full transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] ${variants[variant]} ${sizes[size]} ${disabled ? "opacity-50 cursor-not-allowed hover:scale-100 active:scale-100" : ""} ${className}`;
 
@@ -64,7 +74,12 @@ export function Button({
     }
 
     return (
-      <Link href={href} onClick={handleClick} className={classes}>
+      <Link
+        href={href}
+        onClick={handleClick}
+        className={classes}
+        prefetch={shouldPrefetch(href, prefetch)}
+      >
         {children}
       </Link>
     );
