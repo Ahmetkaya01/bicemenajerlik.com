@@ -5,7 +5,5 @@ export const IMAGE_ALTS = {
     "Bice Menajerlik gazino ve gece kulübü personeli iş ilanları - Türkiye geneli menajerlik",
   about:
     "Bice Menajerlik ekibi - Türkiye geneli güvenilir personel yerleştirme hizmeti",
-  aboutFamily:
-    "Bice Menajerlik ailesi ve iş ortaklarına duyuru - güven, dürüstlük ve profesyonellik mesajı",
   taxCertificate: "Bice Menajerlik vergi levhası - Gelir İdaresi Başkanlığı onaylı",
 } as const;

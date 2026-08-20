@@ -6,7 +6,22 @@ import { Button } from "@/components/ui/Button";
 import { IMAGE_ALTS } from "@/lib/image-placeholders";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import aboutPhoto from "../../../public/images/about.jpg";
-import familyAnnouncement from "../../../public/images/bice-duyuru-aile-ortaklar.png";
+
+function HighlightBrand({ text }: { text: string }) {
+  const brand = "Bice Menajerlik";
+  const index = text.indexOf(brand);
+  if (index < 0) {
+    return text;
+  }
+
+  return (
+    <>
+      {text.slice(0, index)}
+      <span className="text-gold-gradient">{brand}</span>
+      {text.slice(index + brand.length)}
+    </>
+  );
+}
 
 export function AboutContent() {
   const { t } = useLanguage();
@@ -76,21 +91,9 @@ export function AboutContent() {
               id="about-family-heading"
               className="font-display text-2xl sm:text-3xl font-bold mt-4 leading-snug max-w-3xl mx-auto"
             >
-              {t("aboutFamilyTitle")}
+              <HighlightBrand text={t("aboutFamilyTitle")} />
             </h2>
           </div>
-
-          <figure className="relative mx-auto mb-12 max-w-xl overflow-hidden rounded-2xl border border-gold/20 shadow-[0_0_48px_-12px_rgba(251,191,36,0.25)]">
-            <Image
-              src={familyAnnouncement}
-              alt={IMAGE_ALTS.aboutFamily}
-              width={1080}
-              height={2200}
-              loading="lazy"
-              sizes="(max-width: 640px) 100vw, 36rem"
-              className="h-auto w-full"
-            />
-          </figure>
 
           <div className="glass rounded-3xl px-6 py-10 sm:px-10 sm:py-14 lg:px-16">
             <div className="max-w-3xl mx-auto text-center space-y-5 text-silver leading-relaxed text-base sm:text-lg">
