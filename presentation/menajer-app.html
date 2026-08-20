@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Menajer App — Neon Sahne Konsepti</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0a0a0f; --night:#0f172a; --night2:#111827;
+    --gold:#fbbf24; --gold2:#fcd34d; --gold3:#f59e0b;
+    --silver:#cbd5e1; --silver-dim:#94a3b8;
+    --purple:#a78bfa; --pink:#f472b6;
+    --glass:rgba(15,23,42,.55); --line:rgba(255,255,255,.08);
+    --gold-line:rgba(251,191,36,.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:#05050a; color:var(--silver);
+    font-family:"Montserrat",system-ui,sans-serif;
+    overflow:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none!important; transition:none!important}
+  }
+
+  /* ---------- viewport + stage scaling ---------- */
+  .viewport{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .stage{
+    width:1280px;height:720px;position:relative;flex:none;
+    transform-origin:center center;border-radius:18px;overflow:hidden;
+    background:
+      radial-gradient(ellipse 70% 50% at 50% -10%, rgba(251,191,36,.16), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 85% 55%, rgba(167,139,250,.12), transparent 60%),
+      radial-gradient(ellipse 45% 40% at 12% 80%, rgba(244,114,182,.08), transparent 60%),
+      linear-gradient(180deg,#0a0a0f 0%, #0f172a 55%, #08080d 100%);
+    box-shadow:0 40px 120px rgba(0,0,0,.7), 0 0 0 1px rgba(255,255,255,.05) inset;
+  }
+  /* faint stage grid */
+  .stage::before{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    background-size:48px 48px;
+    -webkit-mask-image:radial-gradient(ellipse 80% 80% at 50% 40%,#000,transparent 85%);
+            mask-image:radial-gradient(ellipse 80% 80% at 50% 40%,#000,transparent 85%);
+  }
+
+  /* ---------- slides ---------- */
+  .slide{
+    position:absolute;inset:0;padding:54px 72px 64px;
+    display:flex;flex-direction:column;
+    opacity:0;visibility:hidden;transform:translateY(14px) scale(.995);
+    transition:opacity .5s ease, transform .5s ease, visibility .5s;
+  }
+  .slide.active{opacity:1;visibility:visible;transform:none;z-index:2}
+
+  /* slide header */
+  .kicker{
+    display:inline-flex;align-items:center;gap:9px;align-self:flex-start;
+    font-size:13px;font-weight:700;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--gold);
+  }
+  .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 12px var(--gold)}
+  h1.title{font-family:"Playfair Display",serif;font-weight:800;color:#f8fafc;line-height:1.05}
+  h2.title{font-family:"Playfair Display",serif;font-weight:800;color:#f8fafc;line-height:1.08}
+  .grad{background:linear-gradient(135deg,var(--gold2),var(--gold),var(--gold3));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .lead{color:var(--silver);line-height:1.55;font-weight:400}
+
+  .glass{background:var(--glass);backdrop-filter:blur(10px);border:1px solid var(--gold-line);border-radius:18px}
+  .soft{background:rgba(255,255,255,.025);border:1px solid var(--line);border-radius:16px}
+
+  /* ---------- cover (slide 1) ---------- */
+  .cover{justify-content:center;align-items:flex-start;text-align:left}
+  .cover .badge{
+    display:inline-flex;align-items:center;gap:10px;padding:9px 16px;border-radius:999px;
+    border:1px solid var(--gold-line);background:rgba(251,191,36,.07);color:var(--gold);
+    font-size:13px;font-weight:600;letter-spacing:.04em;
+  }
+  .cover h1{font-size:86px;margin:22px 0 0}
+  .cover .tagline{font-family:"Playfair Display",serif;font-style:italic;font-weight:600;color:#e2e8f0;font-size:30px;margin-top:8px}
+  .cover .lead{font-size:18px;max-width:760px;margin-top:18px}
+
+  /* pipeline */
+  .pipeline{position:relative;display:flex;justify-content:space-between;gap:10px;margin-top:46px;width:100%;max-width:1040px}
+  .pipeline::before{content:"";position:absolute;top:31px;left:5%;right:5%;height:2px;
+    background:linear-gradient(90deg,transparent,var(--gold-line),var(--gold),var(--gold-line),transparent)}
+  .pstep{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center;width:18%}
+  .pnode{
+    width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:"Playfair Display",serif;font-weight:800;font-size:24px;color:var(--gold);
+    background:radial-gradient(circle at 50% 35%, #16203a, #0b1120);
+    border:1.5px solid var(--gold-line);box-shadow:0 0 24px rgba(251,191,36,.18), 0 10px 24px rgba(0,0,0,.5)
+  }
+  .pstep .lbl{margin-top:14px;font-size:13.5px;font-weight:600;color:#e2e8f0;line-height:1.3}
+
+  /* ---------- map (slide 2) ---------- */
+  .cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:26px}
+  .rolecard{padding:22px 22px 20px}
+  .rolecard .ic{width:46px;height:46px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+    background:rgba(251,191,36,.12);color:var(--gold);margin-bottom:14px}
+  .rolecard .role{font-size:11px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:rgba(251,191,36,.75)}
+  .rolecard h3{font-size:20px;color:#f8fafc;margin:3px 0 12px;font-weight:700}
+  .rolecard ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .rolecard li{display:flex;gap:9px;font-size:13.5px;color:var(--silver);line-height:1.35}
+  .rolecard li .tick{color:var(--gold);flex:none;margin-top:1px}
+  .rule{margin-top:20px;padding:20px 26px;border-radius:18px;
+    border:1px solid var(--gold-line);
+    background:linear-gradient(120deg,rgba(251,191,36,.08),rgba(167,139,250,.05) 70%,transparent)}
+  .rule .rk{font-size:12px;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+  .rule p{margin-top:8px;color:var(--silver);font-size:14.5px;line-height:1.5;max-width:1000px}
+  .flow{display:flex;align-items:center;flex-wrap:wrap;gap:12px;margin-top:16px}
+  .pill{padding:9px 16px;border-radius:999px;border:1px solid var(--gold-line);background:rgba(15,23,42,.6);
+    font-size:13.5px;font-weight:600;color:#e2e8f0}
+  .arrow{color:rgba(251,191,36,.7);font-size:16px}
+
+  /* ---------- screen slides (3-8) ---------- */
+  .screen-grid{display:grid;grid-template-columns:268px 1fr;gap:46px;margin-top:18px;flex:1;align-items:center}
+  .scr-head{display:flex;flex-direction:column;gap:7px}
+  .scr-head h2{font-size:36px}
+  .scr-head .lead{font-size:15px;max-width:640px}
+
+  /* phone */
+  .phone{
+    width:264px;height:534px;border-radius:40px;flex:none;position:relative;margin:0 auto;
+    background:linear-gradient(180deg,#1e293b,#0a0a0f);padding:11px;
+    box-shadow:0 30px 70px rgba(0,0,0,.6), 0 0 40px rgba(251,191,36,.07);border:1px solid rgba(255,255,255,.1)
+  }
+  .phone .notch{position:absolute;top:11px;left:50%;transform:translateX(-50%);width:96px;height:20px;background:#000;border-radius:0 0 16px 16px;z-index:3}
+  .scr{width:100%;height:100%;border-radius:30px;background:#0b0b12;overflow:hidden;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.05)}
+  .statusbar{display:flex;justify-content:space-between;align-items:center;padding:9px 18px 4px;font-size:10px;color:var(--silver-dim);font-weight:600}
+  .statusbar .dots{display:flex;gap:4px;align-items:center}
+  .statusbar .dots i{width:5px;height:5px;border-radius:50%;background:rgba(203,213,225,.5);display:block}
+  .statusbar .dots .bat{width:14px;height:7px;border-radius:2px;background:rgba(251,191,36,.7)}
+  .apphead{display:flex;align-items:center;justify-content:space-between;padding:6px 18px 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+  .apphead .l{display:flex;align-items:center;gap:8px}
+  .logoM{width:26px;height:26px;border-radius:8px;display:flex;align-items:center;justify-content:center;
+    font-family:"Playfair Display",serif;font-weight:800;color:#1a1206;font-size:14px;
+    background:linear-gradient(135deg,var(--gold2),var(--gold3))}
+  .apphead .name{font-size:12.5px;font-weight:700;color:#f1f5f9}
+  .badge-pro{font-size:8.5px;font-weight:700;letter-spacing:.12em;color:var(--gold);border:1px solid var(--gold-line);background:rgba(251,191,36,.1);border-radius:999px;padding:3px 8px}
+  .scr-body{flex:1;padding:13px 16px;display:flex;flex-direction:column;gap:9px;overflow:hidden}
+  .scr-h{font-family:"Playfair Display",serif;font-weight:700;font-size:17px;color:#f8fafc;line-height:1.15}
+  .scr-sub{font-size:10.5px;color:var(--silver-dim);line-height:1.4}
+  .seg{display:flex;gap:5px;flex-wrap:wrap}
+  .seg span{font-size:8.5px;font-weight:600;padding:4px 9px;border-radius:999px;border:1px solid var(--line);color:var(--silver-dim)}
+  .seg span.on{background:linear-gradient(135deg,var(--gold2),var(--gold3));color:#1a1206;border-color:transparent}
+  .prog{padding:11px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+  .prog .pt{display:flex;justify-content:space-between;font-size:10px;color:var(--silver-dim);margin-bottom:7px}
+  .prog .pt b{color:var(--gold)}
+  .bar{height:6px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden}
+  .bar i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--gold2),var(--gold3))}
+  .field{padding:9px 12px;border-radius:11px;background:rgba(255,255,255,.025);border:1px solid var(--line)}
+  .field .k{font-size:8px;letter-spacing:.08em;text-transform:uppercase;color:rgba(148,163,184,.8)}
+  .field .v{font-size:11.5px;color:#f1f5f9;margin-top:2px}
+  .chips{display:flex;flex-wrap:wrap;gap:6px}
+  .chips span{font-size:8.5px;color:var(--silver-dim);border:1px solid var(--line);background:rgba(255,255,255,.03);border-radius:999px;padding:4px 9px}
+  .pcard{padding:11px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+  .pcard .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px}
+  .pcard .tag{font-size:11px;font-weight:700;color:#f1f5f9}
+  .pcard .st{font-size:8.5px;font-weight:600;color:var(--gold)}
+  .pcard ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+  .pcard li{font-size:9.5px;color:var(--silver-dim);line-height:1.3}
+  .matchchip{display:flex;align-items:center;gap:7px;padding:9px 12px;border-radius:12px;border:1px solid var(--gold-line);background:rgba(251,191,36,.07);font-size:11px;font-weight:700;color:var(--gold)}
+  .scorebox{display:flex;align-items:center;gap:11px;padding:11px;border-radius:13px;border:1px solid var(--gold-line);background:linear-gradient(135deg,rgba(251,191,36,.12),transparent)}
+  .scorebox .ring{width:54px;height:54px;border-radius:50%;flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;border:2px solid rgba(251,191,36,.5)}
+  .scorebox .ring b{font-family:"Playfair Display",serif;font-size:18px;color:var(--gold);line-height:1}
+  .scorebox .ring s{font-size:8px;color:var(--silver-dim);text-decoration:none}
+  .scorebox p{font-size:9.5px;color:var(--silver-dim);line-height:1.35}
+  .rowline{display:flex;align-items:center;gap:8px;padding:8px 12px;border-radius:10px;background:rgba(255,255,255,.02);border:1px solid var(--line);font-size:10.5px;color:#dbe3ee}
+  .rowline .tick{color:var(--gold);flex:none}
+  .btn-primary{margin-top:auto;text-align:center;padding:11px;border-radius:999px;font-size:11.5px;font-weight:700;color:#1a1206;background:linear-gradient(135deg,var(--gold2),var(--gold3))}
+  .btn-ghost{text-align:center;padding:11px;border-radius:999px;font-size:11.5px;font-weight:600;color:var(--silver);border:1px solid rgba(255,255,255,.16)}
+  .tabbar{display:flex;justify-content:space-around;padding:9px 18px;border-top:1px solid rgba(255,255,255,.06)}
+  .tabbar span{font-size:9px;font-weight:600;color:rgba(148,163,184,.45)}
+  .tabbar span.on{color:var(--gold)}
+  .summary{padding:11px;border-radius:12px;background:rgba(255,255,255,.03);border:1px solid var(--line)}
+  .summary .sh{font-size:10px;font-weight:700;color:var(--gold);margin-bottom:6px}
+  .summary ul{list-style:none;display:flex;flex-direction:column;gap:4px}
+  .summary li{font-size:9.5px;color:var(--silver-dim);line-height:1.3}
+
+  /* right column panels */
+  .panels{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .panel{padding:18px 20px}
+  .panel h4{font-size:14px;font-weight:700;color:#f8fafc;margin-bottom:11px}
+  .panel ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .panel li{display:flex;gap:9px;font-size:13px;color:var(--silver);line-height:1.35}
+  .panel li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--gold);flex:none;margin-top:7px}
+  .note{margin-top:14px;padding:16px 20px;border-radius:16px;border:1px solid var(--gold-line);background:rgba(251,191,36,.05)}
+  .note .nt{display:flex;align-items:center;gap:8px;font-size:13.5px;font-weight:700;color:var(--gold);margin-bottom:5px}
+  .note p{font-size:13px;color:var(--silver);line-height:1.45}
+
+  /* criteria (slide 5 right) */
+  .crit{display:flex;flex-direction:column;gap:10px}
+  .crit-row{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 18px}
+  .crit-row .ci h5{font-size:15px;color:#f8fafc;font-weight:700}
+  .crit-row .ci p{font-size:12.5px;color:var(--silver-dim);margin-top:3px;line-height:1.35}
+  .level{display:inline-flex;align-items:center;gap:7px;padding:6px 13px;border-radius:999px;font-size:12px;font-weight:700;white-space:nowrap}
+  .level i{width:7px;height:7px;border-radius:50%;background:currentColor;display:block}
+  .level.high{color:var(--gold);border:1px solid var(--gold-line);background:rgba(251,191,36,.1)}
+  .level.check{color:var(--purple);border:1px solid rgba(167,139,250,.3);background:rgba(167,139,250,.1)}
+  .scorepanel{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px}
+  .ring-lg{width:150px;height:150px;position:relative;display:flex;align-items:center;justify-content:center}
+  .ring-lg svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .ring-lg .rc{position:absolute;display:flex;flex-direction:column;align-items:center}
+  .ring-lg .rc b{font-family:"Playfair Display",serif;font-size:42px;color:var(--gold);line-height:1}
+  .ring-lg .rc s{font-size:12px;color:var(--silver-dim);text-decoration:none}
+  .scorepanel .cap{font-size:13px;color:var(--silver);line-height:1.45;margin-top:16px;max-width:200px}
+
+  /* timeline (slide 8) */
+  .ops-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-top:14px;flex:1}
+  .ops-summary{display:flex;align-items:center;gap:22px;flex-wrap:wrap;padding:16px 24px;border-radius:16px;border:1px solid var(--gold-line);background:rgba(251,191,36,.05)}
+  .ops-summary .st{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+  .ops-summary .lines{display:flex;gap:26px;flex-wrap:wrap}
+  .ops-summary .lines span{font-size:14px;color:var(--silver)}
+  .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;position:relative}
+  .timeline::before{content:"";position:absolute;top:26px;left:8%;right:8%;height:2px;background:linear-gradient(90deg,var(--gold),rgba(251,191,36,.15))}
+  .tstep{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+  .tnode{width:54px;height:54px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:"Playfair Display",serif;font-weight:800;font-size:20px;color:var(--gold);
+    background:radial-gradient(circle at 50% 35%,#16203a,#0b1120);border:1.5px solid var(--gold-line);
+    box-shadow:0 0 20px rgba(251,191,36,.16)}
+  .tstep .tcard{margin-top:14px;padding:14px 12px;width:100%}
+  .tstep h5{font-size:13.5px;color:#f8fafc;font-weight:700}
+  .tstep p{font-size:11.5px;color:var(--silver-dim);margin-top:6px;line-height:1.35}
+
+  /* ---------- deck chrome ---------- */
+  .topbar{position:fixed;top:0;left:0;right:0;height:3px;background:rgba(255,255,255,.06);z-index:40}
+  .topbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold2),var(--gold3));transition:width .4s ease;box-shadow:0 0 12px rgba(251,191,36,.5)}
+  .chrome{position:fixed;z-index:40;bottom:18px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:18px;pointer-events:none}
+  .chrome>*{pointer-events:auto}
+  .navbtn{width:42px;height:42px;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;
+    background:rgba(15,23,42,.7);border:1px solid var(--gold-line);color:var(--gold);backdrop-filter:blur(8px);
+    font-size:18px;transition:.2s;user-select:none}
+  .navbtn:hover{background:rgba(251,191,36,.15);transform:translateY(-1px)}
+  .dots{display:flex;gap:9px}
+  .dots b{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18);cursor:pointer;transition:.25s}
+  .dots b.on{background:var(--gold);box-shadow:0 0 10px var(--gold);transform:scale(1.15)}
+  .counter{position:fixed;z-index:40;bottom:24px;right:26px;font-size:13px;color:var(--silver-dim);font-weight:600;letter-spacing:.05em}
+  .counter b{color:var(--gold)}
+  .brandtag{position:fixed;z-index:40;bottom:24px;left:26px;font-size:11.5px;color:rgba(148,163,184,.55);letter-spacing:.06em}
+  .hint{position:fixed;z-index:40;top:14px;left:50%;transform:translateX(-50%);font-size:11px;color:rgba(148,163,184,.5);letter-spacing:.04em}
+  .pagebadge{position:absolute;top:54px;right:72px;font-size:12px;color:rgba(148,163,184,.55);font-weight:600;letter-spacing:.08em}
+
+  @media (max-width:640px){
+    .hint{display:none}
+  }
+</style>
+</head>
+<body>
+  <div class="topbar"><i id="progbar"></i></div>
+  <div class="hint">← → ile gez · F tam ekran</div>
+
+  <div class="viewport">
+    <div class="stage" id="stage">
+
+      <!-- ===== SLIDE 1 — COVER ===== -->
+      <section class="slide cover active">
+        <span class="pagebadge">01 / 08</span>
+        <span class="badge">● Sunum · Neon Sahne Konsepti</span>
+        <h1>Menajer <span class="grad">App</span></h1>
+        <div class="tagline">Sahne ışığında kontrollü eşleştirme</div>
+        <p class="lead">Sanatçı ve işletme profil oluşturur. Platform arka planda en doğru eşleşmeyi seçer. İşletme “Uygundur” derse aynı teklif sanatçıya gider. Çift onaydan sonra operasyon ekibi arar ve sözleşme sürecini başlatır.</p>
+
+        <div class="pipeline">
+          <div class="pstep"><div class="pnode">1</div><div class="lbl">Profil</div></div>
+          <div class="pstep"><div class="pnode">2</div><div class="lbl">Backstage<br/>eşleştirme</div></div>
+          <div class="pstep"><div class="pnode">3</div><div class="lbl">İşletme<br/>onayı</div></div>
+          <div class="pstep"><div class="pnode">4</div><div class="lbl">Sanatçı<br/>onayı</div></div>
+          <div class="pstep"><div class="pnode">5</div><div class="lbl">Telefon +<br/>sözleşme</div></div>
+        </div>
+      </section>
+
+      <!-- ===== SLIDE 2 — HARİTA ===== -->
+      <section class="slide">
+        <span class="pagebadge">02 / 08</span>
+        <span class="kicker"><span class="dot"></span>Harita</span>
+        <h2 class="title" style="font-size:40px;margin-top:12px">Uygulama sayfaları ve <span class="grad">rol dağılımı</span></h2>
+        <p class="lead" style="font-size:15px;margin-top:10px;max-width:900px">Üç ayrı yüzey var: sanatçı uygulaması, işletme uygulaması ve platformun backstage operasyon paneli.</p>
+
+        <div class="cards3">
+          <div class="rolecard glass">
+            <div class="ic">♪</div>
+            <div class="role">Sanatçı uygulaması</div>
+            <h3>Sanatçı</h3>
+            <ul>
+              <li><span class="tick">✓</span>Profil oluşturur</li>
+              <li><span class="tick">✓</span>Müsaitlik ve tarz girer</li>
+              <li><span class="tick">✓</span>Gelen teklifi görür</li>
+              <li><span class="tick">✓</span>Uygundur / uygun değil der</li>
+              <li><span class="tick">✓</span>Sözleşme durumunu takip eder</li>
+            </ul>
+          </div>
+          <div class="rolecard glass">
+            <div class="ic">▣</div>
+            <div class="role">İşletme uygulaması</div>
+            <h3>İşletme</h3>
+            <ul>
+              <li><span class="tick">✓</span>İşletme profili açar</li>
+              <li><span class="tick">✓</span>Konsept ve ihtiyaç girer</li>
+              <li><span class="tick">✓</span>Önerilen sanatçıyı görür</li>
+              <li><span class="tick">✓</span>Uygundur / başka öneri ister</li>
+              <li><span class="tick">✓</span>Son görüşme durumunu takip eder</li>
+            </ul>
+          </div>
+          <div class="rolecard glass">
+            <div class="ic">▦</div>
+            <div class="role">Admin backstage</div>
+            <h3>Operasyon</h3>
+            <ul>
+              <li><span class="tick">✓</span>Profil doğrular</li>
+              <li><span class="tick">✓</span>Sanatçı-işletme eşleştirir</li>
+              <li><span class="tick">✓</span>İlk teklifi işletmeye gönderir</li>
+              <li><span class="tick">✓</span>Çift onayı takip eder</li>
+              <li><span class="tick">✓</span>Arama ve sözleşmeyi yönetir</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rule">
+          <div class="rk">Ana İş Kuralı</div>
+          <p>Eşleşme platformdan başlar. İşletme “Uygundur” demeden sanatçıya teklif gitmez. Sanatçı da “Uygundur” dediğinde durum “Çift onaylandı” olur ve operasyon ekibi iki tarafı telefonla arar.</p>
+          <div class="flow">
+            <span class="pill">Platform eşleştirir</span><span class="arrow">→</span>
+            <span class="pill">İşletme onaylar</span><span class="arrow">→</span>
+            <span class="pill">Sanatçı onaylar</span><span class="arrow">→</span>
+            <span class="pill">Operasyon arar</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SLIDE 3 — EKRAN 1: Sanatçı profil ===== -->
+      <section class="slide">
+        <span class="pagebadge">03 / 08</span>
+        <span class="kicker"><span class="dot"></span>Ekran 1</span>
+        <div class="screen-grid">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="scr">
+              <div class="statusbar"><span>21:30</span><span class="dots"><i></i><i></i><span class="bat"></span></span></div>
+              <div class="apphead"><div class="l"><span class="logoM">M</span><span class="name">Sanatçı Profili</span></div><span class="badge-pro">PRO</span></div>
+              <div class="scr-body">
+                <div class="scr-h">Profilini parlat</div>
+                <div class="scr-sub">Eşleşme için sahne kimliğini tamamla.</div>
+                <div class="prog"><div class="pt"><span>Sanatçı Profil</span><b>%72</b></div><div class="bar"><i style="width:72%"></i></div></div>
+                <div class="chips"><span>18+ doğrulama</span><span>400 kelime</span></div>
+                <div class="field"><div class="k">Yaş / fiziksel bilgiler</div><div class="v">25, boy, sahne görünümü</div></div>
+                <div class="field"><div class="k">Tarz / şehir</div><div class="v">Arabesk-pop / İstanbul</div></div>
+                <div class="btn-primary">Profili gönder</div>
+              </div>
+              <div class="tabbar"><span class="on">Ana</span><span>Teklif</span><span>Profil</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="scr-head">
+              <h2 class="title">Sanatçı profil oluşturma</h2>
+              <p class="lead">Sanatçı profilinde yaş, fiziksel bilgiler, sahne tarzı ve 400 kelimelik kısa anlatım standart alınır.</p>
+            </div>
+            <div class="panels" style="margin-top:18px">
+              <div class="panel soft">
+                <h4>Alınacak bilgiler</h4>
+                <ul>
+                  <li>Kimlik ve 18+ yaş doğrulaması</li>
+                  <li>Yaş ve fiziksel bilgiler</li>
+                  <li>Sahne adı, tarz, repertuvar</li>
+                  <li>400 kelimelik kısa anlatım</li>
+                  <li>Müsaitlik ve operasyon telefonu</li>
+                </ul>
+              </div>
+              <div class="panel soft">
+                <h4>Eşleşmeye etkisi</h4>
+                <ul>
+                  <li>Eksik profil eşleştirmeye alınmaz.</li>
+                  <li>Kişisel veriler onay/KVKK ile alınır.</li>
+                  <li>Admin uygunluk skorunu bu bilgilerle üretir.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="note">
+              <div class="nt">★ Sanatçı için deneyim</div>
+              <p>Sanatçının yaş, fiziksel bilgi ve 400 kelimelik anlatımı admin eşleştirmesine girer. İşletmeye sadece uygunluk için gerekli kontrollü özet gösterilir.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SLIDE 4 — EKRAN 2: İşletme profil ===== -->
+      <section class="slide">
+        <span class="pagebadge">04 / 08</span>
+        <span class="kicker"><span class="dot"></span>Ekran 2</span>
+        <div class="screen-grid">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="scr">
+              <div class="statusbar"><span>21:30</span><span class="dots"><i></i><i></i><span class="bat"></span></span></div>
+              <div class="apphead"><div class="l"><span class="logoM">M</span><span class="name">İşletme Profili</span></div><span class="badge-pro">PRO</span></div>
+              <div class="scr-body">
+                <div class="scr-h">Mekanı tanımla</div>
+                <div class="scr-sub">Doğru sanatçı için sahne ihtiyacını gir.</div>
+                <div class="chips"><span>Canlı müzik · Ankara</span><span>Haftalık program</span><span>Yetkili kayıtlı</span></div>
+                <div class="field"><div class="k">Şehir / lokasyon</div><div class="v">Ankara — Çankaya</div></div>
+                <div class="field"><div class="k">Mekan tipi</div><div class="v">Gazino / canlı müzik</div></div>
+                <div class="btn-primary">İşletmeyi gönder</div>
+              </div>
+              <div class="tabbar"><span class="on">Ana</span><span>Teklif</span><span>Profil</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="scr-head">
+              <h2 class="title">İşletme profil oluşturma</h2>
+              <p class="lead">İşletme profilinde mekan tipi, lokasyon, sahne ihtiyacı ve yetkili telefonu standart alınır.</p>
+            </div>
+            <div class="panels" style="margin-top:18px">
+              <div class="panel soft">
+                <h4>Alınacak bilgiler</h4>
+                <ul>
+                  <li>İşletme ve yetkili doğrulaması</li>
+                  <li>Lokasyon ve mekan tipi</li>
+                  <li>Program tarihi ve beklenti</li>
+                  <li>Bütçe ve sahne ihtiyacı</li>
+                  <li>Yetkili telefonu</li>
+                </ul>
+              </div>
+              <div class="panel soft">
+                <h4>Eşleşmeye etkisi</h4>
+                <ul>
+                  <li>Eksik profil eşleştirmeye alınmaz.</li>
+                  <li>Kişisel veriler onay/KVKK ile alınır.</li>
+                  <li>Admin uygunluk skorunu bu bilgilerle üretir.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="note">
+              <div class="nt">★ İşletme için deneyim</div>
+              <p>İşletme uzun liste gezmez. Platformun seçtiği adayı görür ve yalnızca “Uygundur” veya “Başka öneri iste” kararı verir.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SLIDE 5 — EKRAN 3: Backstage eşleştirme ===== -->
+      <section class="slide">
+        <span class="pagebadge">05 / 08</span>
+        <span class="kicker"><span class="dot"></span>Ekran 3</span>
+        <div class="screen-grid">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="scr">
+              <div class="statusbar"><span>21:30</span><span class="dots"><i></i><i></i><span class="bat"></span></span></div>
+              <div class="apphead"><div class="l"><span class="logoM">M</span><span class="name">Backstage Eşleştirme</span></div><span class="badge-pro">ADMIN</span></div>
+              <div class="scr-body">
+                <div class="seg"><span class="on">Yeni öneri</span><span>İşletme onayı bekliyor</span><span>Çift onaylandı</span></div>
+                <div class="pcard">
+                  <div class="top"><span class="tag">X Sanatçı</span><span class="st">Profil %92</span></div>
+                  <ul><li>Tarz: Fantezi / arabesk / pop</li><li>Yaş/fiziksel bilgi: kayıtlı</li><li>Anlatım: 400 kelime özeti hazır</li></ul>
+                </div>
+                <div class="pcard">
+                  <div class="top"><span class="tag">Z İşletme</span><span class="st">Doğrulandı</span></div>
+                  <ul><li>İhtiyaç: Haftalık sahne programı</li><li>Lokasyon: Ankara / Çankaya</li><li>Beklenti: Güçlü canlı sahne</li></ul>
+                </div>
+                <div class="scorebox"><div class="ring"><b>86</b><s>/100</s></div><p>Skor yeterliyse işletmeye ilk teklif gönderilir.</p></div>
+                <div class="btn-primary">İşletmeye öner</div>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="scr-head">
+              <h2 class="title">Backstage eşleştirme paneli</h2>
+              <p class="lead">Platform X sanatçının Z işletmeye uygunluğunu tarz, şehir, yaş/fiziksel bilgiler, anlatım, bütçe ve sahne beklentisiyle değerlendirir.</p>
+            </div>
+            <div class="crit" style="margin-top:18px">
+              <div class="crit-row soft"><div class="ci"><h5>Tarz uyumu</h5><p>İşletme beklentisi ile sanatçı repertuvarı uyumlu.</p></div><span class="level high"><i></i>Yüksek</span></div>
+              <div class="crit-row soft"><div class="ci"><h5>Profil uyumu</h5><p>Yaş, fiziksel bilgiler ve anlatım admin tarafından uygun bulundu.</p></div><span class="level high"><i></i>Yüksek</span></div>
+              <div class="crit-row soft"><div class="ci"><h5>Müsaitlik</h5><p>İstenen tarih için ön uygunluk var.</p></div><span class="level high"><i></i>Yüksek</span></div>
+              <div class="crit-row soft"><div class="ci"><h5>Bütçe</h5><p>Net ücret son görüşmede kilitlenecek.</p></div><span class="level check"><i></i>Kontrol</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SLIDE 6 — EKRAN 4: İşletmeye öneri ===== -->
+      <section class="slide">
+        <span class="pagebadge">06 / 08</span>
+        <span class="kicker"><span class="dot"></span>Ekran 4</span>
+        <div class="screen-grid">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="scr">
+              <div class="statusbar"><span>21:30</span><span class="dots"><i></i><i></i><span class="bat"></span></span></div>
+              <div class="apphead"><div class="l"><span class="logoM">M</span><span class="name">Önerilen Sanatçı</span></div><span class="badge-pro">PRO</span></div>
+              <div class="scr-body">
+                <div class="scr-h">Bu sanatçı tam sana göre!</div>
+                <div class="scr-sub">Z İşletme profiline göre güçlü aday.</div>
+                <div class="matchchip">★ X Sanatçı · 86 uyum</div>
+                <div class="rowline"><span class="tick">✓</span>Sahne tarzı uydu</div>
+                <div class="rowline"><span class="tick">✓</span>400 kelime özeti</div>
+                <div class="btn-primary">Uygundur</div>
+                <div class="btn-ghost">Başka öneri iste</div>
+              </div>
+              <div class="tabbar"><span class="on">Ana</span><span>Teklif</span><span>Profil</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="scr-head">
+              <h2 class="title">İşletmeye öneri gönderme</h2>
+              <p class="lead">İlk karar işletmeden alınır; işletme “Uygundur” demeden sanatçı tarafında teklif oluşmaz.</p>
+            </div>
+            <div class="panels" style="margin-top:18px">
+              <div class="panel soft">
+                <h4>İşletme kararları</h4>
+                <ul>
+                  <li>Uygundur: aynı teklif sanatçıya gider.</li>
+                  <li>Başka öneri iste: admin yeni aday seçer.</li>
+                  <li>Detay sor: admin işletmeyi arar.</li>
+                </ul>
+              </div>
+              <div class="panel soft">
+                <h4>Bu ekranda gösterilenler</h4>
+                <ul>
+                  <li>Profil özeti ve güçlü yönler.</li>
+                  <li>Uygunluk gerekçesi.</li>
+                  <li>Tarih ve beklenti özeti.</li>
+                  <li>Telefon bilgisi henüz açılmaz.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="note">
+              <div class="nt">★ İş kuralı</div>
+              <p>İşletme kabul etmezse sanatçı rahatsız edilmez; platform yeni eşleşme arar. Kabul ederse sanatçı ekranında aynı iş için onay akışı başlar.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SLIDE 7 — EKRAN 5: Sanatçıya teklif ===== -->
+      <section class="slide">
+        <span class="pagebadge">07 / 08</span>
+        <span class="kicker"><span class="dot"></span>Ekran 5</span>
+        <div class="screen-grid">
+          <div class="phone">
+            <div class="notch"></div>
+            <div class="scr">
+              <div class="statusbar"><span>21:30</span><span class="dots"><i></i><i></i><span class="bat"></span></span></div>
+              <div class="apphead"><div class="l"><span class="logoM">M</span><span class="name">Gelen Teklif</span></div><span class="badge-pro">PRO</span></div>
+              <div class="scr-body">
+                <div class="scr-h">Z İşletme için uygun musun?</div>
+                <div class="scr-sub">İşletme seni bu program için uygun gördü.</div>
+                <div class="pcard">
+                  <div class="top"><span class="tag">Z İşletme</span><span class="st">Doğrulandı</span></div>
+                  <ul><li>Mekan tipi: canlı müzik</li><li>Tarih: admin görüşmesinde netleşir</li><li>Son ücret görüşmede netleşir</li></ul>
+                </div>
+                <div class="chips"><span>Yetkili kayıtlı</span><span>Sahne uygun</span></div>
+                <div class="btn-primary">Uygundur</div>
+                <div class="btn-ghost">Uygun değil</div>
+              </div>
+              <div class="tabbar"><span class="on">Ana</span><span>Teklif</span><span>Profil</span></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="scr-head">
+              <h2 class="title">Sanatçıya teklif gönderme</h2>
+              <p class="lead">İşletme “Uygundur” dedikten sonra aynı teklif sanatçıya düşer; sanatçı da onaylarsa çift onay oluşur.</p>
+            </div>
+            <div class="panels" style="margin-top:18px">
+              <div class="panel soft">
+                <h4>Sanatçı kararları</h4>
+                <ul>
+                  <li>Uygundur: çift onay oluşur.</li>
+                  <li>Uygun değil: işletmeye yeni aday aranır.</li>
+                  <li>Detay sor: admin sanatçıyı arar.</li>
+                </ul>
+              </div>
+              <div class="panel soft">
+                <h4>Bu ekranda gösterilenler</h4>
+                <ul>
+                  <li>Profil özeti ve güçlü yönler.</li>
+                  <li>Uygunluk gerekçesi.</li>
+                  <li>Tarih ve beklenti özeti.</li>
+                  <li>Telefon bilgisi henüz açılmaz.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="note">
+              <div class="nt">★ İş kuralı</div>
+              <p>Sanatçı onayı işletme onayından sonra alınır. Bu sıra gereksiz teklif trafiğini azaltır ve platform kontrolünü korur.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ===== SLIDE 8 — EKRAN 6: Operasyon ve sözleşme ===== -->
+      <section class="slide">
+        <span class="pagebadge">08 / 08</span>
+        <span class="kicker"><span class="dot"></span>Ekran 6</span>
+        <h2 class="title" style="font-size:38px;margin-top:12px">Operasyon ve <span class="grad">sözleşme takibi</span></h2>
+        <p class="lead" style="font-size:15px;margin-top:10px;max-width:920px">Çift onaydan sonra sahne arkası ekip devreye girer: telefon görüşmesi, şartların netleşmesi, sözleşme taslağı ve final onay.</p>
+
+        <div class="ops-grid">
+          <div class="ops-summary">
+            <span class="st">Eşleşme özeti</span>
+            <div class="lines">
+              <span>X Sanatçı + Z İşletme</span>
+              <span>İki taraf da “Uygundur” dedi</span>
+              <span>Sıradaki adım: telefon görüşmesi</span>
+            </div>
+          </div>
+
+          <div class="timeline">
+            <div class="tstep"><div class="tnode">1</div><div class="tcard soft"><h5>İşletme araması</h5><p>Yetkiliyle aday ve koşullar teyit edilir.</p></div></div>
+            <div class="tstep"><div class="tnode">2</div><div class="tcard soft"><h5>Sanatçı araması</h5><p>Müsaitlik, ücret ve beklenti teyit edilir.</p></div></div>
+            <div class="tstep"><div class="tnode">3</div><div class="tcard soft"><h5>Sözleşme taslağı</h5><p>Tarih, ücret, iptal ve sorumluluklar yazılır.</p></div></div>
+            <div class="tstep"><div class="tnode">4</div><div class="tcard soft"><h5>Final onay</h5><p>Taraflar sözleşmeyi kabul eder.</p></div></div>
+            <div class="tstep"><div class="tnode">5</div><div class="tcard soft"><h5>Rezervasyon kilidi</h5><p>İş takip ekranına alınır.</p></div></div>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </div>
+
+  <!-- chrome -->
+  <div class="chrome">
+    <div class="navbtn" id="prev" aria-label="Önceki">‹</div>
+    <div class="dots" id="dots"></div>
+    <div class="navbtn" id="next" aria-label="Sonraki">›</div>
+  </div>
+  <div class="counter"><b id="cur">1</b> / <span id="total">8</span></div>
+  <div class="brandtag">Menajer App — Neon sahne konsepti</div>
+
+<script>
+  (function(){
+    var stage = document.getElementById('stage');
+    var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+    var dotsWrap = document.getElementById('dots');
+    var progbar = document.getElementById('progbar');
+    var curEl = document.getElementById('cur');
+    var total = slides.length;
+    document.getElementById('total').textContent = total;
+    var idx = 0;
+
+    // build dots
+    slides.forEach(function(_, i){
+      var b = document.createElement('b');
+      if(i===0) b.className='on';
+      b.addEventListener('click', function(){ go(i); });
+      dotsWrap.appendChild(b);
+    });
+    var dots = Array.prototype.slice.call(dotsWrap.children);
+
+    function render(){
+      slides.forEach(function(s,i){ s.classList.toggle('active', i===idx); });
+      dots.forEach(function(d,i){ d.classList.toggle('on', i===idx); });
+      curEl.textContent = (idx+1);
+      progbar.style.width = ((idx+1)/total*100) + '%';
+    }
+    function go(i){ idx = Math.max(0, Math.min(total-1, i)); render(); }
+    function next(){ go(idx+1); }
+    function prev(){ go(idx-1); }
+
+    document.getElementById('next').addEventListener('click', next);
+    document.getElementById('prev').addEventListener('click', prev);
+
+    document.addEventListener('keydown', function(e){
+      if(e.key==='ArrowRight' || e.key===' ' || e.key==='PageDown'){ e.preventDefault(); next(); }
+      else if(e.key==='ArrowLeft' || e.key==='PageUp'){ e.preventDefault(); prev(); }
+      else if(e.key==='Home'){ e.preventDefault(); go(0); }
+      else if(e.key==='End'){ e.preventDefault(); go(total-1); }
+      else if(e.key==='f' || e.key==='F'){
+        if(!document.fullscreenElement){ document.documentElement.requestFullscreen && document.documentElement.requestFullscreen(); }
+        else { document.exitFullscreen && document.exitFullscreen(); }
+      }
+    });
+
+    // click stage left/right halves to navigate (ignore chrome)
+    stage.addEventListener('click', function(e){
+      var r = stage.getBoundingClientRect();
+      if((e.clientX - r.left) > r.width/2) next(); else prev();
+    });
+
+    // scale stage to fit viewport
+    function fit(){
+      var pad = 0;
+      var s = Math.min((window.innerWidth-pad)/1280, (window.innerHeight-pad)/720);
+      stage.style.transform = 'scale(' + s + ')';
+    }
+    window.addEventListener('resize', fit);
+    fit();
+    render();
+  })();
+</script>
+</body>
+</html>

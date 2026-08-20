@@ -37,7 +37,7 @@ export function StickyCtaBar() {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 right-0 z-50 border-t border-gold/15 bg-night/95 backdrop-blur-md pb-[env(safe-area-inset-bottom)] lg:hidden transition-transform duration-300 ease-out will-change-transform ${
+      className={`fixed bottom-0 left-0 right-0 z-50 border-t border-gold/15 bg-night/95 backdrop-blur-md pb-[max(0.35rem,env(safe-area-inset-bottom))] lg:hidden transition-transform duration-300 ease-out will-change-transform ${
         visible ? "translate-y-0" : "translate-y-full pointer-events-none"
       }`}
       aria-hidden={!visible}
@@ -49,7 +49,7 @@ export function StickyCtaBar() {
           rel="noopener noreferrer"
           tabIndex={visible ? 0 : -1}
           onClick={() => trackEvent("whatsapp_click", { location: "sticky-bar" })}
-          className="flex flex-col items-center gap-1 py-3 text-[#25D366] hover:bg-white/5 transition-colors"
+          className="flex min-h-11 flex-col items-center justify-center gap-1 py-3 text-[#25D366] hover:bg-white/5 transition-colors touch-manipulation"
         >
           <MessageCircle size={20} />
           <span className="text-[11px] font-medium">{t("stickyWhatsapp")}</span>
@@ -59,7 +59,7 @@ export function StickyCtaBar() {
           prefetch={false}
           tabIndex={visible ? 0 : -1}
           onClick={() => trackEvent("apply_click", { location: "sticky-bar" })}
-          className="flex flex-col items-center gap-1 py-3 text-gold hover:bg-white/5 transition-colors"
+          className="flex min-h-11 flex-col items-center justify-center gap-1 py-3 text-gold hover:bg-white/5 transition-colors touch-manipulation"
         >
           <FileText size={20} />
           <span className="text-[11px] font-medium">{t("stickyApply")}</span>
@@ -68,7 +68,7 @@ export function StickyCtaBar() {
           href="/#is-ilanlari"
           tabIndex={visible ? 0 : -1}
           onClick={() => trackEvent("job_listings_click", { location: "sticky-bar" })}
-          className="flex flex-col items-center gap-1 py-3 text-silver hover:text-gold hover:bg-white/5 transition-colors"
+          className="flex min-h-11 flex-col items-center justify-center gap-1 py-3 text-silver hover:text-gold hover:bg-white/5 transition-colors touch-manipulation"
         >
           <Briefcase size={20} />
           <span className="text-[11px] font-medium">{t("stickyJobs")}</span>

@@ -133,7 +133,7 @@ export function ApplicationForm() {
   };
 
   const inputClass =
-    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-foreground placeholder:text-silver/40 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-colors";
+    "w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-base text-foreground placeholder:text-silver/40 focus:outline-none focus:border-gold/50 focus:ring-1 focus:ring-gold/30 transition-colors";
   const labelClass = "block text-sm font-medium text-silver mb-2";
   const errorClass = "text-red-400 text-xs mt-1";
 

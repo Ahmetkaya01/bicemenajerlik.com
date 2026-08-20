@@ -14,7 +14,7 @@ export function LanguageSwitcher() {
   return (
     <button
       onClick={toggle}
-      className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold border border-white/15 text-silver hover:border-gold/40 hover:text-gold transition-colors"
+      className="flex items-center gap-1.5 min-h-11 px-3 py-2 rounded-full text-xs font-semibold border border-white/15 text-silver hover:border-gold/40 hover:text-gold transition-colors touch-manipulation"
       aria-label={locale === "tr" ? "Switch to English" : "Türkçe'ye geç"}
     >
       <span className={locale === "tr" ? "text-gold" : "text-silver/50"}>

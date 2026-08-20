@@ -1,0 +1,87 @@
+---
+description: Google Ads MCP kullanımı — Bice Menajerlik hesabı (CID 151-230-4203)
+alwaysApply: true
+---
+
+# Google Ads MCP (Bice Menajerlik)
+
+Google Ads, kampanya, bütçe, dönüşüm, promosyon (“8 harca 8 al”), arama terimleri veya reklam performansıyla ilgili her soruda **önce Google Ads MCP** kullan. Hesaba tarayıcıyla veya tahminle bakma; MCP yoksa eksik erişimi söyle ve kurulumu hatırlat.
+
+## Hesap
+
+| Alan | Değer |
+|------|--------|
+| Müşteri kimliği (CID) | `151-230-4203` (API’de `1512304203`) |
+| Hesap adı | Bice Menajerlik |
+| Site | https://bicemenajerlik.com |
+| Ads ID (gtag) | `AW-18231553251` |
+| İletişim e-posta | bicemenajerliktr@gmail.com |
+
+Manager (MCC) üzerinden erişim varsa `GOOGLE_ADS_LOGIN_CUSTOMER_ID` zorunlu.
+
+## MCP sunucusu
+
+Resmi sunucu: `git+https://github.com/googleads/google-ads-mcp.git`  
+Örnek config: [`.cursor/mcp.google-ads.example.json`](.cursor/mcp.google-ads.example.json)  
+Kurulum scripti: [`scripts/setup-google-ads-mcp.sh`](scripts/setup-google-ads-mcp.sh) (`uv` / `uvx` ile çalışır)
+
+Gerekli env:
+
+- `GOOGLE_ADS_DEVELOPER_TOKEN` (Explorer+ / production)
+- `GOOGLE_PROJECT_ID`
+- `GOOGLE_APPLICATION_CREDENTIALS` (ADC JSON) **veya** OAuth proxy client id/secret
+- Scope: `https://www.googleapis.com/auth/adwords`
+
+## API merkezi checklist (Ads UI)
+
+1. `https://ads.google.com/aw/apicenter` — `bicemenajerliktr@gmail.com`
+2. Kimlik modalı → telefonda Google onayı → **Tekrar dene**
+3. API e-posta / şirket / site URL kaydet
+4. **Developer Token** kopyala
+5. GCP: Google Ads API + OAuth/ADC → `bash scripts/setup-google-ads-mcp.sh`
+
+## Araç kullanımı
+
+1. `list_accessible_customers` — erişim doğrula; `1512304203` listede olmalı.
+2. `get_resource_metadata` — alan adlarından emin değilse.
+3. `search` (GAQL) — kampanya, metrik, bütçe, dönüşüm.
+
+Sorgularında customer id’yi açık yaz: `1512304203`.
+
+### Sık GAQL örnekleri
+
+Aktif kampanyalar:
+
+```sql
+SELECT campaign.id, campaign.name, campaign.status, campaign_budget.amount_micros
+FROM campaign
+WHERE campaign.status != 'REMOVED'
+```
+
+Son 30 gün performans:
+
+```sql
+SELECT campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions
+FROM campaign
+WHERE segments.date DURING LAST_30_DAYS
+```
+
+Dönüşüm aksiyonları:
+
+```sql
+SELECT conversion_action.name, conversion_action.type, conversion_action.status
+FROM conversion_action
+```
+
+## Site ↔ Ads tutarlılığı
+
+- Dönüşüm etiketleri: `NEXT_PUBLIC_GADS_*_LABEL` (WhatsApp / form / telefon) Vercel’de dolu olmalı; aksi halde Ads optimizasyonu kör kalır.
+- Landing: mümkünse `/basvuru`, `/ilanlar/...` — sadece ana sayfa değil.
+- Promosyon boşsa (“Henüz girişiniz yok”) uydurma kredi varsayma; kod uygulanmamış demektir.
+- “Bakiye tükendi” uyarısı varsa önce faturalandırma; kampanya iyileştirmesi ikinci planda.
+
+## Güvenlik
+
+- Developer token / OAuth secret’ı repo’ya commit etme.
+- MCP read-only; yazma/değişiklik için kullanıcı onayı al.
+- Üçüncü taraf “0 harca 8000 al” kuponlarına güvenme; yalnızca Google hesabındaki resmi promosyonları kabul et.

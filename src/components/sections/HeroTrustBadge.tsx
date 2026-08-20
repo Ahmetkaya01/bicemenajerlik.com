@@ -12,7 +12,7 @@ export function HeroTrustBadge() {
     <div className="mb-6">
       <Link
         href="/#kurumsal"
-        className="group inline-flex flex-wrap items-center gap-3 rounded-2xl border border-gold/25 bg-gold/[0.07] px-4 py-3 hover:border-gold/45 hover:bg-gold/10 transition-all"
+        className="group inline-flex w-full max-w-full flex-wrap items-center gap-3 rounded-2xl border border-gold/25 bg-gold/[0.07] px-4 py-3 hover:border-gold/45 hover:bg-gold/10 transition-all"
       >
         <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold/15 shrink-0">
           <ShieldCheck className="text-gold" size={20} aria-hidden />
@@ -25,7 +25,7 @@ export function HeroTrustBadge() {
             {t("footerTaxId")}: {COMPANY_LEGAL.taxId}
           </p>
         </div>
-        <span className="text-gold text-xs font-semibold tracking-wide uppercase ml-auto sm:ml-0 group-hover:underline underline-offset-4">
+        <span className="text-gold text-xs font-semibold tracking-wide uppercase w-full sm:w-auto sm:ml-0 group-hover:underline underline-offset-4">
           {t("corporateHeroBadgeCta")} →
         </span>
       </Link>

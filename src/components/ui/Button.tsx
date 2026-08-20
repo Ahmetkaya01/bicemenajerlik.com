@@ -30,9 +30,9 @@ const variants: Record<ButtonVariant, string> = {
 };
 
 const sizes: Record<ButtonSize, string> = {
-  sm: "px-4 py-2 text-sm",
-  md: "px-6 py-3 text-base",
-  lg: "px-8 py-4 text-lg",
+  sm: "min-h-11 px-4 py-2.5 text-sm",
+  md: "min-h-11 px-6 py-3 text-base",
+  lg: "min-h-12 px-6 sm:px-8 py-3.5 sm:py-4 text-base sm:text-lg",
 };
 
 function shouldPrefetch(href: string, prefetch?: boolean) {
@@ -53,7 +53,7 @@ export function Button({
   className = "",
   prefetch,
 }: ButtonProps) {
-  const classes = `inline-flex items-center justify-center gap-2 rounded-full transition-transform duration-200 hover:scale-[1.03] active:scale-[0.98] ${variants[variant]} ${sizes[size]} ${disabled ? "opacity-50 cursor-not-allowed hover:scale-100 active:scale-100" : ""} ${className}`;
+  const classes = `inline-flex items-center justify-center gap-2 rounded-full transition-transform duration-200 [@media(hover:hover)]:hover:scale-[1.03] active:scale-[0.98] touch-manipulation ${variants[variant]} ${sizes[size]} ${disabled ? "opacity-50 cursor-not-allowed [@media(hover:hover)]:hover:scale-100 active:scale-100" : ""} ${className}`;
 
   if (href) {
     const isExternal = href.startsWith("http");

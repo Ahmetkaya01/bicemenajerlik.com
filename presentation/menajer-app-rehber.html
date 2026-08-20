@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<title>Menajer App — Web Sitesi Arayüz & İçerik Rehberi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800;900&family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#0B0514; --bg2:#150a22; --bg3:#1d0f2e;
+    --pink:#FF007F; --teal:#00F5D4; --gold:#FFBD00;
+    --text:#F4ECFA; --muted:#b6a5c8; --muted2:#8d7ba1;
+    --line:rgba(255,255,255,.09);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  @page{ size:1280px 720px; margin:0; }
+  html,body{margin:0;padding:0;background:#05030a}
+  body{
+    font-family:"Montserrat",system-ui,sans-serif;color:var(--text);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+
+  .page{
+    width:1280px;height:720px;position:relative;overflow:hidden;
+    page-break-after:always;break-after:page;
+    padding:64px 80px;display:flex;flex-direction:column;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+    background:
+      radial-gradient(ellipse 60% 45% at 15% 0%, rgba(255,0,127,.18), transparent 60%),
+      radial-gradient(ellipse 55% 45% at 92% 30%, rgba(0,245,212,.14), transparent 60%),
+      radial-gradient(ellipse 50% 50% at 70% 105%, rgba(255,189,0,.12), transparent 60%),
+      linear-gradient(160deg,#0B0514 0%, #150a22 55%, #08040f 100%);
+  }
+  .page:last-child{page-break-after:auto;break-after:auto}
+  .page::before{
+    content:"";position:absolute;inset:0;pointer-events:none;opacity:.45;
+    background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),
+                     linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);
+    background-size:46px 46px;
+    -webkit-mask-image:radial-gradient(ellipse 85% 80% at 50% 45%,#000,transparent 88%);
+            mask-image:radial-gradient(ellipse 85% 80% at 50% 45%,#000,transparent 88%);
+  }
+  .page>*{position:relative;z-index:1}
+
+  /* typography helpers */
+  .kicker{display:inline-flex;align-items:center;gap:10px;align-self:flex-start;
+    font-size:13px;font-weight:700;letter-spacing:.26em;text-transform:uppercase;color:var(--teal)}
+  .kicker .sq{width:9px;height:9px;border-radius:3px;background:var(--pink);box-shadow:0 0 14px var(--pink)}
+  h1{font-family:"Poppins",sans-serif;font-weight:900;line-height:1.04;color:#fff}
+  h2{font-family:"Poppins",sans-serif;font-weight:800;line-height:1.08;color:#fff}
+  h3{font-family:"Poppins",sans-serif;font-weight:700}
+  .g-pink{color:var(--pink)}
+  .g-teal{color:var(--teal)}
+  .g-gold{color:var(--gold)}
+  .grad{background:linear-gradient(100deg,var(--pink),var(--gold) 60%,var(--teal));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .lead{color:var(--muted);line-height:1.55}
+  .card{background:rgba(255,255,255,.035);border:1px solid var(--line);border-radius:20px}
+
+  .pagenum{position:absolute;top:64px;right:80px;font-family:"Poppins";font-weight:700;font-size:13px;color:var(--muted2);letter-spacing:.1em}
+  .footline{position:absolute;bottom:34px;left:80px;right:80px;display:flex;justify-content:space-between;align-items:center;
+    font-size:11.5px;color:var(--muted2);letter-spacing:.05em}
+  .footline .dots{display:flex;gap:8px;align-items:center}
+  .footline .dots i{width:10px;height:10px;border-radius:50%;display:block}
+  .d-pink{background:var(--pink);box-shadow:0 0 10px var(--pink)}
+  .d-teal{background:var(--teal);box-shadow:0 0 10px var(--teal)}
+  .d-gold{background:var(--gold);box-shadow:0 0 10px var(--gold)}
+
+  /* ---------- PAGE 1: HERO ---------- */
+  .hero{justify-content:center}
+  .brandchip{display:inline-flex;align-items:center;gap:11px;align-self:flex-start;
+    padding:10px 18px;border-radius:999px;border:1px solid rgba(0,245,212,.3);background:rgba(0,245,212,.06);
+    font-size:13px;font-weight:600;letter-spacing:.12em;color:var(--teal);text-transform:uppercase}
+  .brandchip .m{font-family:"Poppins";font-weight:800;color:#fff;letter-spacing:.04em}
+  .hero h1{font-size:74px;margin:26px 0 0;max-width:1000px}
+  .hero .sub{font-size:20px;color:var(--muted);max-width:780px;margin-top:20px;line-height:1.55}
+  .cta-row{display:flex;gap:18px;margin-top:38px}
+  .btn{padding:17px 30px;border-radius:14px;font-family:"Poppins";font-weight:700;font-size:16px;display:inline-flex;align-items:center;gap:10px}
+  .btn-pink{background:linear-gradient(135deg,#FF007F,#ff4da6);color:#fff;box-shadow:0 12px 34px rgba(255,0,127,.4)}
+  .btn-teal{background:linear-gradient(135deg,#00F5D4,#28e0c4);color:#04231d;box-shadow:0 12px 34px rgba(0,245,212,.32)}
+  .palette{display:flex;gap:26px;align-items:center;margin-top:46px;flex-wrap:wrap}
+  .swatch{display:flex;align-items:center;gap:10px;font-size:12.5px;color:var(--muted)}
+  .swatch b{width:22px;height:22px;border-radius:7px;display:block}
+
+  /* ---------- PAGE 2: 3 STEPS ---------- */
+  .steps{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:30px;flex:1;align-content:center}
+  .step{padding:28px 26px;display:flex;flex-direction:column;position:relative}
+  .step .no{font-family:"Poppins";font-weight:900;font-size:46px;line-height:1;
+    background:linear-gradient(135deg,var(--pink),var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .step h3{font-size:20px;color:#fff;margin:14px 0 10px}
+  .step p{font-size:14px;color:var(--muted);line-height:1.5}
+  .step.mid{border-color:rgba(255,0,127,.35);background:linear-gradient(160deg,rgba(255,0,127,.1),rgba(255,255,255,.02))}
+  .tagrule{display:inline-block;margin-top:10px;font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--gold);border:1px solid rgba(255,189,0,.35);background:rgba(255,189,0,.08);border-radius:999px;padding:4px 10px;align-self:flex-start}
+  .privacy{margin-top:14px;padding:12px 14px;border-radius:12px;border-left:3px solid var(--teal);background:rgba(0,245,212,.08);
+    font-size:12px;color:#d7fff7;line-height:1.45}
+  .privacy b{color:var(--teal)}
+
+  /* ---------- PAGE 3: ROLES ---------- */
+  .roles{display:grid;grid-template-columns:1fr 1fr;gap:26px;margin-top:28px;flex:1;align-content:center}
+  .role{padding:30px 30px;border-radius:22px;position:relative;overflow:hidden}
+  .role.artist{border:1px solid rgba(255,0,127,.34);background:linear-gradient(165deg,rgba(255,0,127,.12),rgba(255,255,255,.02))}
+  .role.venue{border:1px solid rgba(0,245,212,.32);background:linear-gradient(165deg,rgba(0,245,212,.1),rgba(255,255,255,.02))}
+  .role .rh{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .role .ic{width:54px;height:54px;border-radius:15px;display:flex;align-items:center;justify-content:center;font-size:26px}
+  .role.artist .ic{background:rgba(255,0,127,.18)}
+  .role.venue .ic{background:rgba(0,245,212,.16)}
+  .role .rh h3{font-size:23px;color:#fff}
+  .role .rh span{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;margin-top:3px}
+  .role.artist .rh span{color:var(--pink)}
+  .role.venue .rh span{color:var(--teal)}
+  .feat{display:flex;flex-direction:column;gap:16px}
+  .feat .f{display:flex;gap:14px}
+  .feat .f .bullet{width:26px;height:26px;border-radius:8px;flex:none;display:flex;align-items:center;justify-content:center;font-weight:800;font-family:"Poppins";font-size:13px}
+  .role.artist .bullet{background:rgba(255,0,127,.2);color:#ff9dc8}
+  .role.venue .bullet{background:rgba(0,245,212,.18);color:#7ff5e6}
+  .feat .f b{display:block;font-family:"Poppins";font-weight:700;font-size:15px;color:#fff;margin-bottom:4px}
+  .feat .f p{font-size:13px;color:var(--muted);line-height:1.45}
+
+  /* ---------- PAGE 4: TABLE ---------- */
+  .tbl{margin-top:30px;border-radius:20px;overflow:hidden;border:1px solid var(--line);flex:1;display:flex;flex-direction:column;max-height:500px}
+  .tr{display:grid;grid-template-columns:0.9fr 2.1fr 0.9fr;align-items:center}
+  .thead{background:rgba(255,255,255,.05)}
+  .thead .th{padding:18px 26px;font-family:"Poppins";font-weight:700;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+  .trow{border-top:1px solid var(--line);flex:1}
+  .trow .td{padding:20px 26px}
+  .trow .crit{font-family:"Poppins";font-weight:700;font-size:17px;color:#fff}
+  .trow .desc{font-size:14px;color:var(--muted);line-height:1.45}
+  .gbadge{display:inline-flex;align-items:center;gap:8px;padding:8px 15px;border-radius:999px;font-family:"Poppins";font-weight:700;font-size:13px;white-space:nowrap}
+  .gbadge.high{color:var(--gold);border:1px solid rgba(255,189,0,.4);background:rgba(255,189,0,.1)}
+  .gbadge.ctrl{color:var(--teal);border:1px solid rgba(0,245,212,.35);background:rgba(0,245,212,.1)}
+
+  /* ---------- PAGE 5: TIMELINE ---------- */
+  .timeline{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-top:48px;flex:1;align-content:center;position:relative}
+  .timeline::before{content:"";position:absolute;top:30px;left:8%;right:8%;height:2px;
+    background:linear-gradient(90deg,var(--pink),var(--gold) 55%,var(--teal))}
+  .tnode-wrap{display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1}
+  .tnode{width:62px;height:62px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    font-family:"Poppins";font-weight:800;font-size:24px;color:#fff;
+    background:radial-gradient(circle at 50% 30%,#2a1340,#140a22);border:2px solid rgba(255,0,127,.45);
+    box-shadow:0 0 26px rgba(255,0,127,.25)}
+  .tcard{margin-top:18px;padding:18px 14px;width:100%;min-height:150px}
+  .tcard h4{font-family:"Poppins";font-weight:700;font-size:15px;color:#fff;margin-bottom:8px}
+  .tcard p{font-size:12.5px;color:var(--muted);line-height:1.45}
+
+  /* ---------- PAGE 6: CLOSING ---------- */
+  .closing{align-items:center;justify-content:center;text-align:center}
+  .closing .mark{font-family:"Poppins";font-weight:900;font-size:72px;color:#fff;letter-spacing:.01em}
+  .closing .concept{font-family:"Poppins";font-style:italic;font-weight:500;color:var(--teal);font-size:22px;margin-top:6px;letter-spacing:.04em}
+  .links{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-top:40px}
+  .links a{padding:12px 22px;border-radius:999px;border:1px solid var(--line);font-family:"Poppins";font-weight:600;font-size:14px;color:var(--text);text-decoration:none;background:rgba(255,255,255,.03)}
+  .links a.pink{border-color:rgba(255,0,127,.4);color:#ff9dc8}
+  .links a.teal{border-color:rgba(0,245,212,.4);color:#7ff5e6}
+  .copy{margin-top:40px;font-size:13px;color:var(--muted2);letter-spacing:.05em}
+  .closing .palette{justify-content:center}
+</style>
+</head>
+<body>
+
+  <!-- ===== PAGE 1 — HERO ===== -->
+  <section class="page hero">
+    <span class="brandchip"><span class="m">MENAJER APP</span> · Neon Sahne Konsepti</span>
+    <h1>Sahne Işığında <span class="grad">Kontrollü Eşleştirme!</span></h1>
+    <p class="sub">Doğru sanatçı, doğru mekanla tek platformda buluşuyor. Güvenli, yapay zeka destekli ve çift onaylı menajerlik deneyimi.</p>
+    <div class="cta-row">
+      <span class="btn btn-pink">🎤 Sanatçı Olarak Katıl</span>
+      <span class="btn btn-teal">🏨 İşletme Olarak Kaydol</span>
+    </div>
+    <div class="palette">
+      <span class="swatch"><b style="background:#0B0514;border:1px solid #2a1b3d"></b>Gece Siyahı #0B0514</span>
+      <span class="swatch"><b style="background:#FF007F"></b>Neon Pembe #FF007F</span>
+      <span class="swatch"><b style="background:#00F5D4"></b>Turkuaz #00F5D4</span>
+      <span class="swatch"><b style="background:#FFBD00"></b>Altın #FFBD00</span>
+    </div>
+    <div class="footline">
+      <span>Web Sitesi Arayüz &amp; İçerik Rehberi</span>
+      <span class="dots"><i class="d-pink"></i><i class="d-teal"></i><i class="d-gold"></i></span>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 2 — NASIL ÇALIŞIR ===== -->
+  <section class="page">
+    <span class="pagenum">02 / 06</span>
+    <span class="kicker"><span class="sq"></span>Platform Nasıl Çalışır?</span>
+    <h2 style="font-size:42px;margin-top:16px">3 Adımda <span class="grad">Akış</span></h2>
+    <div class="steps">
+      <div class="step card">
+        <div class="no">01</div>
+        <h3>Akıllı Profil Oluşturma</h3>
+        <p>Sanatçılar tarz ve müsaitliklerini girer; işletmeler mekan konseptlerini ve bütçelerini tanımlar. Sistem arka planda en doğru uygunluk skorunu üretir.</p>
+      </div>
+      <div class="step card mid">
+        <div class="no">02</div>
+        <h3>Çift Onay Mekanizması</h3>
+        <span class="tagrule">Ana İş Kuralı</span>
+        <p style="margin-top:10px">Eşleşme önce işletmeye gider. İşletme “Uygundur” derse teklif sanatçıya iletilir. Sanatçı da onayladığında “Çift Onay” gerçekleşir.</p>
+        <div class="privacy">💡 <b>Gizlilik Notu:</b> Çift onay gerçekleşene kadar tarafların telefon numaraları kesinlikle gizli tutulur.</div>
+      </div>
+      <div class="step card">
+        <div class="no">03</div>
+        <h3>Operasyon &amp; Rezervasyon Kilidi</h3>
+        <p>Çift onay sonrasında platformun sahne arkası (backstage) ekibi devreye girer; şartları netleştirerek sözleşme sürecini yönetir.</p>
+      </div>
+    </div>
+    <div class="footline">
+      <span>Menajer App — Neon Sahne Konsepti</span>
+      <span class="dots"><i class="d-pink"></i><i class="d-teal"></i><i class="d-gold"></i></span>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 3 — KULLANICI ROLLERİ ===== -->
+  <section class="page">
+    <span class="pagenum">03 / 06</span>
+    <span class="kicker"><span class="sq"></span>Kullanıcı Rolleri ve Arayüz</span>
+    <h2 style="font-size:42px;margin-top:16px">İki Hedef Kitle, <span class="grad">İki Deneyim</span></h2>
+    <div class="roles">
+      <div class="role artist">
+        <div class="rh"><div class="ic">🎤</div><div><h3>Sanatçı Uygulaması</h3><span>Sahne Kimliği</span></div></div>
+        <div class="feat">
+          <div class="f"><span class="bullet">1</span><div><b>Eksiksiz Sahne Kimliği</b><p>Yaş, fiziksel özellikler, sahne tarzı ve 400 kelimelik repertuvar/anlatım alanı.</p></div></div>
+          <div class="f"><span class="bullet">2</span><div><b>Kontrollü Teklif Trafiği</b><p>Sadece sizinle ilgilenen ve bütçenize uyan işletmelerin tekliflerini görün, gereksiz trafikten kurtulun.</p></div></div>
+          <div class="f"><span class="bullet">3</span><div><b>Sözleşme Takibi</b><p>Dijital ortamda süreçleri ve onay durumlarını anlık izleyin.</p></div></div>
+        </div>
+      </div>
+      <div class="role venue">
+        <div class="rh"><div class="ic">🏨</div><div><h3>İşletme Uygulaması</h3><span>Nokta Atışı Öneri</span></div></div>
+        <div class="feat">
+          <div class="f"><span class="bullet">1</span><div><b>Uzun Listelerle Vakit Kaybetmeyin</b><p>Sistem size doğrudan eşleşme skoru en yüksek nokta atışı adayları önerir.</p></div></div>
+          <div class="f"><span class="bullet">2</span><div><b>Tek Tıkla Karar Ver</b><p>Önerilen adayı inceleyin; “Uygundur”, “Başka Öneri İste” veya “Detay Sor” seçenekleriyle yönetin.</p></div></div>
+          <div class="f"><span class="bullet">3</span><div><b>Detaylı Eşleştirme Kriterleri</b><p>Tarz uyumu, bütçe kontrolü ve takvim müsaitliği sistem tarafından önceden elenir.</p></div></div>
+        </div>
+      </div>
+    </div>
+    <div class="footline">
+      <span>Menajer App — Neon Sahne Konsepti</span>
+      <span class="dots"><i class="d-pink"></i><i class="d-teal"></i><i class="d-gold"></i></span>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 4 — KRİTERLER TABLOSU ===== -->
+  <section class="page">
+    <span class="pagenum">04 / 06</span>
+    <span class="kicker"><span class="sq"></span>Akıllı Eşleştirme Kriterleri</span>
+    <h2 style="font-size:42px;margin-top:16px">Arka Plandaki <span class="grad">Şeffaf Filtreleme</span></h2>
+    <div class="tbl">
+      <div class="tr thead">
+        <div class="th">Kriter</div>
+        <div class="th">Açıklama</div>
+        <div class="th" style="text-align:right">Güven Oranı</div>
+      </div>
+      <div class="tr trow">
+        <div class="td crit">Tarz Uyumu</div>
+        <div class="td desc">İşletmenin konsepti/beklentisi ile sanatçının repertuvarının tam eşleşmesi.</div>
+        <div class="td" style="text-align:right"><span class="gbadge high">🔥 Yüksek</span></div>
+      </div>
+      <div class="tr trow">
+        <div class="td crit">Profil Uyumu</div>
+        <div class="td desc">Yaş, şehir, fiziksel bilgiler ve sahne görünümünün admin onayından geçmesi.</div>
+        <div class="td" style="text-align:right"><span class="gbadge high">🔥 Yüksek</span></div>
+      </div>
+      <div class="tr trow">
+        <div class="td crit">Müsaitlik</div>
+        <div class="td desc">İstenen etkinlik tarihi için sanatçının takvim uygunluğunun doğrulanması.</div>
+        <div class="td" style="text-align:right"><span class="gbadge high">🔥 Yüksek</span></div>
+      </div>
+      <div class="tr trow">
+        <div class="td crit">Bütçe Kontrolü</div>
+        <div class="td desc">Mekanın bütçesi ile sanatçı talebinin ön kontrolden geçmesi (son görüşmede kilitlenir).</div>
+        <div class="td" style="text-align:right"><span class="gbadge ctrl">⚙️ Kontrol Aşaması</span></div>
+      </div>
+    </div>
+    <div class="footline">
+      <span>Menajer App — Neon Sahne Konsepti</span>
+      <span class="dots"><i class="d-pink"></i><i class="d-teal"></i><i class="d-gold"></i></span>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 5 — OPERASYONEL SÜREÇ ===== -->
+  <section class="page">
+    <span class="pagenum">05 / 06</span>
+    <span class="kicker"><span class="sq"></span>Çift Onay Sonrası Operasyonel Süreç</span>
+    <h2 style="font-size:40px;margin-top:16px">Sahne Arkası <span class="grad">Adım Adım</span></h2>
+    <div class="timeline">
+      <div class="tnode-wrap"><div class="tnode">1</div><div class="tcard card"><h4>İşletme Araması</h4><p>Yetkiliyle aday ve sahne koşulları teyit edilir.</p></div></div>
+      <div class="tnode-wrap"><div class="tnode">2</div><div class="tcard card"><h4>Sanatçı Araması</h4><p>Müsaitlik, net ücret ve sahne beklentileri doğrulanır.</p></div></div>
+      <div class="tnode-wrap"><div class="tnode">3</div><div class="tcard card"><h4>Sözleşme Taslağı</h4><p>Tarih, ücret, iptal/iade ve sorumluluklar yazılı hale getirilir.</p></div></div>
+      <div class="tnode-wrap"><div class="tnode">4</div><div class="tcard card"><h4>Final Onay</h4><p>İki taraf da sözleşmeyi dijital/operasyonel olarak kabul eder.</p></div></div>
+      <div class="tnode-wrap"><div class="tnode">5</div><div class="tcard card"><h4>Rezervasyon Kilidi</h4><p>Sahne kesinleşir ve iş takip ekranına alınarak süreç tamamlanır.</p></div></div>
+    </div>
+    <div class="footline">
+      <span>Menajer App — Neon Sahne Konsepti</span>
+      <span class="dots"><i class="d-pink"></i><i class="d-teal"></i><i class="d-gold"></i></span>
+    </div>
+  </section>
+
+  <!-- ===== PAGE 6 — KAPANIŞ / FOOTER ===== -->
+  <section class="page closing">
+    <div class="mark">Menajer <span class="grad">App</span></div>
+    <div class="concept">Neon Sahne Konsepti</div>
+    <div class="links">
+      <a href="#" class="">KVKK Politikası</a>
+      <a href="#" class="">Kullanıcı Sözleşmesi</a>
+      <a href="#" class="pink">Sanatçı Girişi</a>
+      <a href="#" class="teal">İşletme Girişi</a>
+    </div>
+    <div class="palette" style="margin-top:42px">
+      <span class="swatch"><b style="background:#FF007F"></b>#FF007F</span>
+      <span class="swatch"><b style="background:#00F5D4"></b>#00F5D4</span>
+      <span class="swatch"><b style="background:#FFBD00"></b>#FFBD00</span>
+    </div>
+    <div class="copy">© 2026 Menajer App. Tüm Hakları Saklıdır.</div>
+  </section>
+
+</body>
+</html>

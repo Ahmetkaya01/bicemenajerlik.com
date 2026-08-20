@@ -84,7 +84,7 @@ export function CookieConsent() {
     <div
       role="dialog"
       aria-labelledby="cookie-consent-title"
-      className="fixed bottom-0 left-0 right-0 z-[60] p-4 sm:p-6"
+      className="fixed bottom-0 left-0 right-0 z-[60] p-4 sm:p-6 pb-[max(1rem,env(safe-area-inset-bottom))]"
     >
       <div className="mx-auto max-w-3xl glass rounded-2xl border border-gold/20 p-5 sm:p-6 shadow-2xl shadow-black/40">
         <h2

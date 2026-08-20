@@ -33,7 +33,7 @@ export function QuickApplyForm() {
   };
 
   const inputClass =
-    "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-foreground placeholder:text-silver/40 focus:border-gold/50 focus:outline-none transition-colors";
+    "w-full rounded-xl bg-white/5 border border-white/10 px-4 py-3 text-base text-foreground placeholder:text-silver/40 focus:border-gold/50 focus:outline-none transition-colors";
 
   return (
     <div className="glass rounded-2xl p-6 border border-gold/15">
