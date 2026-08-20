@@ -1,0 +1,175 @@
+{
+  "campaignId": "23991328696",
+  "accountId": "1512304203",
+  "accountName": "Bice Menajerlik",
+  "adsId": "AW-18231553251",
+  "finalUrl": "https://bicemenajerlik.com/basvuru",
+  "displayPath1": "basvuru",
+  "displayPath2": "kons-ilanlari",
+  "targetAdStrength": "EXCELLENT",
+  "targetOptimizationScore": 100,
+  "headlines": [
+    "Kons Bayan İş İlanları",
+    "Bice Menajerlik — Resmi Ajans",
+    "Günlük Ödeme · 7.000-12.000 TL",
+    "58 İlde İş İmkanı",
+    "Yatılı Konaklama Desteği",
+    "WhatsApp'tan Hemen Başvur",
+    "Güvenilir Menajerlik Ajansı",
+    "Kons İş İlanı — Hemen Başvur",
+    "2015'ten Beri Güvenilir Hizmet",
+    "Gazino & Pavyon İlanları",
+    "24 Saat İçinde Dönüş",
+    "Gizlilik Garantili Başvuru",
+    "Deneyimsiz Adaylar Kabul",
+    "İstanbul · Ankara · İzmir",
+    "Kons Menajerlik — Bice"
+  ],
+  "descriptions": [
+    "Türkiye genelinde kons bayan iş ilanları. Günlük ödeme, yatılı konaklama koordinasyonu. WhatsApp veya form ile hemen başvurun.",
+    "Bice Menajerlik: 58 ilde güvenilir menajerlik. 7.000-12.000 TL arası kazanç imkânı. 24 saat içinde geri dönüş garantisi.",
+    "Resmi menajerlik ajansı — vergi levhalı, 10+ yıl deneyim. Kons, gazino, pavyon ve gece kulübü ilanları. Gizlilik garantili.",
+    "Hemen başvurun: bicemenajerlik.com/basvuru — Deneyimli veya deneyimsiz adaylar başvurabilir. 7/24 menajer desteği."
+  ],
+  "sitelinks": [
+    {
+      "text": "Hemen Başvur",
+      "url": "https://bicemenajerlik.com/basvuru",
+      "description1": "Online başvuru formu",
+      "description2": "2 dakikada tamamlayın"
+    },
+    {
+      "text": "Kons İş İlanları",
+      "url": "https://bicemenajerlik.com/ilanlar/kons",
+      "description1": "Güncel kons ilanları",
+      "description2": "58 il kapsamı"
+    },
+    {
+      "text": "WhatsApp Başvuru",
+      "url": "https://wa.me/905303733989",
+      "description1": "Anında iletişim",
+      "description2": "Gizlilik garantili"
+    },
+    {
+      "text": "Maaş Bilgileri",
+      "url": "https://bicemenajerlik.com/#maas",
+      "description1": "7.000-12.000 TL aralığı",
+      "description2": "Günlük ödeme"
+    },
+    {
+      "text": "Hakkımızda",
+      "url": "https://bicemenajerlik.com/hakkimizda",
+      "description1": "2015'ten beri hizmet",
+      "description2": "Resmi menajerlik ajansı"
+    },
+    {
+      "text": "İletişim",
+      "url": "https://bicemenajerlik.com/iletisim",
+      "description1": "7/24 destek hattı",
+      "description2": "530 373 39 89"
+    }
+  ],
+  "callouts": [
+    "Günlük Ödeme",
+    "58 İl Kapsamı",
+    "Gizlilik Garantili",
+    "Resmi Menajerlik",
+    "7/24 Destek",
+    "WhatsApp Başvuru",
+    "Yatılı Konaklama",
+    "Deneyimsiz Kabul",
+    "10+ Yıl Deneyim",
+    "Hızlı Geri Dönüş"
+  ],
+  "structuredSnippets": {
+    "header": "Hizmetler",
+    "values": [
+      "Kons İş İlanları",
+      "Gazino Personeli",
+      "Pavyon İlanları",
+      "Gece Kulübü",
+      "Solist & Garson"
+    ]
+  },
+  "imageAssets": [
+    "public/images/google-ads/landscape-kons-ilanlari.jpg",
+    "public/images/google-ads/landscape-gunluk-odeme.jpg",
+    "public/images/google-ads/landscape-58-il.jpg",
+    "public/images/google-ads/landscape-gazino-pavyon.jpg",
+    "public/images/google-ads/square-hemen-basvur.jpg",
+    "public/images/google-ads/square-guven.jpg",
+    "public/images/google-ads/square-maas.jpg",
+    "public/images/google-ads/square-kons-bayan.jpg",
+    "public/images/google-ads/portrait-gunluk-odeme.jpg",
+    "public/images/google-ads/portrait-whatsapp-basvur.jpg"
+  ],
+  "videoAssets": [
+    "public/images/google-ads/bice-menajerlik-reklam.mp4",
+    "public/images/google-ads/bice-menajerlik-reklam-kare.mp4"
+  ],
+  "negativeKeywords": [
+    "ücretsiz",
+    "bedava",
+    "escort",
+    "escort bayan",
+    "masaj",
+    "erkek aranıyor",
+    "işveren",
+    "cv hazırlama",
+    "kurs",
+    "eğitim"
+  ],
+  "optimizationScoreActions": [
+    {
+      "action": "APPLY",
+      "recommendation": "Dönüşüm izleme — WhatsApp, form ve telefon dönüşümlerini birincil yap",
+      "impact": "yüksek"
+    },
+    {
+      "action": "APPLY",
+      "recommendation": "15 benzersiz başlık + 4 açıklama ekle (reklam gücü: Mükemmel)",
+      "impact": "yüksek"
+    },
+    {
+      "action": "APPLY",
+      "recommendation": "6 site bağlantısı + 10 callout + yapılandırılmış snippet ekle",
+      "impact": "orta-yüksek"
+    },
+    {
+      "action": "APPLY",
+      "recommendation": "10 görsel + 2 video yükle (repo: public/images/google-ads/)",
+      "impact": "orta"
+    },
+    {
+      "action": "APPLY",
+      "recommendation": "Final URL: https://bicemenajerlik.com/basvuru (ana sayfa değil)",
+      "impact": "orta"
+    },
+    {
+      "action": "APPLY",
+      "recommendation": "Vercel'de NEXT_PUBLIC_GADS_*_LABEL env değişkenlerini doldur ve redeploy",
+      "impact": "kritik"
+    },
+    {
+      "action": "DISMISS",
+      "recommendation": "Geniş eşleme (broad match) — düşük kaliteli tıklama riski",
+      "impact": "dikkat"
+    },
+    {
+      "action": "DISMISS",
+      "recommendation": "Bütçe artır — yalnızca CPA makulse kabul et",
+      "impact": "dikkat"
+    },
+    {
+      "action": "DISMISS",
+      "recommendation": "Display Ağı genişletme — arama odaklı kampanyada genelde gerekmez",
+      "impact": "düşük"
+    }
+  ],
+  "vercelEnvRequired": {
+    "NEXT_PUBLIC_GADS_ID": "AW-18231553251",
+    "NEXT_PUBLIC_GADS_WHATSAPP_LABEL": "Google Ads → Hedefler → Dönüşümler → WhatsApp etiketi",
+    "NEXT_PUBLIC_GADS_FORM_LABEL": "Google Ads → Hedefler → Dönüşümler → Form etiketi",
+    "NEXT_PUBLIC_GADS_PHONE_LABEL": "Google Ads → Hedefler → Dönüşümler → Telefon etiketi"
+  }
+}
