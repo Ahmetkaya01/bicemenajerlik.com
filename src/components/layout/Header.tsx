@@ -68,7 +68,7 @@ export function Header() {
 
   return (
     <>
-      <header className="fixed top-0 left-0 right-0 z-50 py-3">
+      <header className="fixed top-0 left-0 right-0 z-50 pt-[max(0.75rem,env(safe-area-inset-top))] pb-3">
         <div className="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
           <nav
             className={`flex items-center justify-between gap-3 rounded-2xl border py-2.5 px-4 sm:px-5 transition-[background-color,border-color,box-shadow,backdrop-filter] duration-300 ${
@@ -124,7 +124,7 @@ export function Header() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("whatsapp_click", { location: "header-mobile" })}
-                className="p-2 rounded-full text-gold hover:bg-gold/10 transition-colors"
+                className="p-2 min-h-11 min-w-11 inline-flex items-center justify-center rounded-full text-gold hover:bg-gold/10 transition-colors touch-manipulation"
                 aria-label={t("whatsapp")}
               >
                 <MessageCircle size={20} />
@@ -132,7 +132,7 @@ export function Header() {
               <LanguageSwitcher />
               <button
                 type="button"
-                className="p-2 rounded-full text-silver hover:text-gold hover:bg-white/5 transition-colors"
+                className="p-2 min-h-11 min-w-11 inline-flex items-center justify-center rounded-full text-silver hover:text-gold hover:bg-white/5 transition-colors touch-manipulation"
                 onClick={() => setMobileOpen((open) => !open)}
                 aria-label={mobileOpen ? t("close") : t("menu")}
                 aria-expanded={mobileOpen}
@@ -205,7 +205,7 @@ export function Header() {
               </div>
             </div>
 
-            <div className="p-5 border-t border-white/5">
+            <div className="p-5 pb-[max(1.25rem,env(safe-area-inset-bottom))] border-t border-white/5">
               <Button href="/basvuru" className="w-full" size="lg">
                 {t("applyNow")}
               </Button>

@@ -48,9 +48,9 @@ export function Hero() {
             </div>
 
             {/* No fade-in: opacity:0 + fill-mode both delays FCP/LCP for the headline */}
-            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-bold leading-[1.1] mb-4">
+            <h1 className="font-display text-[clamp(1.7rem,7.2vw,3.75rem)] font-bold leading-[1.12] mb-4 text-balance">
               {t("heroTitle1")}
-              <span className="block text-gold-gradient whitespace-nowrap">
+              <span className="block text-gold-gradient">
                 {t("heroTitle2")}
                 {t("heroTitle3") ? ` ${t("heroTitle3")}` : ""}
               </span>
@@ -68,7 +68,7 @@ export function Hero() {
                 target="_blank"
                 rel="noopener noreferrer"
                 onClick={() => trackEvent("whatsapp_click", { location: "hero" })}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#25D366]/25 hover:bg-[#20bd5a] transition-colors"
+                className="inline-flex w-full min-h-11 items-center justify-center gap-2 rounded-full bg-[#25D366] px-6 py-3.5 text-base font-semibold text-white shadow-lg shadow-[#25D366]/25 hover:bg-[#20bd5a] transition-colors touch-manipulation"
               >
                 {t("whatsappApply")}
               </a>

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Inter,
   Playfair_Display,
@@ -10,6 +10,7 @@ import { ClientChrome } from "@/components/layout/ClientChrome";
 import { Providers } from "@/components/providers/Providers";
 import { rootMetadata } from "@/lib/metadata";
 import { GoogleAdsTag } from "@/components/seo/GoogleAdsTag";
+import { GoogleTag } from "@/components/seo/GoogleTag";
 import { HomeJobPostingJsonLd, JsonLd } from "@/components/seo/JsonLd";
 import "./globals.css";
 
@@ -41,6 +42,13 @@ const montserrat = Montserrat({
 
 export const metadata: Metadata = rootMetadata;
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
+  themeColor: "#0a0a0f",
+};
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -52,7 +60,8 @@ export default function RootLayout({
       suppressHydrationWarning
       className={`${inter.variable} ${playfair.variable} ${montserrat.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col bg-background text-foreground pb-16 lg:pb-0">
+      <body className="min-h-full flex flex-col bg-background text-foreground pb-[calc(4.25rem+env(safe-area-inset-bottom))] lg:pb-0">
+        <GoogleTag />
         <GoogleAdsTag />
         <JsonLd />
         <HomeJobPostingJsonLd />

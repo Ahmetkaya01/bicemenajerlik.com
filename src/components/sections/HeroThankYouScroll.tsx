@@ -51,7 +51,7 @@ export function HeroThankYouScroll() {
       className="relative w-full lg:max-w-md lg:justify-self-end"
       aria-label={t("aboutFamilyBadge")}
     >
-      <div className="glass rounded-2xl border border-gold/15 overflow-hidden h-[220px] sm:h-[260px] lg:h-[min(520px,62svh)]">
+      <div className="glass rounded-2xl border border-gold/15 overflow-hidden h-[180px] sm:h-[260px] lg:h-[min(520px,62svh)]">
         <div className="absolute inset-x-0 top-0 z-10 px-4 sm:px-5 pt-3.5 pb-2 bg-gradient-to-b from-night/95 via-night/80 to-transparent pointer-events-none">
           <p className="text-gold text-[11px] sm:text-xs font-heading font-semibold tracking-[0.18em] uppercase">
             {t("aboutFamilyBadge")}
