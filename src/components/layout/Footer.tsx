@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, MapPin, ShieldCheck } from "lucide-react";
-import { COMPANY_LEGAL, NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
+import { ArrowUpRight, Phone, Mail, MapPin, ShieldCheck } from "lucide-react";
+import { COMPANY_LEGAL, MEKANBUL, NAV_LINKS, SITE_CONFIG } from "@/lib/constants";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 import { Logo } from "@/components/ui/Logo";
 import { SocialLinks } from "@/components/ui/SocialLinks";
@@ -32,6 +32,21 @@ export function Footer() {
                 {t("footerSocial")}
               </p>
               <SocialLinks />
+            </div>
+            <div className="mt-6">
+              <p className="text-xs font-heading font-semibold tracking-wide text-silver mb-3">
+                {t("footerBrands")}
+              </p>
+              <a
+                href={MEKANBUL.url}
+                target="_blank"
+                rel="noopener"
+                className="group inline-flex items-center gap-2 rounded-full border border-gold/25 bg-gold/[0.06] px-4 py-2 text-sm text-foreground hover:border-gold/50 hover:text-gold transition-colors"
+              >
+                {MEKANBUL.name}
+                <ArrowUpRight size={14} className="text-gold" aria-hidden />
+              </a>
+              <p className="text-silver/70 text-xs mt-2">{t("footerMekanbulDesc")}</p>
             </div>
           </div>
 

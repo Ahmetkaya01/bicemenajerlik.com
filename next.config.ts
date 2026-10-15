@@ -1,5 +1,5 @@
 import type { NextConfig } from "next";
-import { SITE_CONFIG } from "./src/lib/constants";
+import { MEKANBUL, SITE_CONFIG } from "./src/lib/constants";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -25,6 +25,11 @@ const nextConfig: NextConfig = {
         has: [{ type: "host", value: "www.bicemenajerlik.com" }],
         destination: "https://bicemenajerlik.com/:path*",
         permanent: true,
+      },
+      {
+        source: MEKANBUL.shortPath,
+        destination: MEKANBUL.url,
+        permanent: false,
       },
       {
         source: "/instagram",

@@ -30,6 +30,11 @@ const CitiesCoverage = nextDynamic(() =>
     (mod) => mod.CitiesCoverage
   )
 );
+const MekanbulBanner = nextDynamic(() =>
+  import("@/components/sections/MekanbulBanner").then(
+    (mod) => mod.MekanbulBanner
+  )
+);
 const WhyUs = nextDynamic(() =>
   import("@/components/sections/WhyUs").then((mod) => mod.WhyUs)
 );
@@ -56,6 +61,7 @@ export default function HomePage() {
       <Services />
       <SalaryScale />
       <CitiesCoverage />
+      <MekanbulBanner />
       <WhyUs />
       <FAQ />
       <CTA />

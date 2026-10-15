@@ -234,6 +234,17 @@ export const translations = {
     socialX: "X (Twitter)",
     footerTagline: "Türkiye Geneli İş İlanları · Profesyonel Menajerlik",
     allRights: "Tüm hakları saklıdır.",
+    footerBrands: "Markalarımız",
+    footerMekanbulDesc: "81 ilde mekânlar ve çalışan yorumları",
+    mekanbulBadge: "Bir Bice Menajerlik markası",
+    mekanbulTitle1: "Çalışacağın mekânı önceden tanı:",
+    mekanbulDesc:
+      "mekanbul.online'da 81 ildeki gazino, gece kulübü ve eğlence mekânları hakkında gerçek çalışan yorumlarını okuyabilir, kendi deneyimini paylaşabilirsin.",
+    mekanbulFeature1: "81 ilde mekân listesi",
+    mekanbulFeature2: "Gerçek çalışan yorumları",
+    mekanbulFeature3: "Mekânını ekle, deneyimini yaz",
+    mekanbulCta: "mekanbul.online'a git",
+    mekanbulNote: "Yeni sekmede açılır",
 
     // Application page
     applyBadge: "İş Başvurusu",
@@ -650,6 +661,17 @@ export const translations = {
     socialX: "X (Twitter)",
     footerTagline: "Nationwide Job Listings · Professional Management",
     allRights: "All rights reserved.",
+    footerBrands: "Our Brands",
+    footerMekanbulDesc: "Venues and staff reviews in 81 provinces",
+    mekanbulBadge: "A Bice Menajerlik brand",
+    mekanbulTitle1: "Get to know the venue before you work there:",
+    mekanbulDesc:
+      "On mekanbul.online you can read real staff reviews of casinos, night clubs and entertainment venues across 81 provinces, and share your own experience.",
+    mekanbulFeature1: "Venues in 81 provinces",
+    mekanbulFeature2: "Real staff reviews",
+    mekanbulFeature3: "Add a venue, write a review",
+    mekanbulCta: "Visit mekanbul.online",
+    mekanbulNote: "Opens in a new tab",
 
     applyBadge: "Job Application",
     applyTitle1: "Job",

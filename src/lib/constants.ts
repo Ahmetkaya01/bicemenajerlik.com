@@ -12,6 +12,12 @@ export const SITE_CONFIG = {
   x: "https://x.com/bicemenajerlik",
 } as const;
 
+export const MEKANBUL = {
+  name: "mekanbul.online",
+  url: "https://www.mekanbul.online",
+  shortPath: "/mekanbul",
+} as const;
+
 export const COMPANY_LEGAL = {
   ownerName: "Ragıp Onur Bice",
   taxOffice: "Tokat",
