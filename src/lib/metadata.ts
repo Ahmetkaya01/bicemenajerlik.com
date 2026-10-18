@@ -39,7 +39,13 @@ export function createMetadata({
   noIndex?: boolean;
 }): Metadata {
   const fullTitle = `${SITE_CONFIG.name} | ${title}`;
-  const url = `${SITE_CONFIG.domain}${path}`;
+  const normalizedPath =
+    !path || path === "/"
+      ? "/"
+      : path.endsWith("/")
+        ? path
+        : `${path}/`;
+  const url = `${SITE_CONFIG.domain}${normalizedPath === "/" ? "/" : normalizedPath}`;
 
   return {
     title: fullTitle,

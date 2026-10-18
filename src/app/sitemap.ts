@@ -4,57 +4,63 @@ import { ALL_LANDING_PAGES } from "@/lib/landing-pages";
 
 export const dynamic = "force-static";
 
+function url(path = ""): string {
+  if (!path || path === "/") return `${SITE_CONFIG.domain}/`;
+  const normalized = path.startsWith("/") ? path : `/${path}`;
+  return `${SITE_CONFIG.domain}${normalized.endsWith("/") ? normalized : `${normalized}/`}`;
+}
+
 const STATIC_ROUTES: MetadataRoute.Sitemap = [
   {
-    url: SITE_CONFIG.domain,
+    url: url("/"),
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 1,
   },
   {
-    url: `${SITE_CONFIG.domain}/ilanlar`,
+    url: url("/ilanlar"),
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.95,
   },
   {
-    url: `${SITE_CONFIG.domain}/hakkimizda`,
+    url: url("/hakkimizda"),
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.8,
   },
   {
-    url: `${SITE_CONFIG.domain}/iletisim`,
+    url: url("/iletisim"),
     lastModified: new Date(),
     changeFrequency: "monthly",
     priority: 0.8,
   },
   {
-    url: `${SITE_CONFIG.domain}/basvuru`,
+    url: url("/basvuru"),
     lastModified: new Date(),
     changeFrequency: "weekly",
     priority: 0.9,
   },
   {
-    url: `${SITE_CONFIG.domain}/kvkk`,
+    url: url("/kvkk"),
     lastModified: new Date(),
     changeFrequency: "yearly",
     priority: 0.3,
   },
   {
-    url: `${SITE_CONFIG.domain}/gizlilik-politikasi`,
+    url: url("/gizlilik-politikasi"),
     lastModified: new Date(),
     changeFrequency: "yearly",
     priority: 0.3,
   },
   {
-    url: `${SITE_CONFIG.domain}/kullanim-sartlari`,
+    url: url("/kullanim-sartlari"),
     lastModified: new Date(),
     changeFrequency: "yearly",
     priority: 0.3,
   },
   {
-    url: `${SITE_CONFIG.domain}/cerez-politikasi`,
+    url: url("/cerez-politikasi"),
     lastModified: new Date(),
     changeFrequency: "yearly",
     priority: 0.3,
@@ -63,7 +69,7 @@ const STATIC_ROUTES: MetadataRoute.Sitemap = [
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const landingRoutes: MetadataRoute.Sitemap = ALL_LANDING_PAGES.map((page) => ({
-    url: `${SITE_CONFIG.domain}/ilanlar/${page.slug}`,
+    url: url(`/ilanlar/${page.slug}`),
     lastModified: new Date(),
     changeFrequency: page.type === "city" ? "weekly" : "monthly",
     priority: page.type === "category" ? 0.85 : 0.75,

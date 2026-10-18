@@ -205,16 +205,45 @@ export function HomeJobPostingJsonLd() {
   return <JobPostingJsonLd />;
 }
 
-/** Generic JobPosting schema rendered on the application page. */
-export function JobPostingJsonLd() {
+export interface JobPostingOptions {
+  title?: string;
+  description?: string;
+  /** City name for localized jobLocation; defaults to agency address. */
+  city?: string;
+  /** Landing / apply path, e.g. /ilanlar/istanbul/ */
+  path?: string;
+}
+
+/** JobPosting schema for homepage, application, or city/category landings. */
+export function JobPostingJsonLd({
+  title = "Gazino ve Gece Kulübü Personeli",
+  description = `Türkiye genelinde ${PROVINCE_COUNT} ilde gazino, gece kulübü, bar ve müzikhol mekanlarında çalışacak personel aranmaktadır. Deneyimli veya deneyimsiz, 18 yaş üstü adaylar başvurabilir. Günlük yevmiye, konaklama koordinasyonu ve 7/24 menajerlik desteği sağlanır.`,
+  city,
+  path = "/basvuru/",
+}: JobPostingOptions = {}) {
   const datePosted = JOB_DATE_POSTED;
   const validThrough = JOB_VALID_THROUGH;
+  const applyPath = path.endsWith("/") ? path : `${path}/`;
+
+  const jobLocation = city
+    ? {
+        "@type": "Place" as const,
+        address: {
+          "@type": "PostalAddress" as const,
+          addressLocality: city,
+          addressCountry: "TR",
+        },
+      }
+    : {
+        "@type": "Place" as const,
+        address: BUSINESS_ADDRESS,
+      };
 
   const schema = {
     "@context": "https://schema.org",
     "@type": "JobPosting",
-    title: "Gazino ve Gece Kulübü Personeli",
-    description: `Türkiye genelinde ${PROVINCE_COUNT} ilde gazino, gece kulübü, bar ve müzikhol mekanlarında çalışacak personel aranmaktadır. Deneyimli veya deneyimsiz, 18 yaş üstü adaylar başvurabilir. Günlük yevmiye, konaklama koordinasyonu ve 7/24 menajerlik desteği sağlanır.`,
+    title,
+    description,
     datePosted,
     validThrough,
     employmentType: ["FULL_TIME", "PART_TIME", "TEMPORARY"],
@@ -224,10 +253,7 @@ export function JobPostingJsonLd() {
       sameAs: SITE_CONFIG.domain,
       logo: `${SITE_CONFIG.domain}/opengraph-image`,
     },
-    jobLocation: {
-      "@type": "Place",
-      address: BUSINESS_ADDRESS,
-    },
+    jobLocation,
     applicantLocationRequirements: {
       "@type": "Country",
       name: "Türkiye",
@@ -242,6 +268,7 @@ export function JobPostingJsonLd() {
         unitText: "DAY",
       },
     },
+    url: `${SITE_CONFIG.domain}${applyPath}`,
     directApply: true,
     industry: "Eğlence ve Hizmet Sektörü",
     qualifications: "18 yaşını doldurmuş olmak. Deneyim şartı aranmaz.",

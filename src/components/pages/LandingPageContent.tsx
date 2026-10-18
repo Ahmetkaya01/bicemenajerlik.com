@@ -20,6 +20,7 @@ export function LandingPageContent({ page }: LandingPageContentProps) {
   const { t, locale } = useLanguage();
   const h1 = locale === "en" ? page.h1En : page.h1Tr;
   const intro = locale === "en" ? page.introEn : page.introTr;
+  const body = locale === "en" ? page.bodyEn : page.bodyTr;
   const whatsappUrl = getMarketingWhatsAppUrl();
 
   const related =
@@ -74,6 +75,29 @@ export function LandingPageContent({ page }: LandingPageContentProps) {
               {t("landingWhatsappCta")}
             </a>
           </div>
+        </section>
+
+        {body.length > 0 && (
+          <section className="mb-12 space-y-4">
+            <h2 className="font-heading font-semibold text-xl">
+              {t("landingAboutTitle")}
+            </h2>
+            {body.map((paragraph) => (
+              <p key={paragraph.slice(0, 48)} className="text-silver leading-relaxed">
+                {paragraph}
+              </p>
+            ))}
+          </section>
+        )}
+
+        <section className="mb-12">
+          <h2 className="font-heading font-semibold text-xl mb-4">{t("landingProcessTitle")}</h2>
+          <ol className="space-y-3 text-silver text-sm list-decimal list-inside">
+            <li>{t("landingProcess1")}</li>
+            <li>{t("landingProcess2")}</li>
+            <li>{t("landingProcess3")}</li>
+            <li>{t("landingProcess4")}</li>
+          </ol>
         </section>
 
         <section className="mb-12">

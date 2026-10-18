@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "npx tsx --tsconfig tsconfig.json scripts/write-llms.ts",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"

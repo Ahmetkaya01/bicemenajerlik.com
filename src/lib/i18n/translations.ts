@@ -192,6 +192,12 @@ export const translations = {
 
     // Landing pages
     landingApplyCta: "Hemen Başvur",
+    landingAboutTitle: "Bu ilan hakkında",
+    landingProcessTitle: "Başvuru süreci",
+    landingProcess1: "Online form veya WhatsApp ile ücretsiz başvurun.",
+    landingProcess2: "Menajerlik ekibi başvuruyu genellikle 24 saat içinde değerlendirir.",
+    landingProcess3: "Yevmiye, konaklama ve çalışma şartları netleştirilir.",
+    landingProcess4: "Uygun eşleşmede aynı gün veya ertesi gün işe başlayabilirsiniz.",
     landingWhatsappCta: "WhatsApp ile Sor",
     landingFaqTitle: "Sık Sorulan Sorular",
     landingRelatedTitle: "Diğer İlanlar",
@@ -623,6 +629,12 @@ export const translations = {
     notFoundBack: "Back to Home",
 
     landingApplyCta: "Apply Now",
+    landingAboutTitle: "About this listing",
+    landingProcessTitle: "How applying works",
+    landingProcess1: "Apply free via the online form or WhatsApp.",
+    landingProcess2: "Our managers usually review your application within 24 hours.",
+    landingProcess3: "Wage, lodging and work terms are clarified.",
+    landingProcess4: "Once matched, you can often start the same day or the next day.",
     landingWhatsappCta: "Ask on WhatsApp",
     landingFaqTitle: "FAQ",
     landingRelatedTitle: "Other Listings",

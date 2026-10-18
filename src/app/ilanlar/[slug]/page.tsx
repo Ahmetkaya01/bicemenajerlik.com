@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { LandingPageContent } from "@/components/pages/LandingPageContent";
-import { BreadcrumbJsonLd } from "@/components/seo/JsonLd";
+import { BreadcrumbJsonLd, JobPostingJsonLd } from "@/components/seo/JsonLd";
 import { createMetadata } from "@/lib/metadata";
 import { ALL_LANDING_PAGES, getLandingPage } from "@/lib/landing-pages";
 
@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return createMetadata({
     title: page.titleTr,
     description: page.descriptionTr,
-    path: `/ilanlar/${slug}`,
+    path: `/ilanlar/${slug}/`,
     keywords: page.keywords,
   });
 }
@@ -31,13 +31,21 @@ export default async function LandingSlugPage({ params }: PageProps) {
   const page = getLandingPage(slug);
   if (!page) notFound();
 
+  const path = `/ilanlar/${slug}/`;
+
   return (
     <>
       <BreadcrumbJsonLd
         items={[
-          { name: "İş İlanları", path: "/ilanlar" },
-          { name: page.titleTr, path: `/ilanlar/${slug}` },
+          { name: "İş İlanları", path: "/ilanlar/" },
+          { name: page.titleTr, path },
         ]}
+      />
+      <JobPostingJsonLd
+        title={page.h1Tr}
+        description={`${page.introTr} ${page.bodyTr.join(" ")}`}
+        city={page.type === "city" ? page.nameTr : undefined}
+        path={path}
       />
       <LandingPageContent page={page} />
     </>
