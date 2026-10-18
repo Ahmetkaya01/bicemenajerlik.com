@@ -4,13 +4,14 @@ import { useState, useMemo, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ArrowRight, Loader2, Mail, MessageCircle } from "lucide-react";
+import { ArrowLeft, ArrowRight, Loader2, MessageCircle } from "lucide-react";
 import { FormStepper } from "./FormStepper";
 import { Button } from "@/components/ui/Button";
 import { SuccessModal } from "@/components/ui/SuccessModal";
 import { getApplicationSchema, type ApplicationForm } from "@/lib/validations";
 import { EXPERIENCE_AREA_KEYS } from "@/lib/constants";
 import { trackEvent } from "@/lib/analytics";
+import { buildWhatsAppMessage, getWhatsAppUrl } from "@/lib/whatsapp";
 import { useLanguage } from "@/lib/i18n/LanguageProvider";
 
 export function ApplicationForm() {
@@ -22,8 +23,6 @@ export function ApplicationForm() {
   const [selectedFileName, setSelectedFileName] = useState<string | null>(null);
   const photoInputRef = useRef<HTMLInputElement>(null);
   const [whatsappUrl, setWhatsappUrl] = useState<string | undefined>();
-  const [successDelivery, setSuccessDelivery] = useState<"email" | "whatsapp">("email");
-  const [emailSent, setEmailSent] = useState(true);
 
   const schema = useMemo(() => getApplicationSchema(locale), [locale]);
 
@@ -40,12 +39,11 @@ export function ApplicationForm() {
     mode: "onBlur",
     defaultValues: {
       consent: undefined,
-      deliveryMethod: "email",
+      deliveryMethod: "whatsapp",
     },
   });
 
   const consent = watch("consent");
-  const deliveryMethod = watch("deliveryMethod");
 
   const nextStep = async () => {
     const fields =
@@ -78,49 +76,29 @@ export function ApplicationForm() {
   const onSubmit = async (data: ApplicationForm) => {
     setIsSubmitting(true);
     try {
-      const formData = new FormData();
-      formData.append("firstName", data.firstName);
-      formData.append("lastName", data.lastName);
-      formData.append("age", String(data.age));
-      formData.append("city", data.city);
-      formData.append("experienceArea", data.experienceArea);
-      formData.append("experience", data.experience);
-      formData.append("phone", data.phone);
-      formData.append("deliveryMethod", data.deliveryMethod);
-      formData.append("locale", locale);
+      let message = buildWhatsAppMessage(
+        {
+          firstName: data.firstName,
+          lastName: data.lastName,
+          age: data.age,
+          city: data.city,
+          experienceArea: data.experienceArea,
+          experience: data.experience,
+          phone: data.phone,
+        },
+        locale
+      );
       if (data.photo?.[0]) {
-        formData.append("photo", data.photo[0]);
+        message += `\n\n*${t("photoUpload")}:* ${data.photo[0].name} (${t("photoWhatsappNote")})`;
       }
 
-      const response = await fetch("/api/basvuru", {
-        method: "POST",
-        body: formData,
-      });
-
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(
-          typeof result.error === "string" ? result.error : "Gönderim başarısız"
-        );
-      }
-
-      setSuccessDelivery(
-        result.fallbackToWhatsapp ? "whatsapp" : data.deliveryMethod
-      );
-      setEmailSent(
-        data.deliveryMethod === "email" &&
-          result.emailSent === true &&
-          !result.fallbackToWhatsapp
-      );
-      setWhatsappUrl(result.whatsappUrl);
-
-      if (data.deliveryMethod === "whatsapp" && result.whatsappUrl) {
-        window.open(result.whatsappUrl, "_blank");
-      }
+      const url = getWhatsAppUrl(message);
+      setWhatsappUrl(url);
+      window.open(url, "_blank", "noopener,noreferrer");
 
       setShowSuccess(true);
-      trackEvent("form_submit", { delivery: data.deliveryMethod });
-      reset({ deliveryMethod: "email" });
+      trackEvent("form_submit", { delivery: "whatsapp" });
+      reset({ deliveryMethod: "whatsapp" });
       setStep(1);
       setPhotoPreview(null);
       setSelectedFileName(null);
@@ -317,56 +295,11 @@ export function ApplicationForm() {
                 )}
               </div>
 
-              <div>
-                <label className={labelClass}>{t("deliveryMethod")} *</label>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <label
-                    className={`flex flex-col gap-2 p-4 rounded-xl border cursor-pointer transition-colors ${
-                      deliveryMethod === "email"
-                        ? "border-gold/50 bg-gold/10"
-                        : "border-white/10 hover:border-white/20"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        value="email"
-                        {...register("deliveryMethod")}
-                        className="text-gold"
-                      />
-                      <Mail size={18} className="text-gold" />
-                      <span className="font-medium text-sm">
-                        {t("deliveryEmail")}
-                      </span>
-                    </div>
-                    <span className="text-silver/60 text-xs pl-6">
-                      {t("deliveryEmailDesc")}
-                    </span>
-                  </label>
-                  <label
-                    className={`flex flex-col gap-2 p-4 rounded-xl border cursor-pointer transition-colors ${
-                      deliveryMethod === "whatsapp"
-                        ? "border-gold/50 bg-gold/10"
-                        : "border-white/10 hover:border-white/20"
-                    }`}
-                  >
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="radio"
-                        value="whatsapp"
-                        {...register("deliveryMethod")}
-                        className="text-gold"
-                      />
-                      <MessageCircle size={18} className="text-gold" />
-                      <span className="font-medium text-sm">
-                        {t("deliveryWhatsapp")}
-                      </span>
-                    </div>
-                    <span className="text-silver/60 text-xs pl-6">
-                      {t("deliveryWhatsappDesc")}
-                    </span>
-                  </label>
-                </div>
+              <input type="hidden" {...register("deliveryMethod")} value="whatsapp" />
+
+              <div className="flex items-start gap-3 rounded-xl border border-gold/30 bg-gold/5 p-4 text-sm text-silver">
+                <MessageCircle size={18} className="text-gold shrink-0 mt-0.5" />
+                <p>{t("deliveryWhatsappDesc")}</p>
               </div>
 
               <label className="flex items-start gap-3 cursor-pointer">
@@ -419,9 +352,9 @@ export function ApplicationForm() {
       <SuccessModal
         isOpen={showSuccess}
         onClose={() => setShowSuccess(false)}
-        deliveryMethod={successDelivery}
+        deliveryMethod="whatsapp"
         whatsappUrl={whatsappUrl}
-        emailSent={emailSent}
+        emailSent={false}
       />
     </>
   );

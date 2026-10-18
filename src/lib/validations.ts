@@ -50,7 +50,8 @@ export function getApplicationSchema(locale: Locale = "tr") {
         m.valPhotoType
       ),
     consent: z.literal(true, { error: m.valConsent }),
-    deliveryMethod: z.enum(["email", "whatsapp"]),
+    // GitHub Pages = static host; applications go via WhatsApp only.
+    deliveryMethod: z.literal("whatsapp"),
   });
 }
 

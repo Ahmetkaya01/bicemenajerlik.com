@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { SITE_CONFIG } from "@/lib/constants";
 import { ALL_LANDING_PAGES } from "@/lib/landing-pages";
 
+export const dynamic = "force-static";
+
 const STATIC_ROUTES: MetadataRoute.Sitemap = [
   {
     url: SITE_CONFIG.domain,
